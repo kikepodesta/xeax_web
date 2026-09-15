@@ -1,4 +1,4 @@
-{% load i18n %}<!DOCTYPE html>
+{% load i18n %}{% load static %}<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -14,8 +14,7 @@
           <!-- Header -->
           <tr>
             <td style="background:linear-gradient(135deg,#0d0d0f 0%,#1a1a20 100%);padding:40px 40px 30px;text-align:center;border-bottom:1px solid #222228;">
-              <div style="font-family:Georgia,serif;font-size:36px;font-weight:900;letter-spacing:8px;color:#c9aa71;text-transform:uppercase;margin-bottom:4px;">XEAX</div>
-              <div style="font-size:10px;letter-spacing:4px;color:#888;text-transform:uppercase;">SPORTS</div>
+              <img src="{{ site_url }}{% static 'img/xeax_01_word_ra.png' %}" alt="XEAX Sports" width="280" style="display:block;margin:0 auto;max-width:280px;height:auto;">
             </td>
           </tr>
 

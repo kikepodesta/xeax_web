@@ -1,0 +1,27 @@
+# Secrets
+.env
+.env.prod
+.env.*
+
+# VCS & tooling
+.git
+.gitignore
+.vscode
+.agentignore
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Django local artifacts
+db.sqlite3
+staticfiles/
+media/
+
+# Docker (not needed inside image)
+Dockerfile
+docker-compose*.yml
+.dockerignore
+nginx/
+init-letsencrypt.sh
