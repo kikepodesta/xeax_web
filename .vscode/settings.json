@@ -1,0 +1,17 @@
+{
+  // Disable the default HTML formatter for Django template files
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
+  // If you want format-on-save for other file types, keep it here:
+  "[css]": {
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[python]": {
+    "editor.formatOnSave": true
+  }
+}

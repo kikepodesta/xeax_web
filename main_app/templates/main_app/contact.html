@@ -1,0 +1,171 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Contacto y Atención al Cliente" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 80px;">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="font-family: var(--font-body); font-size: 0.85rem;">
+            <li class="breadcrumb-item"><a href="{% url 'main_app:home' %}" class="text-muted text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item text-muted">{% trans "Soporte" %}</li>
+            <li class="breadcrumb-item active text-white" aria-current="page">{% trans "Contacto" %}</li>
+        </ol>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="text-uppercase text-white mb-3" style="font-family: var(--font-heading); font-size: 2.5rem; letter-spacing: 1px;">
+            {% trans "Atención al Atleta XEAX" %}
+        </h1>
+        <p class="text-muted mx-auto" style="max-width: 650px; font-size: 1rem; line-height: 1.6;">
+            {% trans "¿Tienes alguna duda sobre tallaje, estado de tu pedido o especificaciones técnicas de nuestro equipamiento? Nuestro equipo de especialistas está listo para ayudarte." %}
+        </p>
+    </div>
+
+    <!-- Metrics Header Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <div class="mx-auto mb-3" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(238, 255, 0, 0.1); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.4rem;">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+                <h6 class="text-white text-uppercase fw-bold mb-1" style="font-family: var(--font-heading);">{% trans "Respuesta en < 24h" %}</h6>
+                <p class="text-muted small mb-0">{% trans "Respondemos a la mayoría de las consultas en menos de 24 horas laborables." %}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <div class="mx-auto mb-3" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(238, 255, 0, 0.1); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.4rem;">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+                <h6 class="text-white text-uppercase fw-bold mb-1" style="font-family: var(--font-heading);">{% trans "Horario de Soporte" %}</h6>
+                <p class="text-muted small mb-0">{% trans "Lunes a Viernes: 09:00 - 18:00 (CEST)" %}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <div class="mx-auto mb-3" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(238, 255, 0, 0.1); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.4rem;">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <h6 class="text-white text-uppercase fw-bold mb-1" style="font-family: var(--font-heading);">{% trans "Soporte Oficial XEAX" %}</h6>
+                <p class="text-muted small mb-0">{% trans "Atención personalizada directa por expertos en material deportivo." %}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form & Info Columns -->
+    <div class="row g-4">
+        <!-- Left: Form -->
+        <div class="col-lg-7">
+            <div class="card p-4 h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <h3 class="text-white text-uppercase fs-4 fw-bold mb-4 border-bottom border-secondary pb-3" style="font-family: var(--font-heading);">
+                    <i class="bi bi-envelope-paper me-2 text-warning"></i>{% trans "Envíanos un Mensaje" %}
+                </h3>
+
+                <form method="post" action="{% url 'main_app:contact' %}">
+                    {% csrf_token %}
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label for="contact-name" class="form-label text-muted small text-uppercase fw-bold">{% trans "Nombre Completo" %}</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="contact-name" name="name" value="{% if request.user.is_authenticated %}{{ request.user.first_name }} {{ request.user.last_name }}{% endif %}" placeholder="Ej: Carlos Gómez" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="contact-email" class="form-label text-muted small text-uppercase fw-bold">{% trans "Correo Electrónico" %}</label>
+                            <input type="email" class="form-control bg-dark text-white border-secondary" id="contact-email" name="email" value="{% if request.user.is_authenticated %}{{ request.user.email }}{% endif %}" placeholder="ejemplo@xeax.com" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label for="contact-topic" class="form-label text-muted small text-uppercase fw-bold">{% trans "Motivo de Consulta" %}</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="contact-topic" name="topic" required>
+                                <option value="" disabled selected>{% trans "Selecciona una categoría..." %}</option>
+                                <option value="order">{% trans "Estado del Pedido / Envío" %}</option>
+                                <option value="return">{% trans "Devolución o Cambio de Talla" %}</option>
+                                <option value="size">{% trans "Consulta sobre Tallas y Materiales" %}</option>
+                                <option value="quality">{% trans "Calidad o Garantía de Producto" %}</option>
+                                <option value="other">{% trans "Otra Consulta General" %}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="contact-order-num" class="form-label text-muted small text-uppercase fw-bold">{% trans "Nº de Pedido (Opcional)" %}</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="contact-order-num" name="order_number" placeholder="Ej: XEAX-1045">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="contact-message" class="form-label text-muted small text-uppercase fw-bold">{% trans "Mensaje" %}</label>
+                        <textarea class="form-control bg-dark text-white border-secondary" id="contact-message" name="message" rows="5" placeholder="{% trans 'Escribe aquí tu consulta con el mayor detalle posible...' %}" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-xeax-primary w-100 text-uppercase fw-bold py-2.5" style="letter-spacing: 1px;">
+                        <i class="bi bi-send me-1"></i>{% trans "Enviar Consulta" %}
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right: Contact Cards & Quick Links -->
+        <div class="col-lg-5">
+            <div class="d-flex flex-column gap-4 h-100">
+                <!-- Direct Channel Cards -->
+                <div class="card p-4" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                    <h4 class="text-white text-uppercase fs-5 fw-bold mb-3" style="font-family: var(--font-heading);">
+                        {% trans "Canales Directos" %}
+                    </h4>
+
+                    <div class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom border-secondary">
+                        <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.2rem;">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-muted small text-uppercase d-block">{% trans "Correo de Soporte" %}</span>
+                            <a href="mailto:soporte@xeax.com" class="text-white text-decoration-none fw-bold">soporte@xeax.com</a>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.2rem;">
+                            <i class="bi bi-whatsapp"></i>
+                        </div>
+                        <div>
+                            <span class="text-muted small text-uppercase d-block">{% trans "WhatsApp Atención" %}</span>
+                            <span class="text-white fw-bold">+34 900 832 190</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shortcuts Card -->
+                <div class="card p-4 flex-grow-1" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                    <h4 class="text-white text-uppercase fs-5 fw-bold mb-3" style="font-family: var(--font-heading);">
+                        {% trans "Accesos Rápidos de Ayuda" %}
+                    </h4>
+                    <p class="text-muted small mb-3">
+                        {% trans "Tal vez tu respuesta ya esté disponible de forma inmediata en uno de nuestros portales de ayuda:" %}
+                    </p>
+
+                    <div class="d-flex flex-column gap-2">
+                        <a href="{% url 'main_app:size_guide' %}" class="btn btn-outline-secondary text-start text-white text-uppercase py-2 px-3 d-flex justify-content-between align-items-center" style="font-size: 0.85rem; font-family: var(--font-heading);">
+                            <span><i class="bi bi-ruler me-2 text-warning"></i>{% trans "Guía de Tallas" %}</span>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+                        <a href="{% url 'main_app:shipping_info' %}" class="btn btn-outline-secondary text-start text-white text-uppercase py-2 px-3 d-flex justify-content-between align-items-center" style="font-size: 0.85rem; font-family: var(--font-heading);">
+                            <span><i class="bi bi-truck me-2 text-warning"></i>{% trans "Envíos y Entregas" %}</span>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+                        <a href="{% url 'main_app:returns_policy' %}" class="btn btn-outline-secondary text-start text-white text-uppercase py-2 px-3 d-flex justify-content-between align-items-center" style="font-size: 0.85rem; font-family: var(--font-heading);">
+                            <span><i class="bi bi-arrow-counterclockwise me-2 text-warning"></i>{% trans "Devoluciones" %}</span>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

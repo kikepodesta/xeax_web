@@ -1,0 +1,111 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Sobre XEAX" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<!-- Hero Banner -->
+<div class="position-relative overflow-hidden p-3 p-md-5 text-center bg-dark text-white" style="margin-top: 80px; background: linear-gradient(135deg, #050505 0%, #151515 50%, #0a0a0a 100%); border-bottom: 1px solid rgba(255,255,255,0.1);">
+    <div class="col-md-8 p-lg-5 mx-auto my-5">
+        <span class="badge bg-warning text-dark text-uppercase px-3 py-2 fw-bold mb-3" style="letter-spacing: 2px;">
+            {% trans "Nuestra Filosofía" %}
+        </span>
+        <h1 class="display-3 fw-bold text-uppercase" style="font-family: var(--font-heading, sans-serif); letter-spacing: 2px; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">
+            {% trans "Elegancia Urbana & Rendimiento de Élite" %}
+        </h1>
+        <p class="lead fw-normal text-muted mt-3 fs-4 col-lg-10 mx-auto">
+            {% trans "Nacidos de la fusión entre el caos de las metrópolis modernas y la exigencia técnica del atletismo de alto nivel." %}
+        </p>
+    </div>
+</div>
+
+<!-- Manifesto Section -->
+<div class="container py-5">
+    <div class="row align-items-center g-5 py-4">
+        <div class="col-lg-6">
+            <div class="p-4 p-md-5 border border-secondary position-relative overflow-hidden" style="background: rgba(15,15,15,0.8); border-radius: 16px; backdrop-filter: blur(10px);">
+                <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                    <i class="bi bi-quote display-1 text-warning"></i>
+                </div>
+                <h2 class="text-uppercase fw-bold text-white mb-4" style="letter-spacing: 1px;">
+                    {% trans "Manifiesto XEAX" %}
+                </h2>
+                <p class="text-secondary fs-5 lh-lg">
+                    {% trans "En XEAX Sports no creemos en prendas ordinarias. Diseñamos equipamiento técnico para hombres y mujeres que rompen barreras, aquellos que dominan tanto los boxes de CrossFit más duros como las calles de la ciudad." %}
+                </p>
+                <p class="text-secondary fs-5 lh-lg mb-0">
+                    {% trans "Cada costura, cada fibra sintética y cada cremallera estanca es probada al límite antes de llegar a tus manos." %}
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row g-4">
+                <div class="col-6">
+                    <div class="p-4 border border-secondary text-center" style="background: #111; border-radius: 12px;">
+                        <i class="bi bi-cpu text-warning display-4 mb-3 d-block"></i>
+                        <h4 class="text-white text-uppercase fs-5 fw-bold">{% trans "Ingeniería Micro-Textil" %}</h4>
+                        <p class="text-muted small mb-0">{% trans "Tejidos termorreguladores de secado ultra rápido con elasticidad 4D." %}</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-4 border border-secondary text-center" style="background: #111; border-radius: 12px;">
+                        <i class="bi bi-shield-check text-warning display-4 mb-3 d-block"></i>
+                        <h4 class="text-white text-uppercase fs-5 fw-bold">{% trans "Durabilidad Extrema" %}</h4>
+                        <p class="text-muted small mb-0">{% trans "Testados contra fricción de barras de halterofilia y abrasión en asfalto." %}</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-4 border border-secondary text-center" style="background: #111; border-radius: 12px;">
+                        <i class="bi bi-layers text-warning display-4 mb-3 d-block"></i>
+                        <h4 class="text-white text-uppercase fs-5 fw-bold">{% trans "Diseño Modular" %}</h4>
+                        <p class="text-muted small mb-0">{% trans "Líneas pulidas y sobrias para pasar del gimnasio a la ciudad sin esfuerzo." %}</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-4 border border-secondary text-center" style="background: #111; border-radius: 12px;">
+                        <i class="bi bi-globe-americas text-warning display-4 mb-3 d-block"></i>
+                        <h4 class="text-white text-uppercase fs-5 fw-bold">{% trans "Atletas Globales" %}</h4>
+                        <p class="text-muted small mb-0">{% trans "Comunidad activa en más de 25 países confiando en nuestra visión." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats counter -->
+<div class="py-5 border-top border-bottom border-secondary my-5" style="background: rgba(10,10,10,0.9);">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-md-3 col-6">
+                <span class="display-4 fw-bold text-white d-block">100%</span>
+                <span class="text-muted text-uppercase small" style="letter-spacing: 1px;">{% trans "Testado por Atletas" %}</span>
+            </div>
+            <div class="col-md-3 col-6">
+                <span class="display-4 fw-bold text-warning d-block">30+</span>
+                <span class="text-muted text-uppercase small" style="letter-spacing: 1px;">{% trans "Lanzamientos de Élite" %}</span>
+            </div>
+            <div class="col-md-3 col-6">
+                <span class="display-4 fw-bold text-white d-block">4.9 / 5</span>
+                <span class="text-muted text-uppercase small" style="letter-spacing: 1px;">{% trans "Satisfacción Deportiva" %}</span>
+            </div>
+            <div class="col-md-3 col-6">
+                <span class="display-4 fw-bold text-warning d-block">24/7</span>
+                <span class="text-muted text-uppercase small" style="letter-spacing: 1px;">{% trans "Soporte Técnico" %}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="container py-5 text-center mb-5">
+    <div class="p-5 border border-secondary" style="background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%); border-radius: 16px;">
+        <h3 class="text-uppercase text-white fw-bold mb-3">{% trans "¿Listo para elevar tu rendimiento?" %}</h3>
+        <p class="text-muted fs-5 mb-4">{% trans "Descubre las prendas y accesorios diseñados para superar cualquier reto." %}</p>
+        <a href="{% url 'main_app:catalog' %}" class="btn btn-xeax-primary btn-lg text-uppercase fw-bold px-5 py-3">
+            {% trans "Explorar Colección XEAX" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% load i18n %}<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% trans "Confirmación de pedido" %} | XEAX Sports</title>
+</head>
+<body style="margin:0;padding:0;background-color:#0d0d0f;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0d0d0f;">
+    <tr>
+      <td align="center" style="padding:40px 20px;">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#111114;border:1px solid #222228;border-radius:12px;overflow:hidden;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#0d0d0f 0%,#1a1a20 100%);padding:40px 40px 30px;text-align:center;border-bottom:1px solid #222228;">
+              <div style="font-family:Georgia,serif;font-size:36px;font-weight:900;letter-spacing:8px;color:#c9aa71;text-transform:uppercase;margin-bottom:4px;">XEAX</div>
+              <div style="font-size:10px;letter-spacing:4px;color:#888;text-transform:uppercase;">SPORTS</div>
+            </td>
+          </tr>
+
+          <!-- Hero -->
+          <tr>
+            <td style="padding:50px 40px 30px;text-align:center;">
+              <h1 style="margin:0 0 16px;font-size:28px;font-weight:900;color:#ffffff;letter-spacing:2px;text-transform:uppercase;line-height:1.2;">
+                {% trans "¡Pedido Confirmado!" %}
+              </h1>
+              <p style="margin:0 auto 16px;font-size:15px;color:#aaa;line-height:1.7;max-width:420px;">
+                {% blocktrans with name=order.full_name %}Gracias por tu compra, {{ name }}. Tu pedido ha sido registrado correctamente y será procesado por nuestra red logística.{% endblocktrans %}
+              </p>
+              <div style="display:inline-block;background:#1a1a20;border:1px solid #333;padding:12px 28px;border-radius:6px;">
+                <span style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:2px;">{% trans "Número de Pedido" %}</span><br>
+                <strong style="font-size:22px;color:#c9aa71;letter-spacing:1px;">#{{ order.id }}</strong>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 40px;">
+              <div style="height:1px;background:linear-gradient(90deg,transparent,#333,transparent);"></div>
+            </td>
+          </tr>
+
+          <!-- Items -->
+          <tr>
+            <td style="padding:30px 40px;">
+              <h2 style="margin:0 0 16px;font-size:13px;font-weight:800;color:#ffffff;letter-spacing:2px;text-transform:uppercase;">
+                {% trans "Resumen de Productos" %}
+              </h2>
+              <table width="100%" cellpadding="0" cellspacing="0">
+                {% for item in order.items.all %}
+                <tr>
+                  <td style="padding:10px 0;border-bottom:1px solid #1f1f24;font-size:14px;color:#ddd;">
+                    <span style="color:#c9aa71;font-weight:700;">{{ item.quantity }}x</span>
+                    {{ item.product_name }}
+                    {% if item.size %}<span style="color:#777;font-size:12px;">({{ item.size }})</span>{% endif %}
+                  </td>
+                  <td align="right" style="padding:10px 0;border-bottom:1px solid #1f1f24;font-size:14px;color:#ffffff;font-weight:700;white-space:nowrap;">
+                    {{ item.total_price }} €
+                  </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                  <td style="padding:16px 0 0;font-size:15px;font-weight:800;color:#ffffff;text-transform:uppercase;letter-spacing:1px;">
+                    {% trans "Total Pagado" %}
+                  </td>
+                  <td align="right" style="padding:16px 0 0;font-size:18px;font-weight:900;color:#c9aa71;">
+                    {{ order.total_amount }} €
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Shipping -->
+          <tr>
+            <td style="padding:0 40px 30px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#16161a;border:1px solid #222228;border-radius:8px;">
+                <tr>
+                  <td style="padding:20px;">
+                    <h3 style="margin:0 0 10px;font-size:11px;font-weight:800;color:#888;letter-spacing:2px;text-transform:uppercase;">
+                      {% trans "Dirección de Envío" %}
+                    </h3>
+                    <p style="margin:0;font-size:14px;color:#ddd;line-height:1.7;">
+                      <strong style="color:#ffffff;">{{ order.full_name }}</strong><br>
+                      {{ order.address }}<br>
+                      {{ order.city }} ({{ order.postal_code }})<br>
+                      {% trans "Tel" %}: {{ order.phone }}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CTA -->
+          <tr>
+            <td style="padding:0 40px 40px;text-align:center;">
+              <a href="{{ site_url }}/orders/"
+                 style="display:inline-block;background:#c9aa71;color:#0d0d0f;text-decoration:none;
+                        font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+                        padding:16px 40px;border-radius:2px;">
+                {% trans "Ver Mis Pedidos" %}
+              </a>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#0d0d0f;padding:24px 40px;text-align:center;border-top:1px solid #1a1a20;">
+              <p style="margin:0 0 8px;font-size:11px;color:#555;line-height:1.6;">
+                {% trans "Has recibido este correo porque realizaste un pedido en XEAX Sports." %}
+              </p>
+              <p style="margin:0;font-size:10px;color:#444;">
+                &copy; 2026 XEAX Sports &mdash;
+                <a href="{{ site_url }}/terms/" style="color:#666;text-decoration:none;">{% trans "Política de Privacidad" %}</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

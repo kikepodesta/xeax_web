@@ -1,0 +1,3830 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-08 21:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: main_app/admin.py:85 main_app/models.py:395
+msgid "Usuario"
+msgstr ""
+
+#: main_app/admin.py:88 main_app/templates/main_app/checkout.html:18
+msgid "Datos de Envío"
+msgstr ""
+
+#: main_app/admin.py:91 main_app/templates/main_app/profile.html:209
+msgid "Datos de Facturación"
+msgstr ""
+
+#: main_app/admin.py:104
+msgid "Información Básica"
+msgstr ""
+
+#: main_app/admin.py:107
+#, fuzzy
+#| msgid "Español"
+msgid "Español (ES)"
+msgstr "Spanish"
+
+#: main_app/admin.py:110
+#, fuzzy
+#| msgid "English"
+msgid "English (EN)"
+msgstr "English"
+
+#: main_app/admin.py:113
+#, fuzzy
+#| msgid "Italiano"
+msgid "Italiano (IT)"
+msgstr "Italian"
+
+#: main_app/admin.py:135
+msgid "Desactivar suscriptores seleccionados"
+msgstr ""
+
+#: main_app/admin.py:139
+msgid "Activar suscriptores seleccionados"
+msgstr ""
+
+#: main_app/forms.py:27 main_app/models.py:236 main_app/models.py:292
+#: main_app/templates/main_app/checkout.html:36
+#: main_app/templates/main_app/order_success.html:44
+msgid "Teléfono"
+msgstr ""
+
+#: main_app/forms.py:28 main_app/models.py:237
+#: main_app/templates/main_app/checkout.html:41
+#: main_app/templates/main_app/order_success.html:40
+#: main_app/templates/main_app/profile.html:168
+#, fuzzy
+#| msgid "Colección"
+msgid "Dirección"
+msgstr "Collection"
+
+#: main_app/forms.py:29 main_app/models.py:238
+#: main_app/templates/main_app/checkout.html:46
+#: main_app/templates/main_app/profile.html:177
+msgid "Ciudad"
+msgstr ""
+
+#: main_app/forms.py:30 main_app/models.py:239
+#: main_app/templates/main_app/checkout.html:51
+#: main_app/templates/main_app/profile.html:186
+msgid "Código Postal"
+msgstr ""
+
+#: main_app/forms.py:31 main_app/templates/main_app/profile.html:195
+msgid "País"
+msgstr ""
+
+#: main_app/forms.py:32 main_app/templates/main_app/profile.html:219
+msgid "Nombre de Facturación / Empresa"
+msgstr ""
+
+#: main_app/forms.py:33 main_app/templates/main_app/profile.html:228
+msgid "NIF / CIF / DNI"
+msgstr ""
+
+#: main_app/forms.py:34 main_app/models.py:300
+#: main_app/templates/main_app/profile.html:237
+#, fuzzy
+#| msgid "Tu dirección de correo electrónico"
+msgid "Dirección de Facturación"
+msgstr "Your email address"
+
+#: main_app/forms.py:35 main_app/models.py:301
+#: main_app/templates/main_app/profile.html:246
+msgid "Ciudad de Facturación"
+msgstr ""
+
+#: main_app/forms.py:36 main_app/models.py:302
+#: main_app/templates/main_app/profile.html:255
+msgid "Código Postal de Facturación"
+msgstr ""
+
+#: main_app/forms.py:37 main_app/models.py:303
+#: main_app/templates/main_app/profile.html:264
+msgid "País de Facturación"
+msgstr ""
+
+#: main_app/forms.py:39
+msgid "Ej: S, M, L, XL"
+msgstr ""
+
+#: main_app/models.py:9
+msgid "Nombre (ES)"
+msgstr ""
+
+#: main_app/models.py:10
+msgid "Nombre (EN)"
+msgstr ""
+
+#: main_app/models.py:11
+msgid "Nombre (IT)"
+msgstr ""
+
+#: main_app/models.py:13 main_app/models.py:47
+msgid "Slug"
+msgstr ""
+
+#: main_app/models.py:15
+msgid "Descripción (ES)"
+msgstr ""
+
+#: main_app/models.py:16
+msgid "Descripción (EN)"
+msgstr ""
+
+#: main_app/models.py:17
+msgid "Descripción (IT)"
+msgstr ""
+
+#: main_app/models.py:20 main_app/models.py:46
+msgid "Categoría"
+msgstr ""
+
+#: main_app/models.py:21 main_app/templates/main_app/catalog.html:163
+msgid "Categorías"
+msgstr ""
+
+#: main_app/models.py:48
+msgid "Precio"
+msgstr ""
+
+#: main_app/models.py:49 main_app/models.py:181 main_app/models.py:414
+msgid "Activo"
+msgstr ""
+
+#: main_app/models.py:50
+msgid "Destacado (Home)"
+msgstr ""
+
+#: main_app/models.py:51 main_app/models.py:343
+msgid "Fecha de Creación"
+msgstr ""
+
+#: main_app/models.py:54 main_app/models.py:133 main_app/models.py:149
+#: main_app/models.py:177
+msgid "Producto"
+msgstr ""
+
+#: main_app/models.py:55 main_app/templates/main_app/cart.html:88
+#, fuzzy
+#| msgid "Productos Destacados"
+msgid "Productos"
+msgstr "Featured Products"
+
+#: main_app/models.py:134
+msgid "Código de Idioma"
+msgstr ""
+
+#: main_app/models.py:135 main_app/templates/main_app/google_mock.html:44
+#: main_app/templates/main_app/profile.html:104
+msgid "Nombre"
+msgstr ""
+
+#: main_app/models.py:136
+#, fuzzy
+#| msgid "Colección"
+msgid "Descripción"
+msgstr "Collection"
+
+#: main_app/models.py:137
+msgid "Una característica por línea"
+msgstr ""
+
+#: main_app/models.py:137
+msgid "Bullet Points"
+msgstr ""
+
+#: main_app/models.py:140
+msgid "Traducción de Producto"
+msgstr ""
+
+#: main_app/models.py:141
+msgid "Traducciones de Producto"
+msgstr ""
+
+#: main_app/models.py:150
+msgid "Imagen"
+msgstr ""
+
+#: main_app/models.py:151
+msgid "Orden"
+msgstr ""
+
+#: main_app/models.py:152
+msgid "Texto Alternativo"
+msgstr ""
+
+#: main_app/models.py:155
+msgid "Imagen de Producto"
+msgstr ""
+
+#: main_app/models.py:156
+msgid "Imágenes de Producto"
+msgstr ""
+
+#: main_app/models.py:178 main_app/models.py:257
+msgid "Talla / Talle"
+msgstr ""
+
+#: main_app/models.py:179
+msgid "Stock"
+msgstr ""
+
+#: main_app/models.py:180
+msgid "Amazon SKU"
+msgstr ""
+
+#: main_app/models.py:184
+msgid "Variante de Producto"
+msgstr ""
+
+#: main_app/models.py:185
+msgid "Variantes de Producto"
+msgstr ""
+
+#: main_app/models.py:227
+msgid "Pendiente"
+msgstr ""
+
+#: main_app/models.py:228
+msgid "Pagado"
+msgstr ""
+
+#: main_app/models.py:229
+msgid "Enviado"
+msgstr ""
+
+#: main_app/models.py:230
+msgid "Cancelado"
+msgstr ""
+
+#: main_app/models.py:234 main_app/templates/main_app/careers.html:130
+#: main_app/templates/main_app/checkout.html:26
+#: main_app/templates/main_app/contact.html:74
+msgid "Nombre Completo"
+msgstr ""
+
+#: main_app/models.py:235 main_app/templates/main_app/careers.html:134
+#: main_app/templates/main_app/checkout.html:31
+#: main_app/templates/main_app/contact.html:78
+#: main_app/templates/main_app/profile.html:122
+#: main_app/templates/main_app/returns_policy.html:141
+#, fuzzy
+#| msgid "Tu dirección de correo electrónico"
+msgid "Correo Electrónico"
+msgstr "Your email address"
+
+#: main_app/models.py:241 main_app/templates/main_app/orders.html:33
+msgid "Estado"
+msgstr ""
+
+#: main_app/models.py:242 main_app/templates/main_app/cart.html:98
+#: main_app/templates/main_app/orders.html:25
+msgid "Total"
+msgstr ""
+
+#: main_app/models.py:243
+msgid "Fecha"
+msgstr ""
+
+#: main_app/models.py:246 main_app/templates/main_app/orders.html:39
+#: main_app/templates/main_app/returns_policy.html:199
+msgid "Pedido"
+msgstr ""
+
+#: main_app/models.py:247
+msgid "Pedidos"
+msgstr ""
+
+#: main_app/models.py:256
+msgid "Nombre del Producto"
+msgstr ""
+
+#: main_app/models.py:262
+#, fuzzy
+#| msgid "Productos Destacados"
+msgid "Producto Eliminado"
+msgstr "Featured Products"
+
+#: main_app/models.py:281
+msgid "Log de Actividad"
+msgstr ""
+
+#: main_app/models.py:282
+msgid "Logs de Actividad"
+msgstr ""
+
+#: main_app/models.py:293
+msgid "Dirección de Envío"
+msgstr "Shipping Address"
+
+#: main_app/models.py:294
+msgid "Ciudad de Envío"
+msgstr "Shipping City"
+
+#: main_app/models.py:295
+msgid "Código Postal de Envío"
+msgstr "Shipping Postal Code"
+
+#: main_app/models.py:296
+msgid "País de Envío"
+msgstr "Shipping Country"
+
+#: main_app/models.py:298
+msgid "Nombre de Facturación"
+msgstr "Billing Name"
+
+#: main_app/models.py:299
+msgid "NIF/CIF / DNI"
+msgstr "Tax ID / VAT / NIF"
+
+#: main_app/models.py:305 main_app/templates/main_app/profile.html:131
+msgid "Fecha de Nacimiento"
+msgstr "Date of Birth"
+
+#: main_app/models.py:306 main_app/templates/main_app/profile.html:35
+msgid "Talla Preferida"
+msgstr ""
+
+#: main_app/models.py:309
+msgid "Perfil de Usuario"
+msgstr ""
+
+#: main_app/models.py:310
+msgid "Perfiles de Usuario"
+msgstr ""
+
+#: main_app/models.py:328
+msgid "Versión"
+msgstr ""
+
+#: main_app/models.py:329
+msgid "Título (ES)"
+msgstr ""
+
+#: main_app/models.py:330
+msgid "Título (EN)"
+msgstr ""
+
+#: main_app/models.py:331
+msgid "Título (IT)"
+msgstr ""
+
+#: main_app/models.py:333
+msgid "Contenido (ES)"
+msgstr ""
+
+#: main_app/models.py:334
+msgid "Contenido (EN)"
+msgstr ""
+
+#: main_app/models.py:335
+msgid "Contenido (IT)"
+msgstr ""
+
+#: main_app/models.py:337
+msgid "Resumen de Cambios (ES)"
+msgstr ""
+
+#: main_app/models.py:338
+msgid "Resumen de Cambios (EN)"
+msgstr ""
+
+#: main_app/models.py:339
+msgid "Resumen de Cambios (IT)"
+msgstr ""
+
+#: main_app/models.py:341
+msgid "Versión Activa Vigente"
+msgstr ""
+
+#: main_app/models.py:342
+msgid "Fecha de Entrada en Vigor"
+msgstr ""
+
+#: main_app/models.py:346 main_app/models.py:347 main_app/models.py:396
+#: main_app/templates/main_app/login.html:58
+#: main_app/templates/main_app/register.html:63
+msgid "Términos y Condiciones"
+msgstr ""
+
+#: main_app/models.py:397 main_app/templates/main_app/profile.html:310
+#, fuzzy
+#| msgid "Fecha de Nacimiento"
+msgid "Fecha de Aceptación"
+msgstr "Date of Birth"
+
+#: main_app/models.py:398 main_app/templates/main_app/profile.html:311
+#, fuzzy
+#| msgid "Colección"
+msgid "Dirección IP"
+msgstr "Collection"
+
+#: main_app/models.py:399
+msgid "User Agent"
+msgstr ""
+
+#: main_app/models.py:402
+msgid "Aceptación de Términos"
+msgstr ""
+
+#: main_app/models.py:403
+msgid "Aceptaciones de Términos"
+msgstr ""
+
+#: main_app/models.py:412 main_app/templates/main_app/order_success.html:48
+msgid "Email"
+msgstr ""
+
+#: main_app/models.py:413
+#, fuzzy
+#| msgid "Colección"
+msgid "Fecha de Suscripción"
+msgstr "Collection"
+
+#: main_app/models.py:417
+msgid "IP de Consentimiento"
+msgstr ""
+
+#: main_app/models.py:421
+msgid "T&C / Política aceptada"
+msgstr ""
+
+#: main_app/models.py:428
+msgid "Usuario Asociado"
+msgstr ""
+
+#: main_app/models.py:432
+msgid "Suscriptor Newsletter"
+msgstr ""
+
+#: main_app/models.py:433
+msgid "Suscriptores Newsletter"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:5
+#: main_app/templates/main_app/base.html:135
+#: main_app/templates/main_app/base.html:365
+msgid "Sobre XEAX"
+msgstr "About XEAX"
+
+#: main_app/templates/main_app/about.html:12
+#, fuzzy
+#| msgid "Filosofía XEAX"
+msgid "Nuestra Filosofía"
+msgstr "XEAX Philosophy"
+
+#: main_app/templates/main_app/about.html:15
+#, fuzzy
+#| msgid "Elegancia Urbana. Rendimiento de Élite."
+msgid "Elegancia Urbana & Rendimiento de Élite"
+msgstr "Urban Elegance. Elite Performance."
+
+#: main_app/templates/main_app/about.html:18
+msgid ""
+"Nacidos de la fusión entre el caos de las metrópolis modernas y la exigencia "
+"técnica del atletismo de alto nivel."
+msgstr ""
+
+#: main_app/templates/main_app/about.html:32
+msgid "Manifiesto XEAX"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:35
+msgid ""
+"En XEAX Sports no creemos en prendas ordinarias. Diseñamos equipamiento "
+"técnico para hombres y mujeres que rompen barreras, aquellos que dominan "
+"tanto los boxes de CrossFit más duros como las calles de la ciudad."
+msgstr ""
+
+#: main_app/templates/main_app/about.html:38
+msgid ""
+"Cada costura, cada fibra sintética y cada cremallera estanca es probada al "
+"límite antes de llegar a tus manos."
+msgstr ""
+
+#: main_app/templates/main_app/about.html:47
+msgid "Ingeniería Micro-Textil"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:48
+msgid "Tejidos termorreguladores de secado ultra rápido con elasticidad 4D."
+msgstr ""
+
+#: main_app/templates/main_app/about.html:54
+msgid "Durabilidad Extrema"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:55
+msgid ""
+"Testados contra fricción de barras de halterofilia y abrasión en asfalto."
+msgstr ""
+
+#: main_app/templates/main_app/about.html:61
+msgid "Diseño Modular"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:62
+msgid ""
+"Líneas pulidas y sobrias para pasar del gimnasio a la ciudad sin esfuerzo."
+msgstr ""
+
+#: main_app/templates/main_app/about.html:68
+msgid "Atletas Globales"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:69
+msgid "Comunidad activa en más de 25 países confiando en nuestra visión."
+msgstr ""
+
+#: main_app/templates/main_app/about.html:83
+msgid "Testado por Atletas"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:87
+#, fuzzy
+#| msgid "Catálogo de Élite"
+msgid "Lanzamientos de Élite"
+msgstr "Elite Catalog"
+
+#: main_app/templates/main_app/about.html:91
+msgid "Satisfacción Deportiva"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:95
+#, fuzzy
+#| msgid "Soporte"
+msgid "Soporte Técnico"
+msgstr "Support"
+
+#: main_app/templates/main_app/about.html:104
+msgid "¿Listo para elevar tu rendimiento?"
+msgstr ""
+
+#: main_app/templates/main_app/about.html:105
+msgid ""
+"Descubre las prendas y accesorios diseñados para superar cualquier reto."
+msgstr ""
+
+#: main_app/templates/main_app/about.html:107
+#, fuzzy
+#| msgid "Explorar Colección"
+msgid "Explorar Colección XEAX"
+msgstr "Explore Collection"
+
+#: main_app/templates/main_app/base.html:13
+#: main_app/templates/main_app/base.html:33
+msgid "XEAX Sports | Elegancia Urbana y Rendimiento de Élite"
+msgstr "XEAX Sports | Urban Elegance & Elite Performance"
+
+#: main_app/templates/main_app/base.html:15
+msgid ""
+"XEAX Sports — Ropa técnica y equipamiento deportivo de alto rendimiento. "
+"Diseño urbano de élite para atletas exigentes."
+msgstr ""
+
+#: main_app/templates/main_app/base.html:35
+#: main_app/templates/main_app/base.html:50
+msgid ""
+"Ropa técnica y equipamiento deportivo de alto rendimiento para atletas "
+"exigentes."
+msgstr ""
+
+#: main_app/templates/main_app/base.html:48
+#, fuzzy
+#| msgid "XEAX Sports | Elegancia Urbana y Rendimiento de Élite"
+msgid "XEAX Sports | Rendimiento de Élite"
+msgstr "XEAX Sports | Urban Elegance & Elite Performance"
+
+#: main_app/templates/main_app/base.html:126
+#: main_app/templates/main_app/base.html:347
+msgid "Colección Urbana"
+msgstr "Urban Collection"
+
+#: main_app/templates/main_app/base.html:132
+#, fuzzy
+#| msgid "Rendimiento Técnico"
+msgid "Equipamiento Técnico"
+msgstr "Technical Performance"
+
+#: main_app/templates/main_app/base.html:142
+msgid "Buscar"
+msgstr "Search"
+
+#: main_app/templates/main_app/base.html:147
+msgid "Cuenta"
+msgstr "Account"
+
+#: main_app/templates/main_app/base.html:154
+msgid "Hola"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:156
+msgid "Mi Perfil"
+msgstr "My Profile"
+
+#: main_app/templates/main_app/base.html:157
+#: main_app/templates/main_app/orders.html:5
+#: main_app/templates/main_app/orders.html:10
+msgid "Mis Pedidos"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:161
+#: main_app/templates/main_app/profile.html:55
+msgid "Cerrar Sesión"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:163
+#: main_app/templates/main_app/login.html:5
+#: main_app/templates/main_app/login.html:15
+msgid "Iniciar Sesión"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:164
+#: main_app/templates/main_app/register.html:5
+msgid "Registrarse"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:172
+msgid "Carrito"
+msgstr "Cart"
+
+#: main_app/templates/main_app/base.html:237
+msgid "Únete al movimiento XEAX"
+msgstr "Join the XEAX movement"
+
+#: main_app/templates/main_app/base.html:239
+msgid ""
+"Suscríbete para recibir lanzamientos exclusivos, eventos locales y ofertas "
+"especiales antes que nadie."
+msgstr ""
+"Subscribe to receive exclusive releases, local events, and special offers "
+"before anyone else."
+
+#: main_app/templates/main_app/base.html:246
+msgid "Tu dirección de correo electrónico"
+msgstr "Your email address"
+
+#: main_app/templates/main_app/base.html:250
+#: main_app/templates/main_app/base.html:323
+msgid "Unirse"
+msgstr "Join"
+
+#: main_app/templates/main_app/base.html:259
+msgid "He leído y acepto la"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:262
+#: main_app/templates/main_app/email/newsletter_welcome.html:90
+msgid "Política de Privacidad"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:263
+msgid "y consiento recibir comunicaciones comerciales de XEAX Sports"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:286
+msgid "Debes aceptar la Política de Privacidad para continuar."
+msgstr ""
+
+#: main_app/templates/main_app/base.html:312
+msgid "Acceder a mi cuenta"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:317
+msgid "Ha ocurrido un error. Inténtalo de nuevo."
+msgstr ""
+
+#: main_app/templates/main_app/base.html:320
+msgid "Error de conexión. Inténtalo más tarde."
+msgstr ""
+
+#: main_app/templates/main_app/base.html:345
+msgid "Colección"
+msgstr "Collection"
+
+#: main_app/templates/main_app/base.html:348
+msgid "Rendimiento Técnico"
+msgstr "Technical Performance"
+
+#: main_app/templates/main_app/base.html:349
+msgid "CrossFit & Equipamiento"
+msgstr "CrossFit & Equipment"
+
+#: main_app/templates/main_app/base.html:350
+msgid "Novedades"
+msgstr "New Arrivals"
+
+#: main_app/templates/main_app/base.html:354
+#: main_app/templates/main_app/contact.html:13
+#: main_app/templates/main_app/returns_policy.html:13
+#: main_app/templates/main_app/shipping_info.html:13
+#: main_app/templates/main_app/size_guide.html:13
+msgid "Soporte"
+msgstr "Support"
+
+#: main_app/templates/main_app/base.html:356
+msgid "Guía de tallas"
+msgstr "Size guide"
+
+#: main_app/templates/main_app/base.html:357
+#: main_app/templates/main_app/contact.html:158
+#: main_app/templates/main_app/shipping_info.html:5
+#: main_app/templates/main_app/shipping_info.html:14
+msgid "Envíos y Entregas"
+msgstr "Shipping and Deliveries"
+
+#: main_app/templates/main_app/base.html:358
+#: main_app/templates/main_app/contact.html:162
+msgid "Devoluciones"
+msgstr "Returns"
+
+#: main_app/templates/main_app/base.html:359
+#: main_app/templates/main_app/contact.html:14
+msgid "Contacto"
+msgstr "Contact"
+
+#: main_app/templates/main_app/base.html:363
+msgid "Compañía"
+msgstr "Company"
+
+#: main_app/templates/main_app/base.html:366
+#: main_app/templates/main_app/sustainability.html:5
+msgid "Sostenibilidad"
+msgstr "Sustainability"
+
+#: main_app/templates/main_app/base.html:367
+msgid "Políticas y Términos"
+msgstr "Policies & Terms"
+
+#: main_app/templates/main_app/base.html:368
+#: main_app/templates/main_app/careers.html:5
+msgid "Trabaja con nosotros"
+msgstr "Careers"
+
+#: main_app/templates/main_app/base.html:372
+msgid "Síguenos"
+msgstr "Follow us"
+
+#: main_app/templates/main_app/base.html:386
+msgid "Todos los derechos reservados."
+msgstr "All rights reserved."
+
+#: main_app/templates/main_app/base.html:387
+msgid "XeaX, Where I Belong"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:12
+msgid "Carreras y Talento"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:15
+msgid "Construye el Futuro de la Moda Técnica"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:18
+msgid ""
+"Buscamos diseñadores, ingenieros textiles, creadores y estrategas "
+"inconformistas apasionados por el deporte."
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:29
+msgid "Trabajo Híbrido & Remoto"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:30
+msgid "Flexibilidad geográfica para dar lo mejor de ti desde donde rindas más."
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:36
+msgid "Salud & Entrenamiento"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:37
+msgid "Suscripciones a gimnasios, boxes de CrossFit y seguro médico integral."
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:43
+msgid "Descuentos de Marca"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:44
+msgid ""
+"Acceso prioritario a lanzamientos y descuentos exclusivos para empleados."
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:50
+msgid "Desarrollo Profesional"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:51
+msgid "Presupuesto anual para formación continua, eventos e investigación."
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:59
+msgid "Posiciones Abiertas Activas"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:66
+#, fuzzy
+#| msgid "Catálogo de Productos"
+msgid "Diseño & Producto"
+msgstr "Product Catalog"
+
+#: main_app/templates/main_app/careers.html:71
+#: main_app/templates/main_app/careers.html:83
+#: main_app/templates/main_app/careers.html:95
+#: main_app/templates/main_app/careers.html:107
+msgid "Postularme"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:78
+msgid "Ingeniería & I+D"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:90
+msgid "Marketing & Growth"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:102
+msgid "Comunidad & Atletas"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:119
+msgid "Postulación de Empleo"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:126
+msgid "Puesto Seleccionado"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:138
+msgid "LinkedIn / Enlace a Portafolio"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:142
+msgid "¿Por qué quieres unirte a XEAX Sports?"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:147
+msgid "Cancelar"
+msgstr ""
+
+#: main_app/templates/main_app/careers.html:148
+msgid "Enviar Solicitud"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:5
+msgid "Carrito de Compra"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:10
+#, fuzzy
+#| msgid "Carrito"
+msgid "Tu Carrito"
+msgstr "Cart"
+
+#: main_app/templates/main_app/cart.html:37
+#, fuzzy
+#| msgid "Soporte"
+msgid "Deportes"
+msgstr "Support"
+
+#: main_app/templates/main_app/cart.html:40
+#: main_app/templates/main_app/size_guide.html:119
+#: main_app/templates/main_app/size_guide.html:185
+#: main_app/templates/main_app/size_guide.html:244
+msgid "Talla"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:56
+msgid "Actualizar"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:61
+msgid "Eliminar"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:84
+#: main_app/templates/main_app/checkout.html:72
+msgid "Resumen de compra"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:93
+#: main_app/templates/main_app/checkout.html:103
+msgid "Envío"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:94
+#: main_app/templates/main_app/checkout.html:104
+msgid "GRATIS"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:103
+msgid ""
+"Para proceder al pago y confirmar la logística con Amazon es necesario estar "
+"registrado."
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:107
+msgid "Proceder al Pago"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:117
+msgid "Tu carrito está vacío"
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:120
+msgid ""
+"Explora nuestra colección urbana y equipamiento técnico para encontrar lo "
+"mejor para tu entrenamiento de alto rendimiento."
+msgstr ""
+
+#: main_app/templates/main_app/cart.html:123
+#: main_app/templates/main_app/order_success.html:82
+msgid "Volver a la tienda"
+msgstr ""
+
+#: main_app/templates/main_app/catalog.html:5
+msgid "Catálogo de Productos"
+msgstr "Product Catalog"
+
+#: main_app/templates/main_app/catalog.html:15
+msgid "Catálogo"
+msgstr "Catalog"
+
+#: main_app/templates/main_app/catalog.html:35
+#, fuzzy
+#| msgid "Ver Todo"
+msgid "Todo"
+msgstr "View All"
+
+#: main_app/templates/main_app/catalog.html:97
+msgid "Mostrando"
+msgstr ""
+
+#: main_app/templates/main_app/catalog.html:97
+#, fuzzy
+#| msgid "Productos Destacados"
+msgid "productos"
+msgstr "Featured Products"
+
+#: main_app/templates/main_app/catalog.html:100
+msgid "Destacados"
+msgstr "Featured"
+
+#: main_app/templates/main_app/catalog.html:101
+msgid "Precio ↑"
+msgstr ""
+
+#: main_app/templates/main_app/catalog.html:102
+msgid "Precio ↓"
+msgstr ""
+
+#: main_app/templates/main_app/catalog.html:103
+#, fuzzy
+#| msgid "Sobre XEAX"
+msgid "Nombre A-Z"
+msgstr "About XEAX"
+
+#: main_app/templates/main_app/catalog.html:104
+msgid "Más nuevos"
+msgstr ""
+
+#: main_app/templates/main_app/catalog.html:109
+#: main_app/templates/main_app/catalog.html:151
+msgid "Filtros"
+msgstr "Filters"
+
+#: main_app/templates/main_app/catalog.html:139
+#, fuzzy
+#| msgid "Cargar más productos"
+msgid "Cargar más"
+msgstr "Load more products"
+
+#: main_app/templates/main_app/catalog.html:167
+msgid "Ver Todo"
+msgstr "View All"
+
+#: main_app/templates/main_app/catalog.html:180
+msgid "Precio Máximo"
+msgstr "Max Price"
+
+#: main_app/templates/main_app/catalog.html:190
+msgid "Tallas"
+msgstr ""
+
+#: main_app/templates/main_app/catalog.html:204
+msgid "Solo en Stock"
+msgstr "Only in Stock"
+
+#: main_app/templates/main_app/catalog.html:209
+msgid "Aplicar Filtros"
+msgstr "Apply Filters"
+
+#: main_app/templates/main_app/catalog.html:212
+#, fuzzy
+#| msgid "Limpiar Filtros"
+msgid "Limpiar Todo"
+msgstr "Clear Filters"
+
+#: main_app/templates/main_app/catalog_grid.html:35
+#: main_app/templates/main_app/home.html:78
+msgid "Ver"
+msgstr "View"
+
+#: main_app/templates/main_app/catalog_grid.html:38
+#: main_app/templates/main_app/home.html:81
+msgid "Agotado"
+msgstr "Out of Stock"
+
+#: main_app/templates/main_app/catalog_grid.html:50
+msgid "No se encontraron productos"
+msgstr "No products found"
+
+#: main_app/templates/main_app/catalog_grid.html:51
+msgid "Prueba a cambiar tus filtros de búsqueda."
+msgstr "Try changing your search filters."
+
+#: main_app/templates/main_app/checkout.html:5
+#: main_app/templates/main_app/checkout.html:10
+msgid "Finalizar Compra"
+msgstr ""
+
+#: main_app/templates/main_app/checkout.html:58
+msgid ""
+"Simulación de pago instantáneo. Al hacer clic en 'Confirmar Pedido', se "
+"tramitará la orden y el stock correspondiente se actualizará en base de "
+"datos."
+msgstr ""
+
+#: main_app/templates/main_app/checkout.html:61
+msgid "Confirmar Pedido"
+msgstr ""
+
+#: main_app/templates/main_app/checkout.html:98
+msgid "Subtotal"
+msgstr ""
+
+#: main_app/templates/main_app/checkout.html:108
+msgid "Total a pagar"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:5
+msgid "Contacto y Atención al Cliente"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:21
+msgid "Atención al Atleta XEAX"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:24
+msgid ""
+"¿Tienes alguna duda sobre tallaje, estado de tu pedido o especificaciones "
+"técnicas de nuestro equipamiento? Nuestro equipo de especialistas está listo "
+"para ayudarte."
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:35
+msgid "Respuesta en < 24h"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:36
+msgid ""
+"Respondemos a la mayoría de las consultas en menos de 24 horas laborables."
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:45
+msgid "Horario de Soporte"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:46
+msgid "Lunes a Viernes: 09:00 - 18:00 (CEST)"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:55
+#, fuzzy
+#| msgid "Sobre XEAX"
+msgid "Soporte Oficial XEAX"
+msgstr "About XEAX"
+
+#: main_app/templates/main_app/contact.html:56
+msgid "Atención personalizada directa por expertos en material deportivo."
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:67
+msgid "Envíanos un Mensaje"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:85
+msgid "Motivo de Consulta"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:87
+msgid "Selecciona una categoría..."
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:88
+msgid "Estado del Pedido / Envío"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:89
+msgid "Devolución o Cambio de Talla"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:90
+msgid "Consulta sobre Tallas y Materiales"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:91
+#, fuzzy
+#| msgid "Catálogo de Productos"
+msgid "Calidad o Garantía de Producto"
+msgstr "Product Catalog"
+
+#: main_app/templates/main_app/contact.html:92
+msgid "Otra Consulta General"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:96
+msgid "Nº de Pedido (Opcional)"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:102
+msgid "Mensaje"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:103
+msgid "Escribe aquí tu consulta con el mayor detalle posible..."
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:107
+msgid "Enviar Consulta"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:119
+msgid "Canales Directos"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:127
+msgid "Correo de Soporte"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:137
+msgid "WhatsApp Atención"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:146
+msgid "Accesos Rápidos de Ayuda"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:149
+msgid ""
+"Tal vez tu respuesta ya esté disponible de forma inmediata en uno de "
+"nuestros portales de ayuda:"
+msgstr ""
+
+#: main_app/templates/main_app/contact.html:154
+#: main_app/templates/main_app/size_guide.html:5
+#: main_app/templates/main_app/size_guide.html:14
+#, fuzzy
+#| msgid "Guía de tallas"
+msgid "Guía de Tallas"
+msgstr "Size guide"
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:6
+#, fuzzy
+#| msgid "Únete al movimiento XEAX"
+msgid "Bienvenido al movimiento XEAX"
+msgstr "Join the XEAX movement"
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:26
+#, fuzzy
+#| msgid "Únete al movimiento XEAX"
+msgid "Bienvenido al movimiento"
+msgstr "Join the XEAX movement"
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:33
+#, fuzzy
+#| msgid ""
+#| "Suscríbete para recibir lanzamientos exclusivos, eventos locales y "
+#| "ofertas especiales antes que nadie."
+msgid ""
+"Ya eres parte de algo más grande. Recibirás lanzamientos exclusivos, acceso "
+"anticipado a nuevos productos y ofertas especiales antes que nadie."
+msgstr ""
+"Subscribe to receive exclusive releases, local events, and special offers "
+"before anyone else."
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:52
+msgid "Lanzamientos"
+msgstr ""
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:53
+msgid "Acceso anticipado a nuevas colecciones"
+msgstr ""
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:57
+msgid "Exclusivas"
+msgstr ""
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:58
+msgid "Ofertas y descuentos solo para suscriptores"
+msgstr ""
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:62
+msgid "Comunidad"
+msgstr ""
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:63
+msgid "Eventos locales y contenido exclusivo"
+msgstr ""
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:77
+msgid "Explorar Colección"
+msgstr "Explore Collection"
+
+#: main_app/templates/main_app/email/newsletter_welcome.html:86
+msgid ""
+"Has recibido este correo porque te suscribiste al newsletter de XEAX Sports."
+msgstr ""
+
+#: main_app/templates/main_app/google_mock.html:4
+msgid "Iniciar Sesión con Google"
+msgstr ""
+
+#: main_app/templates/main_app/google_mock.html:23
+msgid "Simulación de Consentimiento de Google OAuth2 para XEAX Sports"
+msgstr ""
+
+#: main_app/templates/main_app/google_mock.html:28
+msgid ""
+"Dado que estás en un entorno de desarrollo local, este portal simula el "
+"flujo de Google OAuth y creará/autenticará la cuenta elegida en la base de "
+"datos de XEAX."
+msgstr ""
+
+#: main_app/templates/main_app/google_mock.html:36
+msgid "Correo Electrónico de Google"
+msgstr ""
+
+#: main_app/templates/main_app/google_mock.html:50
+#: main_app/templates/main_app/profile.html:113
+msgid "Apellidos"
+msgstr ""
+
+#: main_app/templates/main_app/google_mock.html:63
+msgid "Confirmar y Acceder"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:19
+msgid "LEVEL UP YOUR TRAINING"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:22
+msgid ""
+"Equipamiento técnico sin puntos débiles. Agarre, velocidad y resistencia "
+"para atletas que van en serio"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:42
+msgid ""
+"Equipamiento de alto rendimiento con ingeniería de vanguardia diseñado para "
+"dominar cualquier entorno."
+msgstr ""
+"High performance equipment with cutting-edge engineering designed to "
+"dominate any environment."
+
+#: main_app/templates/main_app/home.html:91
+msgid "No hay productos destacados en este momento."
+msgstr ""
+
+#: main_app/templates/main_app/home.html:115
+msgid "Filosofía XEAX"
+msgstr "XEAX Philosophy"
+
+#: main_app/templates/main_app/home.html:117
+msgid "Fuerza. Resistencia. Rendimiento."
+msgstr "Strength. Endurance. Performance."
+
+#: main_app/templates/main_app/home.html:120
+msgid ""
+"En XEAX no creamos ropa simple. Desarrollamos armaduras urbanas y deportivas "
+"capaces de soportar tus entrenamientos más extremos y el desgaste diario del "
+"asfalto. Cada costura, tejido y corte técnico está diseñado para superar los "
+"límites establecidos, fusionando el estilo callejero con las exigencias del "
+"atleta de élite."
+msgstr ""
+"At XEAX we don't create simple clothes. We develop urban and athletic armor "
+"capable of enduring your most extreme workouts and the daily wear of the "
+"asphalt. Every seam, fabric, and technical cut is designed to push past "
+"established limits, merging street style with the demands of the elite "
+"athlete."
+
+#: main_app/templates/main_app/login.html:17
+msgid "Accede a tu cuenta para continuar con tu compra"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:56
+msgid "Acepto y confirmo los"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:60
+msgid "vigentes."
+msgstr ""
+
+#: main_app/templates/main_app/login.html:66
+msgid "¿No tienes cuenta? Regístrate"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:71
+msgid "Entrar"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:78
+#: main_app/templates/main_app/register.html:83
+msgid "o"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:89
+msgid "Acceder con Google"
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:5
+msgid "Compra Completada"
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:14
+msgid "¡Pedido Confirmado!"
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:17
+msgid ""
+"Gracias por comprar en XEAX Sports. Tu pedido se ha registrado correctamente."
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:21
+#: main_app/templates/main_app/returns_policy.html:137
+msgid "Número de Pedido"
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:27
+msgid "Detalles de Envío y Logística"
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:31
+msgid ""
+"Tu pedido será procesado y enviado directamente a través de la red logística "
+"de"
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:31
+msgid "Próximamente recibirás un email de confirmación."
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:36
+msgid "Destinatario"
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:56
+msgid "Resumen de Productos"
+msgstr ""
+
+#: main_app/templates/main_app/order_success.html:75
+msgid "Total Pagado"
+msgstr ""
+
+#: main_app/templates/main_app/orders.html:21
+msgid "Pedido Realizado"
+msgstr ""
+
+#: main_app/templates/main_app/orders.html:29
+msgid "Enviar a"
+msgstr ""
+
+#: main_app/templates/main_app/orders.html:65
+#: main_app/templates/main_app/product_detail.html:168
+msgid "Cantidad"
+msgstr ""
+
+#: main_app/templates/main_app/orders.html:85
+msgid "Envío gestionado y procesado a través de la logística de Amazon."
+msgstr ""
+
+#: main_app/templates/main_app/orders.html:96
+msgid "Aún no tienes pedidos"
+msgstr ""
+
+#: main_app/templates/main_app/orders.html:99
+msgid ""
+"Cuando realices compras figurarán en esta sección para que puedas realizar "
+"el seguimiento logístico a través de Amazon."
+msgstr ""
+
+#: main_app/templates/main_app/orders.html:102
+msgid "Ir a la tienda"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:44
+msgid "Click para ampliar"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:54
+msgid "XEAX ELITE"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:77
+msgid "Precio recomendado"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:84
+msgid "Sobre este artículo"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:95
+msgid "Rendimiento y confort de primer nivel para tus entrenamientos diarios."
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:99
+msgid ""
+"Tejido duradero y flexible optimizado para movimientos corporales complejos."
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:103
+msgid ""
+"Logotipo e identidad gráfica XEAX de alta calidad en transfer de silicona."
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:114
+msgid "Descripción del producto"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:132
+msgid "Envío GRATIS gestionado por"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:144
+msgid "Seleccionar Talla"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:162
+msgid "Por favor, selecciona una talla."
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:178
+msgid "Añadir al Carrito"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:181
+#, fuzzy
+#| msgid "Comprar"
+msgid "Comprar ya"
+msgstr "Shop"
+
+#: main_app/templates/main_app/product_detail.html:187
+msgid "Inicia sesión para comprar"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:198
+msgid "Envía desde"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:202
+msgid "Vendido por"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:314
+msgid "En Stock"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:324
+msgid "Solo quedan"
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:324
+msgid "en stock - pídelo pronto."
+msgstr ""
+
+#: main_app/templates/main_app/product_detail.html:334
+msgid "Temporalmente sin stock"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:5
+msgid "Mi Perfil de Atleta"
+msgstr "My Athlete Profile"
+
+#: main_app/templates/main_app/profile.html:13
+#, fuzzy
+#| msgid "Cuenta"
+msgid "Mi Cuenta"
+msgstr "Account"
+
+#: main_app/templates/main_app/profile.html:40
+msgid "Sin definir"
+msgstr "Not defined"
+
+#: main_app/templates/main_app/profile.html:44
+msgid "Miembro desde"
+msgstr "Member since"
+
+#: main_app/templates/main_app/profile.html:52
+msgid "Historial de Pedidos"
+msgstr "Order History"
+
+#: main_app/templates/main_app/profile.html:69
+msgid "Datos Personales"
+msgstr "Personal Data"
+
+#: main_app/templates/main_app/profile.html:74
+msgid "Envíos"
+msgstr "Shipping"
+
+#: main_app/templates/main_app/profile.html:79
+msgid "Facturación"
+msgstr "Billing"
+
+#: main_app/templates/main_app/profile.html:84
+msgid "Estado Legal & T&C"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:98
+msgid "Información Personal y Preferencias"
+msgstr "Personal Info & Preferences"
+
+#: main_app/templates/main_app/profile.html:126
+msgid "El email no se puede cambiar por seguridad."
+msgstr "Email cannot be changed for security reasons."
+
+#: main_app/templates/main_app/profile.html:140
+msgid "Talla Preferida de Ropa"
+msgstr "Preferred Clothing Size"
+
+#: main_app/templates/main_app/profile.html:153
+msgid "Dirección de Envío Predeterminada"
+msgstr "Default Shipping Address"
+
+#: main_app/templates/main_app/profile.html:159
+msgid "Teléfono de Contacto"
+msgstr "Contact Phone"
+
+#: main_app/templates/main_app/profile.html:212
+msgid "Copiar Envío"
+msgstr "Copy Shipping"
+
+#: main_app/templates/main_app/profile.html:278
+msgid "Registro de Aceptación de Términos y Condiciones"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:281
+msgid "Ver T&C Vigentes"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:291
+msgid "Cuenta Legalmente Al Día"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:292
+msgid "Has aceptado la versión activa vigente ("
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:292
+msgid ")."
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:297
+msgid "Actualización de Términos Disponible"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:298
+msgid "Existe una nueva versión de T&C ("
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:298
+msgid "). Por favor, revísala."
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:304
+#, fuzzy
+#| msgid "Historial de Pedidos"
+msgid "Historial de Aceptaciones Guardadas"
+msgstr "Order History"
+
+#: main_app/templates/main_app/profile.html:309
+msgid "Versión T&C"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:312
+msgid "Estado de la Versión"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:313
+#, fuzzy
+#| msgid "Colección"
+msgid "Acción"
+msgstr "Collection"
+
+#: main_app/templates/main_app/profile.html:324
+#: main_app/templates/main_app/terms.html:54
+msgid "Vigente"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:326
+msgid "Histórica"
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:331
+#, fuzzy
+#| msgid "Ver Todo"
+msgid "Ver Texto"
+msgstr "View All"
+
+#: main_app/templates/main_app/profile.html:337
+msgid "No hay registros de aceptación guardados."
+msgstr ""
+
+#: main_app/templates/main_app/profile.html:350
+msgid "Guardar Cambios"
+msgstr "Save Changes"
+
+#: main_app/templates/main_app/register.html:15
+#, fuzzy
+#| msgid "Cuenta"
+msgid "Crear Cuenta"
+msgstr "Account"
+
+#: main_app/templates/main_app/register.html:17
+msgid "Únete a XEAX Sports para comprar y acceder a beneficios exclusivos"
+msgstr ""
+
+#: main_app/templates/main_app/register.html:61
+msgid "He leído y acepto los"
+msgstr ""
+
+#: main_app/templates/main_app/register.html:65
+msgid "y la Política de Privacidad de XEAX Sports."
+msgstr ""
+
+#: main_app/templates/main_app/register.html:71
+msgid "¿Ya tienes cuenta? Inicia sesión"
+msgstr ""
+
+#: main_app/templates/main_app/register.html:76
+msgid "Registrarme"
+msgstr ""
+
+#: main_app/templates/main_app/register.html:94
+msgid "Registrarse con Google"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:5
+#: main_app/templates/main_app/returns_policy.html:14
+#, fuzzy
+#| msgid "Devoluciones"
+msgid "Devoluciones y Cambios"
+msgstr "Returns"
+
+#: main_app/templates/main_app/returns_policy.html:21
+msgid "Política de Devoluciones & Cambios"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:24
+msgid ""
+"Queremos que entrenes con total confianza. Si la talla no es la adecuada o "
+"el producto no cumple tus expectativas, dispones de 30 días para realizar "
+"devoluciones o cambios de forma ágil y gratuita."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:35
+msgid "30 Días de Garantía"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:37
+msgid ""
+"Tienes 30 días naturales desde la fecha de recepción para solicitar "
+"cualquier cambio o devolución."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:47
+msgid "1er Cambio Gratuito"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:49
+msgid ""
+"El primer cambio de talla por cada producto no tiene ningún coste de "
+"transporte adicional para ti."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:59
+msgid "Reembolso Rápido"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:61
+msgid ""
+"Emitimos el reembolso en tu método de pago original en un plazo máximo de 3 "
+"a 5 días tras inspeccionar el paquete."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:70
+msgid "¿Cómo Funciona el Proceso de Devolución?"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:79
+msgid "1. Solicitud Online"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:81
+msgid ""
+"Ingresa tus datos en nuestro portal o en tu área privada para obtener tu "
+"etiqueta de devolución."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:91
+msgid "2. Prepara el Paquete"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:93
+msgid ""
+"Introduce la prenda en su embalaje original con las etiquetas intactas y "
+"adhiere la etiqueta exterior."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:103
+msgid "3. Entrega o Recogida"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:105
+msgid ""
+"Deposita el paquete en cualquier punto de recogida habilitado o solicita "
+"recogida en domicilio."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:115
+msgid "4. Cambio o Reembolso"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:117
+msgid ""
+"Revisamos la prenda y ejecutamos el cambio de talla inmediato o la "
+"devolución del importe."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:129
+msgid "Portal de Gestión de Devoluciones"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:132
+msgid ""
+"Introduce el número de pedido y el correo electrónico asociado a la compra "
+"para tramitar tu etiqueta de devolución."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:145
+msgid "Consultar Elegibilidad & Iniciar Devolución"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:153
+msgid "Pedido Encontrado & Elegible"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:155
+msgid ""
+"Tu pedido dispone de 30 días de garantía activa. Hemos enviado las "
+"instrucciones y la etiqueta prepagada a tu correo electrónico."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:167
+msgid "Condiciones de Devolución"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:173
+msgid "Etiquetas Integras:"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:173
+msgid ""
+"El artículo debe conservar sus etiquetas de marca y de lavado originales sin "
+"cortar ni manipular."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:177
+msgid "Estado Inmaculado:"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:177
+msgid ""
+"La prenda no debe presentar signos de haber sido usada en entrenamientos, "
+"lavada o alterada."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:181
+msgid "Embalaje Original:"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:181
+msgid ""
+"Incluye la bolsa o caja protectora original junto con los accesorios si los "
+"hubiera."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:185
+msgid "Higiene en Ropa Interior / Mallas:"
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:185
+msgid ""
+"Por motivos de higiene, las mallas y ropa interior deben probarse sobre la "
+"propia ropa interior."
+msgstr ""
+
+#: main_app/templates/main_app/returns_policy.html:199
+msgid ""
+"Garantía de devolución válida. Se ha generado la etiqueta de transporte "
+"prepagada para tu envío."
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:21
+#, fuzzy
+#| msgid "Envíos y Entregas"
+msgid "Información de Envíos & Entregas"
+msgstr "Shipping and Deliveries"
+
+#: main_app/templates/main_app/shipping_info.html:24
+msgid ""
+"Procesamos y gestionamos nuestras entregas a través de la infraestructura "
+"logística de Amazon para garantizar la máxima velocidad, fiabilidad y "
+"seguimiento en tiempo real de tu equipamiento deportivo."
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:35
+msgid "Envío Gratis > 50 €"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:37
+msgid ""
+"Disfruta de envío gratuito a toda la Península Ibérica en todas tus compras "
+"superiores a 50 €."
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:47
+msgid "Entrega Exprés 24/48h"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:49
+msgid ""
+"Los pedidos recibidos de Lunes a Viernes antes de las 14:00 se preparan y "
+"despachan el mismo día."
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:59
+#, fuzzy
+#| msgid "Rendimiento Técnico"
+msgid "Seguimiento en Vivo"
+msgstr "Technical Performance"
+
+#: main_app/templates/main_app/shipping_info.html:61
+msgid ""
+"Recibe alertas por SMS y correo electrónico con el rastreo en tiempo real de "
+"tu paquete."
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:70
+msgid "Tarifas y Plazos de Entrega"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:77
+msgid "Destino"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:78
+msgid "Plazo Estimado"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:79
+#, fuzzy
+#| msgid "País de Envío"
+msgid "Coste de Envío"
+msgstr "Shipping Country"
+
+#: main_app/templates/main_app/shipping_info.html:80
+msgid "Envío Gratuito"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:81
+msgid "Operador Logístico"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:86
+msgid "España Península"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:89
+msgid "A partir de 50 €"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:93
+msgid "Islas Baleares"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:96
+msgid "A partir de 80 €"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:100
+msgid "Canarias, Ceuta y Melilla"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:103
+msgid "A partir de 120 €"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:107
+msgid "Unión Europea (Francia, Italia, Alemania, Portugal)"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:110
+msgid "A partir de 100 €"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:121
+msgid "Preguntas Frecuentes sobre Envíos"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:129
+msgid "¿Cómo puedo realizar el seguimiento de mi pedido?"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:134
+msgid ""
+"Una vez que tu pedido sea despachado de nuestro centro logístico, recibirás "
+"un correo electrónico y SMS automático con el número de seguimiento único y "
+"el enlace directo de rastreo de Amazon Logistics."
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:143
+msgid "¿Qué ocurre si no me encuentro en casa en el momento de la entrega?"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:148
+msgid ""
+"Amazon Logistics realizará hasta 3 intentos de entrega en días consecutivos. "
+"Si tras el segundo intento no es posible la entrega, podrás gestionar la "
+"recogida en un Amazon Hub Locker o punto de recogida concertado."
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:157
+msgid "¿Puedo cambiar la dirección de entrega una vez confirmado el pedido?"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:162
+msgid ""
+"Si necesitas modificar la dirección, debes contactarnos dentro de los "
+"primeros 60 minutos tras realizar la compra a través de nuestro soporte "
+"técnico. Una vez expedido el paquete, la modificación deberá solicitarse "
+"directamente al transportista."
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:171
+msgid "¿Qué debo hacer si mi paquete llega dañado o incompleto?"
+msgstr ""
+
+#: main_app/templates/main_app/shipping_info.html:176
+msgid ""
+"Indica cualquier anomalía visible en el albarán del repartidor y ponte en "
+"contacto inmediatamente con nosotros aportando fotografías del embalaje. Nos "
+"encargaremos de enviarte un reemplazo sin coste adicional."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:21
+#, fuzzy
+#| msgid "Guía de tallas"
+msgid "Guía de Tallas & Ajuste"
+msgstr "Size guide"
+
+#: main_app/templates/main_app/size_guide.html:24
+msgid ""
+"En XEAX diseñamos prendas de alto rendimiento con patronaje técnico. "
+"Consulta nuestras tablas de medidas y utiliza el recomendador interactivo "
+"para elegir la talla ideal según tu nivel de ajuste preferido."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:38
+msgid "Recomendador de Talla Interactivo"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:40
+msgid "Encuentra tu talla en segundos"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:44
+msgid ""
+"Introduce tu contorno de pecho y cintura en cm para obtener una sugerencia "
+"personalizada de ajuste óptimo."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:52
+#: main_app/templates/main_app/size_guide.html:120
+msgid "Pecho (cm)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:56
+#: main_app/templates/main_app/size_guide.html:121
+#: main_app/templates/main_app/size_guide.html:186
+msgid "Cintura (cm)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:61
+msgid "Calcular Mi Talla"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:71
+msgid "Talla Sugerida:"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:78
+msgid "Ajuste Técnico Pro"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:92
+msgid "Partes Superiores"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:97
+msgid "Partes Inferiores"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:102
+#, fuzzy
+#| msgid "CrossFit & Equipamiento"
+msgid "Accesorios & Equipamiento"
+msgstr "CrossFit & Equipment"
+
+#: main_app/templates/main_app/size_guide.html:113
+msgid "Camisetas, Sudaderas & Chaquetas (Medidas en CM)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:122
+msgid "Largo Camiseta (cm)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:123
+msgid "Equivalencia EU"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:179
+msgid "Shorts, Mallas & Pantalones (Medidas en CM)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:187
+msgid "Cadera (cm)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:188
+msgid "Largo de Pierna (cm)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:189
+msgid "Equivalencia Pantalón"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:238
+msgid "Guantes, Rodilleras & Cintas"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:245
+msgid "Contorno Palma (Guantes)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:246
+msgid "Contorno Rodilla (Rodilleras)"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:247
+#, fuzzy
+#| msgid "Devoluciones"
+msgid "Observaciones"
+msgstr "Returns"
+
+#: main_app/templates/main_app/size_guide.html:255
+msgid "Ajuste firme para muñeca/rodilla delgada"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:261
+msgid "Ajuste estándar equilibrado"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:267
+msgid "Para articulación grande o atleta musculado"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:273
+msgid "Correas y muñequeras ajustables mediante velcro de alta resistencia"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:285
+msgid "¿Cómo Tomar tus Medidas?"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:294
+msgid "1. Pecho"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:296
+msgid ""
+"Rodea la parte más prominente del tórax manteniendo la cinta métrica "
+"horizontal y firme sin oprimir la piel."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:306
+msgid "2. Cintura"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:308
+msgid ""
+"Mide el contorno alrededor del punto más estrecho de la cintura (normalmente "
+"justo por encima del ombligo)."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:318
+msgid "3. Cadera"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:320
+msgid ""
+"Mantén los pies juntos y rodea la zona más ancha de las caderas asegurando "
+"que la cinta quede nivelada."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:329
+msgid "¿Dudas entre dos tallas?"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:330
+msgid ""
+"Si estás entre dos tallas, te recomendamos elegir la menor para un ajuste "
+"ceñido Pro/Competición o la mayor para mayor libertad de movimiento."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:332
+msgid "Contactar con Atención al Cliente"
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:344
+msgid ""
+"Tu medida se encuentra en el rango estándar. Ofrece excelente equilibrio "
+"entre libertad de movimiento y ajuste atlético."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:348
+msgid ""
+"Recomendamos talla S para una silueta ceñida y máxima aerodinámica durante "
+"el entrenamiento."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:351
+msgid "Talla S recomendada para un ajuste técnico pro."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:354
+msgid "Talla M perfecta para medidas intermedias estándar XEAX."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:357
+msgid ""
+"Talla L óptima para atletas con desarrollo muscular o preferencia por "
+"holgura."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:360
+msgid ""
+"Talla XL proporcionará el espacio necesario sin perder la estructura "
+"ergonómica."
+msgstr ""
+
+#: main_app/templates/main_app/size_guide.html:363
+msgid "Talla XXL sugerida para máxima holgura y comodidad en torso ancho."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:12
+msgid "Compromiso Verde XEAX"
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:15
+#, fuzzy
+#| msgid "Rendimiento Técnico"
+msgid "Rendimiento Técnico Sostenible"
+msgstr "Technical Performance"
+
+#: main_app/templates/main_app/sustainability.html:18
+msgid ""
+"Demostramos que la máxima exigencia deportiva no está peleada con la "
+"protección de nuestro planeta."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:32
+msgid "Fibras Recicladas"
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:33
+#, python-format
+msgid ""
+"Más del 75%% de nuestras prendas técnicas utilizan poliéster reciclado "
+"proveniente de plásticos rescatados del océano y botellas PET post-consumo."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:41
+msgid "Packaging Cero Plástico"
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:42
+#, python-format
+msgid ""
+"Todos nuestros envíos se entregan en cajas de cartón 100%% reciclado e "
+"impresas con tintas vegetales compostables."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:50
+msgid "Fabricación Ética"
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:51
+msgid ""
+"Colaboramos únicamente con talleres textiles auditados que garantizan "
+"condiciones de trabajo justas y salarios dignos."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:60
+msgid "Moda Deportiva Circular vs. Fast Fashion"
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:63
+msgid ""
+"Frente al consumo desmedido y la rápida obsolescencia de las prendas de "
+"entrenamiento convencionales, XEAX desarrolla ropa urbana y técnica diseñada "
+"para durar años."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:66
+msgid ""
+"Costuras reforzadas anti-desgarre para soportar el uso diario más agresivo."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:67
+msgid ""
+"Tratamiento de retención de color que evita la decoloración tras lavados "
+"repetidos."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:68
+msgid "Certificación OEKO-TEX® Standard 100 libre de químicos dañinos."
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:73
+msgid "Hoja de Ruta 2030"
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:77
+msgid "Polímeros Reciclados en Colecciones"
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:87
+msgid "Neutralidad de Carbono en Logística"
+msgstr ""
+
+#: main_app/templates/main_app/sustainability.html:97
+msgid "Programa de Reciclaje de Prendas Viejas"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:17
+msgid "Documento Legal Dinámico"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:21
+msgid "Versión Vigente"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:25
+msgid "Versión Histórica Archiva"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:33
+msgid "Versión:"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:34
+msgid "Fecha de Entrada en Vigor:"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:41
+#, fuzzy
+#| msgid "Historial de Pedidos"
+msgid "Historial de Versiones"
+msgstr "Order History"
+
+#: main_app/templates/main_app/terms.html:45
+msgid "Selecciona una versión de T&C:"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:71
+msgid "Estado Legal de tu Cuenta"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:74
+msgid "Has aceptado la versión"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:74
+msgid "el"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:76
+msgid "Aún no registras aceptación formal de esta versión."
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:82
+msgid "Ver Mi Registro Legal"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:91
+msgid "Resumen de Cambios en la Versión"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:107
+msgid "Imprimir / Guardar PDF"
+msgstr ""
+
+#: main_app/templates/main_app/terms.html:110
+msgid "¿Tienes dudas sobre nuestros términos legales? Contacta con nosotros"
+msgstr ""
+
+#: main_app/views.py:98
+msgid "La talla seleccionada no está disponible."
+msgstr ""
+
+#: main_app/views.py:108
+msgid "Lo sentimos, no hay suficiente stock disponible para esta talla."
+msgstr ""
+
+#: main_app/views.py:116
+msgid "No puedes añadir más unidades de las disponibles en stock."
+msgstr ""
+
+#: main_app/views.py:129
+msgid "Producto añadido al carrito correctamente."
+msgstr ""
+
+#: main_app/views.py:144 main_app/views.py:162
+msgid "Producto eliminado del carrito."
+msgstr ""
+
+#: main_app/views.py:147
+msgid "No hay suficiente stock disponible para esa cantidad."
+msgstr ""
+
+#: main_app/views.py:151
+msgid "Carrito actualizado."
+msgstr ""
+
+#: main_app/views.py:177
+msgid "Debes aceptar los Términos y Condiciones vigentes para crear tu cuenta."
+msgstr ""
+
+#: main_app/views.py:183
+msgid "¡Registro exitoso! Bienvenido a XEAX Sports."
+msgstr ""
+
+#: main_app/views.py:208
+msgid "Debes aceptar los Términos y Condiciones vigentes para iniciar sesión."
+msgstr ""
+
+#: main_app/views.py:214
+msgid "¡Inicio de sesión exitoso!"
+msgstr ""
+
+#: main_app/views.py:231
+msgid "Has cerrado sesión."
+msgstr ""
+
+#: main_app/views.py:239
+msgid "Tu carrito está vacío. No puedes proceder al checkout."
+msgstr ""
+
+#: main_app/views.py:252
+msgid "Por favor, completa todos los campos del formulario de envío."
+msgstr ""
+
+#: main_app/views.py:258
+#, python-brace-format
+msgid ""
+"Lo sentimos, no hay stock suficiente de la talla {item.variant.size} del "
+"producto {item.variant.product.name}."
+msgstr ""
+
+#: main_app/views.py:310
+msgid "¡Pedido realizado con éxito! Gracias por tu compra."
+msgstr ""
+
+#: main_app/views.py:314
+msgid "Ocurrió un error al procesar el pedido. Inténtalo de nuevo."
+msgstr ""
+
+#: main_app/views.py:344
+msgid "Tu perfil ha sido actualizado correctamente."
+msgstr ""
+
+#: main_app/views.py:347
+msgid "Por favor, corrige los errores en el formulario."
+msgstr ""
+
+#: main_app/views.py:395
+msgid "Error al autenticar con Google."
+msgstr ""
+
+#: main_app/views.py:414
+msgid "No se pudo obtener el token de Google."
+msgstr ""
+
+#: main_app/views.py:424
+msgid "No se pudo obtener la información de usuario de Google."
+msgstr ""
+
+#: main_app/views.py:433
+msgid "El correo electrónico no fue proporcionado por Google."
+msgstr ""
+
+#: main_app/views.py:449
+msgid "¡Inicio de sesión con Google exitoso!"
+msgstr ""
+
+#: main_app/views.py:455
+msgid "Error de conexión durante el login con Google."
+msgstr ""
+
+#: main_app/views.py:479
+msgid "¡Inicio de sesión simulado con Google exitoso!"
+msgstr ""
+
+#: main_app/views.py:592
+msgid ""
+"¡Gracias por contactar con XEAX Sports! Tu mensaje ha sido recibido y te "
+"responderemos en breve."
+msgstr ""
+
+#: main_app/views.py:611
+msgid ""
+"¡Gracias por tu candidatura! Hemos recibido tu solicitud para el puesto de "
+msgstr ""
+
+#: main_app/views.py:611
+msgid ". Evaluaremos tu perfil en breve."
+msgstr ""
+
+#: main_app/views.py:644
+msgid "Método no permitido."
+msgstr ""
+
+#: main_app/views.py:651
+msgid "Por favor, introduce tu email."
+msgstr ""
+
+#: main_app/views.py:654
+msgid "Debes aceptar la Política de Privacidad para suscribirte."
+msgstr ""
+
+#: main_app/views.py:662
+msgid "¡Ya formas parte del movimiento XEAX! Revisa tu bandeja de entrada."
+msgstr ""
+
+#: main_app/views.py:670
+#, fuzzy
+#| msgid "Únete al movimiento XEAX"
+msgid "¡Bienvenido de nuevo al movimiento XEAX!"
+msgstr "Join the XEAX movement"
+
+#: main_app/views.py:697
+msgid "Bienvenido al movimiento XEAX — Where I Belong"
+msgstr ""
+
+#: main_app/views.py:698
+msgid "Bienvenido a XEAX Sports. Visita: "
+msgstr ""
+
+#: main_app/views.py:712
+msgid "¡Suscrito! Detectamos que ya tienes una cuenta con este email."
+msgstr ""
+
+#: main_app/views.py:718
+msgid ""
+"¡Bienvenido al movimiento XEAX! Te hemos enviado un email de bienvenida."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/contrib/messages/apps.py:16
+msgid "Messages"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/contrib/sitemaps/apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/contrib/staticfiles/apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: venv/lib/python3.12/site-packages/django/core/paginator.py:30
+msgid "…"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/paginator.py:32
+msgid "That page number is not an integer"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/paginator.py:33
+msgid "That page number is less than 1"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/paginator.py:34
+msgid "That page contains no results"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:22
+msgid "Enter a valid value."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:70
+msgid "Enter a valid domain name."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:153
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:774
+msgid "Enter a valid URL."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:200
+msgid "Enter a valid integer."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:211
+msgid "Enter a valid email address."
+msgstr ""
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: venv/lib/python3.12/site-packages/django/core/validators.py:289
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:297
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:309
+#: venv/lib/python3.12/site-packages/django/core/validators.py:318
+#: venv/lib/python3.12/site-packages/django/core/validators.py:332
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2220
+#, python-format
+msgid "Enter a valid %(protocol)s address."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:311
+msgid "IPv4"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:320
+#: venv/lib/python3.12/site-packages/django/utils/ipv6.py:43
+msgid "IPv6"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:334
+msgid "IPv4 or IPv6"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:375
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:381
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:416
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:425
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:434
+#, python-format
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:441
+#, python-format
+msgid ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:473
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:491
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:514
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:365
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:404
+msgid "Enter a number."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:516
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:521
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:526
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:597
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/core/validators.py:659
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/base.py:1600
+#: venv/lib/python3.12/site-packages/django/forms/models.py:908
+msgid "and"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/base.py:1602
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/constraints.py:22
+#, python-format
+msgid "Constraint “%(name)s” is violated."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:134
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:135
+msgid "This field cannot be null."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:136
+msgid "This field cannot be blank."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:137
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or
+#. 'month'. Eg: "Title must be unique for pub_date year"
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:141
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:180
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1162
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1163
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1165
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1215
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1217
+msgid "String (unlimited)"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1326
+msgid "Comma-separated integers"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1427
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1431
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1566
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1435
+msgid "Date (without time)"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1562
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1570
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1575
+msgid "Date (with time)"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1702
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1704
+msgid "Decimal number"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1864
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
+"uuuuuu] format."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1868
+msgid "Duration"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1920
+msgid "Email address"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:1945
+msgid "File path"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2023
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2025
+msgid "Floating point number"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2065
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2067
+msgid "Integer"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2163
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2180
+msgid "Small integer"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2188
+msgid "IPv4 address"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2219
+msgid "IP address"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2310
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2311
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2313
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2364
+msgid "Positive big integer"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2379
+msgid "Positive integer"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2394
+msgid "Positive small integer"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2410
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2446
+msgid "Text"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2526
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2530
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2534
+msgid "Time"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2642
+msgid "URL"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2666
+msgid "Raw binary data"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2731
+#, python-format
+msgid "“%(value)s” is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/__init__.py:2733
+msgid "Universally unique identifier"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/files.py:244
+msgid "File"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/files.py:420
+msgid "Image"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/json.py:24
+msgid "A JSON object"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/json.py:26
+msgid "Value must be valid JSON."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/related.py:979
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/related.py:982
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/related.py:1276
+msgid "One-to-one relationship"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/related.py:1333
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/related.py:1335
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/db/models/fields/related.py:1383
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: venv/lib/python3.12/site-packages/django/forms/boundfield.py:185
+msgid ":?.!"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:94
+msgid "This field is required."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:314
+msgid "Enter a whole number."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:485
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:1257
+msgid "Enter a valid date."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:508
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:1258
+msgid "Enter a valid time."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:535
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:569
+msgid "Enter a valid duration."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:570
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:639
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:640
+msgid "No file was submitted."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:641
+msgid "The submitted file is empty."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:643
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:648
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:716
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:879
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:965
+#: venv/lib/python3.12/site-packages/django/forms/models.py:1592
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:967
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:1086
+#: venv/lib/python3.12/site-packages/django/forms/models.py:1590
+msgid "Enter a list of values."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:1087
+msgid "Enter a complete value."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:1329
+msgid "Enter a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/fields.py:1359
+msgid "Enter a valid JSON."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: venv/lib/python3.12/site-packages/django/forms/forms.py:97
+msgid ":"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/forms.py:239
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/formsets.py:61
+#, python-format
+msgid ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/formsets.py:65
+#, python-format
+msgid "Please submit at most %(num)d form."
+msgid_plural "Please submit at most %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/forms/formsets.py:70
+#, python-format
+msgid "Please submit at least %(num)d form."
+msgid_plural "Please submit at least %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/forms/formsets.py:484
+#: venv/lib/python3.12/site-packages/django/forms/formsets.py:491
+msgid "Order"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/formsets.py:499
+msgid "Delete"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/models.py:901
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/models.py:906
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/models.py:913
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/models.py:922
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/models.py:1359
+msgid "The inline value did not match the parent instance."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/models.py:1450
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/models.py:1594
+#, python-format
+msgid "“%(pk)s” is not a valid value."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/utils.py:229
+#, python-format
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/widgets.py:527
+msgid "Clear"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/widgets.py:528
+msgid "Currently"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/widgets.py:529
+msgid "Change"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/widgets.py:866
+msgid "Unknown"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/widgets.py:867
+msgid "Yes"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/forms/widgets.py:868
+msgid "No"
+msgstr ""
+
+#. Translators: Please do not add spaces around commas.
+#: venv/lib/python3.12/site-packages/django/template/defaultfilters.py:873
+msgid "yes,no,maybe"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/template/defaultfilters.py:903
+#: venv/lib/python3.12/site-packages/django/template/defaultfilters.py:920
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/template/defaultfilters.py:922
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/template/defaultfilters.py:924
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/template/defaultfilters.py:926
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/template/defaultfilters.py:928
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/template/defaultfilters.py:930
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dateformat.py:74
+msgid "p.m."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dateformat.py:75
+msgid "a.m."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dateformat.py:80
+msgid "PM"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dateformat.py:81
+msgid "AM"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dateformat.py:153
+msgid "midnight"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dateformat.py:155
+msgid "noon"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:7
+msgid "Monday"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:8
+msgid "Tuesday"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:9
+msgid "Wednesday"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:10
+msgid "Thursday"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:11
+msgid "Friday"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:12
+msgid "Saturday"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:13
+msgid "Sunday"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:16
+msgid "Mon"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:17
+msgid "Tue"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:18
+msgid "Wed"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:19
+msgid "Thu"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:20
+msgid "Fri"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:21
+msgid "Sat"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:22
+msgid "Sun"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:25
+msgid "January"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:26
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:27
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:28
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:29
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:30
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:31
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:32
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:33
+msgid "September"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:34
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:35
+msgid "November"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:36
+msgid "December"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:39
+msgid "jan"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:40
+msgid "feb"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:41
+#, fuzzy
+#| msgid "Comprar"
+msgid "mar"
+msgstr "Shop"
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:42
+msgid "apr"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:43
+msgid "may"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:44
+msgid "jun"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:45
+msgid "jul"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:46
+msgid "aug"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:47
+msgid "sep"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:48
+msgid "oct"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:49
+msgid "nov"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:50
+msgid "dec"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:53
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:54
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:55
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:56
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:57
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:58
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:59
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:60
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:61
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:62
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:63
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:64
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:67
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:68
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:69
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:70
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:71
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:72
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:73
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:74
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:75
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:76
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:77
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/dates.py:78
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/ipv6.py:20
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/text.py:76
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/text.py:282
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: venv/lib/python3.12/site-packages/django/utils/text.py:301
+#: venv/lib/python3.12/site-packages/django/utils/timesince.py:135
+msgid ", "
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/utils/timesince.py:8
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/utils/timesince.py:9
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/utils/timesince.py:10
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.12/site-packages/django/views/csrf.py:29
+msgid "Forbidden"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/csrf.py:30
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/csrf.py:34
+msgid ""
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/csrf.py:40
+msgid ""
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/csrf.py:45
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/csrf.py:54
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/csrf.py:60
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/csrf.py:66
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:44
+msgid "No year specified"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:64
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:115
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:214
+msgid "Date out of range"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:94
+msgid "No month specified"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:147
+msgid "No day specified"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:194
+msgid "No week specified"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:353
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:384
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:680
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/dates.py:720
+#, python-format
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/detail.py:56
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/list.py:70
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/list.py:77
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/generic/list.py:173
+#, python-format
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/static.py:49
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/static.py:51
+#, python-format
+msgid "“%(path)s” does not exist"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/static.py:68
+#: venv/lib/python3.12/site-packages/django/views/templates/directory_index.html:8
+#: venv/lib/python3.12/site-packages/django/views/templates/directory_index.html:11
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:7
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:204
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:206
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:208
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:217
+msgid "Django Documentation"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:218
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:226
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:227
+msgid "Get started with Django"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:235
+msgid "Django Community"
+msgstr ""
+
+#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:236
+msgid "Connect, get help, or contribute"
+msgstr ""
+
+#~ msgid "Diseñado para atletas inconformistas."
+#~ msgstr "Designed for nonconformist athletes."
+
+#~ msgid "Tallas Disponibles"
+#~ msgstr "Available Sizes"
+
+#, python-format
+#~ msgid "Mostrando %(count)s productos"
+#~ msgstr "Showing %(count)s products"
+
+#~ msgid "Ordenar por"
+#~ msgstr "Sort by"
+
+#~ msgid "Precio: Menor a Mayor"
+#~ msgstr "Price: Low to High"
+
+#~ msgid "Precio: Mayor a Menor"
+#~ msgstr "Price: High to Low"
+
+#~ msgid "Ver Equipamiento"
+#~ msgstr "View Equipment"
+
+#~ msgid ""
+#~ "Diseñado para el asfalto. Optimizado para el entrenamiento de alta "
+#~ "intensidad. Libera tu máximo potencial con nuestra nueva colección "
+#~ "técnica."
+#~ msgstr ""
+#~ "Designed for the asphalt. Optimized for high intensity training. Unleash "
+#~ "your full potential with our new technical collection."
+
+#~ msgid "Urbano / Heavyweight"
+#~ msgstr "Urban / Heavyweight"
+
+#~ msgid "Camiseta Urbana Oversized Black Edition"
+#~ msgstr "Oversized Urban T-Shirt Black Edition"
+
+#~ msgid ""
+#~ "Corte holgado de 280 GSM con la gráfica de doble X reflectante en la "
+#~ "espalda."
+#~ msgstr ""
+#~ "Loose fit 280 GSM featuring the iconic reflective double X graphic on the "
+#~ "back."
+
+#~ msgid "Rendimiento / Fitness"
+#~ msgstr "Performance / Fitness"
+
+#~ msgid "Camiseta de Compresión Charcoal Grey"
+#~ msgstr "Compression T-Shirt Charcoal Grey"
+
+#~ msgid ""
+#~ "Tecnología de soporte muscular avanzado, secado rápido y paneles de "
+#~ "ventilación lateral."
+#~ msgstr ""
+#~ "Advanced muscle support technology, quick dry, and side ventilation "
+#~ "panels."
+
+#~ msgid "Cardio / Running"
+#~ msgstr "Cardio / Running"
+
+#~ msgid "Camiseta Técnica Running Navy & Yellow"
+#~ msgstr "Running Technical T-Shirt Navy & Yellow"
+
+#~ msgid ""
+#~ "Tejido microperforado ultraligero con detalles en amarillo brillante XEAX "
+#~ "de alta visibilidad."
+#~ msgstr ""
+#~ "Ultralight micro-perforated fabric with high visibility bright XEAX "
+#~ "yellow details."

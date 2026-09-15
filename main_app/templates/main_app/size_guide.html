@@ -1,0 +1,371 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Guía de Tallas" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 80px;">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="font-family: var(--font-body); font-size: 0.85rem;">
+            <li class="breadcrumb-item"><a href="{% url 'main_app:home' %}" class="text-muted text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item text-muted">{% trans "Soporte" %}</li>
+            <li class="breadcrumb-item active text-white" aria-current="page">{% trans "Guía de Tallas" %}</li>
+        </ol>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="text-uppercase text-white mb-3" style="font-family: var(--font-heading); font-size: 2.5rem; letter-spacing: 1px;">
+            {% trans "Guía de Tallas & Ajuste" %}
+        </h1>
+        <p class="text-muted mx-auto" style="max-width: 650px; font-size: 1rem; line-height: 1.6;">
+            {% trans "En XEAX diseñamos prendas de alto rendimiento con patronaje técnico. Consulta nuestras tablas de medidas y utiliza el recomendador interactivo para elegir la talla ideal según tu nivel de ajuste preferido." %}
+        </p>
+    </div>
+
+    <!-- 1. Interactive Size Recommender Calculator -->
+    <div class="card p-4 mb-5" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-5">
+                <div class="d-flex align-items-center gap-3 mb-2">
+                    <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(238, 255, 0, 0.1); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.25rem;">
+                        <i class="bi bi-calculator"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white text-uppercase fs-5 fw-bold mb-0" style="font-family: var(--font-heading);">
+                            {% trans "Recomendador de Talla Interactivo" %}
+                        </h3>
+                        <span class="text-muted small">{% trans "Encuentra tu talla en segundos" %}</span>
+                    </div>
+                </div>
+                <p class="text-muted small mb-0 mt-2">
+                    {% trans "Introduce tu contorno de pecho y cintura en cm para obtener una sugerencia personalizada de ajuste óptimo." %}
+                </p>
+            </div>
+            
+            <div class="col-lg-7">
+                <form id="size-calculator-form" onsubmit="calculateSize(event)">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="calc-chest" class="form-label text-muted small text-uppercase fw-bold">{% trans "Pecho (cm)" %}</label>
+                            <input type="number" class="form-control bg-dark text-white border-secondary" id="calc-chest" placeholder="Ej: 98" min="70" max="140" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="calc-waist" class="form-label text-muted small text-uppercase fw-bold">{% trans "Cintura (cm)" %}</label>
+                            <input type="number" class="form-control bg-dark text-white border-secondary" id="calc-waist" placeholder="Ej: 82" min="60" max="130" required>
+                        </div>
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-xeax-primary text-uppercase fw-bold px-4 py-2" style="font-size: 0.85rem; letter-spacing: 1px;">
+                                <i class="bi bi-lightning-charge-fill me-1"></i>{% trans "Calcular Mi Talla" %}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Recommendation Result Alert Box -->
+                <div id="size-result-box" class="mt-4 p-3 rounded" style="display: none; background: rgba(238, 255, 0, 0.08); border: 1px solid var(--brand-yellow);">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span class="text-uppercase text-white small d-block">{% trans "Talla Sugerida:" %}</span>
+                            <h4 class="text-white text-uppercase mb-0" id="result-size-text" style="font-family: var(--font-heading); color: var(--brand-yellow) !important; font-size: 1.8rem;">
+                                --
+                            </h4>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-dark border border-secondary text-white-50 text-uppercase py-1.5 px-3" id="fit-style-badge">
+                                {% trans "Ajuste Técnico Pro" %}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-0 mt-2" id="result-description-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Category Tabs for Tables -->
+    <ul class="nav nav-pills justify-content-center mb-4" id="sizeGuideTabs" role="tablist" style="gap: 0.75rem;">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active text-uppercase px-4 py-2" id="tops-tab" data-bs-toggle="tab" data-bs-target="#tops-tab-pane" type="button" role="tab" style="font-family: var(--font-heading); letter-spacing: 1px;">
+                <i class="bi bi-journals me-2"></i>{% trans "Partes Superiores" %}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-uppercase px-4 py-2" id="bottoms-tab" data-bs-toggle="tab" data-bs-target="#bottoms-tab-pane" type="button" role="tab" style="font-family: var(--font-heading); letter-spacing: 1px;">
+                <i class="bi bi-body-text me-2"></i>{% trans "Partes Inferiores" %}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-uppercase px-4 py-2" id="acc-tab" data-bs-toggle="tab" data-bs-target="#acc-tab-pane" type="button" role="tab" style="font-family: var(--font-heading); letter-spacing: 1px;">
+                <i class="bi bi-shield-check me-2"></i>{% trans "Accesorios & Equipamiento" %}
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Contents -->
+    <div class="tab-content" id="sizeGuideTabContent">
+        <!-- TOPS TABLE -->
+        <div class="tab-pane fade show active" id="tops-tab-pane" role="tabpanel" tabindex="0">
+            <div class="card p-4" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <h4 class="text-white text-uppercase fs-5 fw-bold mb-3" style="font-family: var(--font-heading);">
+                    {% trans "Camisetas, Sudaderas & Chaquetas (Medidas en CM)" %}
+                </h4>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0" style="border-color: rgba(255,255,255,0.08);">
+                        <thead class="text-uppercase text-white" style="font-family: var(--font-heading); font-size: 0.85rem; background: rgba(255,255,255,0.03);">
+                            <tr>
+                                <th>{% trans "Talla" %}</th>
+                                <th>{% trans "Pecho (cm)" %}</th>
+                                <th>{% trans "Cintura (cm)" %}</th>
+                                <th>{% trans "Largo Camiseta (cm)" %}</th>
+                                <th>{% trans "Equivalencia EU" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white-50" style="font-size: 0.9rem;">
+                            <tr>
+                                <td class="fw-bold text-white">XS</td>
+                                <td>84 - 90 cm</td>
+                                <td>72 - 77 cm</td>
+                                <td>68 cm</td>
+                                <td>44</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">S</td>
+                                <td>91 - 96 cm</td>
+                                <td>78 - 83 cm</td>
+                                <td>70 cm</td>
+                                <td>46</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">M</td>
+                                <td>97 - 102 cm</td>
+                                <td>84 - 89 cm</td>
+                                <td>72 cm</td>
+                                <td>48 - 50</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">L</td>
+                                <td>103 - 108 cm</td>
+                                <td>90 - 95 cm</td>
+                                <td>74 cm</td>
+                                <td>52</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">XL</td>
+                                <td>109 - 114 cm</td>
+                                <td>96 - 101 cm</td>
+                                <td>76 cm</td>
+                                <td>54 - 56</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">XXL</td>
+                                <td>115 - 122 cm</td>
+                                <td>102 - 109 cm</td>
+                                <td>78 cm</td>
+                                <td>58</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOMS TABLE -->
+        <div class="tab-pane fade" id="bottoms-tab-pane" role="tabpanel" tabindex="0">
+            <div class="card p-4" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <h4 class="text-white text-uppercase fs-5 fw-bold mb-3" style="font-family: var(--font-heading);">
+                    {% trans "Shorts, Mallas & Pantalones (Medidas en CM)" %}
+                </h4>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0" style="border-color: rgba(255,255,255,0.08);">
+                        <thead class="text-uppercase text-white" style="font-family: var(--font-heading); font-size: 0.85rem; background: rgba(255,255,255,0.03);">
+                            <tr>
+                                <th>{% trans "Talla" %}</th>
+                                <th>{% trans "Cintura (cm)" %}</th>
+                                <th>{% trans "Cadera (cm)" %}</th>
+                                <th>{% trans "Largo de Pierna (cm)" %}</th>
+                                <th>{% trans "Equivalencia Pantalón" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white-50" style="font-size: 0.9rem;">
+                            <tr>
+                                <td class="fw-bold text-white">XS</td>
+                                <td>70 - 75 cm</td>
+                                <td>85 - 90 cm</td>
+                                <td>76 cm</td>
+                                <td>36 - 38</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">S</td>
+                                <td>76 - 81 cm</td>
+                                <td>91 - 96 cm</td>
+                                <td>78 cm</td>
+                                <td>38 - 40</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">M</td>
+                                <td>82 - 87 cm</td>
+                                <td>97 - 102 cm</td>
+                                <td>80 cm</td>
+                                <td>40 - 42</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">L</td>
+                                <td>88 - 93 cm</td>
+                                <td>103 - 108 cm</td>
+                                <td>82 cm</td>
+                                <td>42 - 44</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">XL</td>
+                                <td>94 - 100 cm</td>
+                                <td>109 - 114 cm</td>
+                                <td>84 cm</td>
+                                <td>46</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCESSORIES TABLE -->
+        <div class="tab-pane fade" id="acc-tab-pane" role="tabpanel" tabindex="0">
+            <div class="card p-4" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <h4 class="text-white text-uppercase fs-5 fw-bold mb-3" style="font-family: var(--font-heading);">
+                    {% trans "Guantes, Rodilleras & Cintas" %}
+                </h4>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0" style="border-color: rgba(255,255,255,0.08);">
+                        <thead class="text-uppercase text-white" style="font-family: var(--font-heading); font-size: 0.85rem; background: rgba(255,255,255,0.03);">
+                            <tr>
+                                <th>{% trans "Talla" %}</th>
+                                <th>{% trans "Contorno Palma (Guantes)" %}</th>
+                                <th>{% trans "Contorno Rodilla (Rodilleras)" %}</th>
+                                <th>{% trans "Observaciones" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white-50" style="font-size: 0.9rem;">
+                            <tr>
+                                <td class="fw-bold text-white">S</td>
+                                <td>17 - 19 cm</td>
+                                <td>31 - 34 cm</td>
+                                <td>{% trans "Ajuste firme para muñeca/rodilla delgada" %}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">M</td>
+                                <td>20 - 22 cm</td>
+                                <td>35 - 38 cm</td>
+                                <td>{% trans "Ajuste estándar equilibrado" %}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">L</td>
+                                <td>23 - 25 cm</td>
+                                <td>39 - 42 cm</td>
+                                <td>{% trans "Para articulación grande o atleta musculado" %}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-white">Talla Única</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>{% trans "Correas y muñequeras ajustables mediante velcro de alta resistencia" %}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Visual How to Measure Guide -->
+    <div class="mt-5 pt-4">
+        <h3 class="text-white text-uppercase text-center fs-4 fw-bold mb-4" style="font-family: var(--font-heading);">
+            {% trans "¿Cómo Tomar tus Medidas?" %}
+        </h3>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                    <div class="mx-auto mb-3" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.5rem;">
+                        1
+                    </div>
+                    <h5 class="text-white text-uppercase fw-bold" style="font-family: var(--font-heading);">{% trans "1. Pecho" %}</h5>
+                    <p class="text-muted small mb-0">
+                        {% trans "Rodea la parte más prominente del tórax manteniendo la cinta métrica horizontal y firme sin oprimir la piel." %}
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                    <div class="mx-auto mb-3" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.5rem;">
+                        2
+                    </div>
+                    <h5 class="text-white text-uppercase fw-bold" style="font-family: var(--font-heading);">{% trans "2. Cintura" %}</h5>
+                    <p class="text-muted small mb-0">
+                        {% trans "Mide el contorno alrededor del punto más estrecho de la cintura (normalmente justo por encima del ombligo)." %}
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                    <div class="mx-auto mb-3" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.5rem;">
+                        3
+                    </div>
+                    <h5 class="text-white text-uppercase fw-bold" style="font-family: var(--font-heading);">{% trans "3. Cadera" %}</h5>
+                    <p class="text-muted small mb-0">
+                        {% trans "Mantén los pies juntos y rodea la zona más ancha de las caderas asegurando que la cinta quede nivelada." %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Need Help Box -->
+    <div class="mt-5 p-4 text-center rounded" style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.15);">
+        <h5 class="text-white text-uppercase mb-2" style="font-family: var(--font-heading);">{% trans "¿Dudas entre dos tallas?" %}</h5>
+        <p class="text-muted small mb-3">{% trans "Si estás entre dos tallas, te recomendamos elegir la menor para un ajuste ceñido Pro/Competición o la mayor para mayor libertad de movimiento." %}</p>
+        <a href="{% url 'main_app:contact' %}" class="btn btn-outline-light text-uppercase btn-sm px-4">
+            <i class="bi bi-chat-dots me-1"></i>{% trans "Contactar con Atención al Cliente" %}
+        </a>
+    </div>
+</div>
+
+<script>
+    function calculateSize(event) {
+        event.preventDefault();
+        const chest = parseFloat(document.getElementById("calc-chest").value);
+        const waist = parseFloat(document.getElementById("calc-waist").value);
+
+        let size = "M";
+        let desc = "{% trans 'Tu medida se encuentra en el rango estándar. Ofrece excelente equilibrio entre libertad de movimiento y ajuste atlético.' %}";
+
+        if (chest < 91 || waist < 78) {
+            size = "S";
+            desc = "{% trans 'Recomendamos talla S para una silueta ceñida y máxima aerodinámica durante el entrenamiento.' %}";
+        } else if (chest <= 96 && waist <= 83) {
+            size = "S";
+            desc = "{% trans 'Talla S recomendada para un ajuste técnico pro.' %}";
+        } else if (chest <= 102 && waist <= 89) {
+            size = "M";
+            desc = "{% trans 'Talla M perfecta para medidas intermedias estándar XEAX.' %}";
+        } else if (chest <= 108 && waist <= 95) {
+            size = "L";
+            desc = "{% trans 'Talla L óptima para atletas con desarrollo muscular o preferencia por holgura.' %}";
+        } else if (chest <= 114 || waist <= 101) {
+            size = "XL";
+            desc = "{% trans 'Talla XL proporcionará el espacio necesario sin perder la estructura ergonómica.' %}";
+        } else {
+            size = "XXL";
+            desc = "{% trans 'Talla XXL sugerida para máxima holgura y comodidad en torso ancho.' %}";
+        }
+
+        document.getElementById("result-size-text").innerText = size;
+        document.getElementById("result-description-text").innerText = desc;
+        document.getElementById("size-result-box").style.display = "block";
+    }
+</script>
+{% endblock %}

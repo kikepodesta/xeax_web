@@ -1,0 +1,415 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =====================================================
+         TÍTULO & META BÁSICOS
+         ===================================================== -->
+    <title>{% block title %}{% trans "XEAX Sports | Elegancia Urbana y Rendimiento de Élite" %}{% endblock %}</title>
+
+    <meta name="description" content="{% block seo_description %}{% trans "XEAX Sports — Ropa técnica y equipamiento deportivo de alto rendimiento. Diseño urbano de élite para atletas exigentes." %}{% endblock %}">
+    <meta name="keywords"
+        content="{% block seo_keywords %}XEAX, ropa deportiva, equipamiento fitness, crossfit, running, ropa técnica, deporte urbano, élite{% endblock %}">
+    <meta name="author" content="XEAX Sports">
+    <meta name="robots" content="{% block seo_robots %}index, follow{% endblock %}">
+    <meta name="theme-color" content="#0d0d0f">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{% block canonical %}{{ request.build_absolute_uri }}{% endblock %}">
+
+    <!-- =====================================================
+         OPEN GRAPH (Facebook, WhatsApp, LinkedIn…)
+         ===================================================== -->
+    <meta property="og:site_name" content="XEAX Sports">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:locale" content="{{ request.LANGUAGE_CODE }}_ES">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title"
+        content="{% block og_title %}{% trans 'XEAX Sports | Elegancia Urbana y Rendimiento de Élite' %}{% endblock %}">
+    <meta property="og:description"
+        content="{% block og_description %}{% trans 'Ropa técnica y equipamiento deportivo de alto rendimiento para atletas exigentes.' %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% static 'img/xeax_XX_plata_ray_y_01.png' %}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="XEAX Sports — Ropa deportiva de élite">
+
+    <!-- =====================================================
+         TWITTER / X CARD
+         ===================================================== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@xeaxsports">
+    <meta name="twitter:creator" content="@xeaxsports">
+    <meta name="twitter:title"
+        content="{% block twitter_title %}{% trans 'XEAX Sports | Rendimiento de Élite' %}{% endblock %}">
+    <meta name="twitter:description"
+        content="{% block twitter_description %}{% trans 'Ropa técnica y equipamiento deportivo de alto rendimiento para atletas exigentes.' %}{% endblock %}">
+    <meta name="twitter:image"
+        content="{% block twitter_image %}{% static 'img/xeax_XX_plata_ray_y_01.png' %}{% endblock %}">
+
+    <!-- =====================================================
+         FAVICONS (multi-tamaño)
+         ===================================================== -->
+    <!-- Favicon clásico -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/xeax_XX_plata_01.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/xeax_XX_plata_01.png' %}">
+    <!-- Apple Touch Icon (iPhone, iPad) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/xeax_XX_plata_ray_y_01.png' %}">
+    <!-- Android / PWA -->
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'img/xeax_XX_plata_ray_y_01.png' %}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'img/xeax_full_plata_01.png' %}">
+    <!-- Manifest PWA (opcional, para future use) -->
+    <link rel="manifest" href="{% static 'site.webmanifest' %}" crossorigin="use-credentials">
+
+    <!-- =====================================================
+         JSON-LD — DATOS ESTRUCTURADOS (Google Rich Results)
+         ===================================================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "XEAX Sports",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/xeax_full_plata_01.png' %}",
+        "description": "Ropa técnica y equipamiento deportivo de alto rendimiento para atletas exigentes.",
+        "sameAs": [
+            "https://instagram.com/xeaxsports",
+            "https://tiktok.com/@xeaxsports",
+            "https://youtube.com/@xeaxsports"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "availableLanguage": ["Spanish", "English", "Italian"]
+        }
+    }
+    </script>
+    {% block extra_schema %}{% endblock %}
+
+    <!-- =====================================================
+         CSS
+         ===================================================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}?v=20260906f" rel="stylesheet">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Header & Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-xeax fixed-top">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'main_app:home' %}">
+                <img src="{% static 'img/xeax_XX_plata_01.png' %}" alt="XEAX Logo" class="me-2"
+                    style="height: 45px; object-fit: contain;"
+                    onerror="this.onerror=null; this.src='https://placehold.co/45x45/050505/ffffff?text=XEAX';">
+            </a>
+
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menu items -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-xeax" href="{% url 'main_app:catalog' %}?category=coleccion-urbana">
+                            {% trans "Colección Urbana" %}</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-xeax"
+                            href="{% url 'main_app:catalog' %}?category=crossfit-equipamiento">
+                            {% trans "Equipamiento Técnico" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-xeax" href="{% url 'main_app:about' %}">{% trans "Sobre XEAX" %}</a>
+                    </li>
+                </ul>
+
+                <!-- Action Icons & Language Selector -->
+                <div class="d-flex align-items-center gap-4">
+                    <!-- Search Icon -->
+                    <i class="bi bi-search nav-icon" title="{% trans 'Buscar' %}"></i>
+
+                    <!-- Account Dropdown -->
+                    <div class="dropdown">
+                        <i class="bi bi-person nav-icon dropdown-toggle" id="accountDropdownBtn"
+                            data-bs-toggle="dropdown" aria-expanded="false" title="{% trans 'Cuenta' %}"
+                            style="cursor: pointer;"></i>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+                            aria-labelledby="accountDropdownBtn">
+                            {% if request.user.is_authenticated %}
+                            <li class="dropdown-header text-uppercase"
+                                style="font-size: 0.7rem; letter-spacing: 1px; color: var(--brand-yellow); padding: 0.5rem 1rem;">
+                                {% trans "Hola" %}, {{ request.user.username }}
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'main_app:profile' %}">{% trans "Mi Perfil" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'main_app:my_orders' %}">{% trans "Mis Pedidos" %}</a></li>
+                            <li>
+                                <hr class="dropdown-divider" style="border-color: rgba(255,255,255,0.05);">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'main_app:logout' %}">{% trans "Cerrar Sesión" %}</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'main_app:login' %}">{% trans "Iniciar Sesión" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'main_app:register' %}">{% trans "Registrarse" %}</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <!-- Cart Icon -->
+                    <a href="{% url 'main_app:view_cart' %}"
+                        class="position-relative text-decoration-none d-inline-block">
+                        <i class="bi bi-bag nav-icon" title="{% trans 'Carrito' %}"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            style="font-size: 0.65rem;">
+                            {{ cart_total_items }}
+                        </span>
+                    </a>
+
+                    <!-- Language Selector Dropdown -->
+                    <div class="dropdown ms-2">
+                        <button class="btn btn-outline-light btn-sm dropdown-toggle text-uppercase" type="button"
+                            id="langSelectorBtn" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="font-weight: 600; font-size: 0.75rem; letter-spacing: 1px;">
+                            <i class="bi bi-globe me-1"></i> {{ request.LANGUAGE_CODE }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+                            aria-labelledby="langSelectorBtn">
+                            {% get_current_language as CURRENT_LANG %}
+                            <li>
+                                <a class="dropdown-item {% if CURRENT_LANG == 'es' %}active{% endif %}"
+                                    href="javascript:void(0);" onclick="changeLanguage('es')">
+                                    ESPAÑOL (ES)
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {% if CURRENT_LANG == 'en' %}active{% endif %}"
+                                    href="javascript:void(0);" onclick="changeLanguage('en')">
+                                    ENGLISH (EN)
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {% if CURRENT_LANG == 'it' %}active{% endif %}"
+                                    href="javascript:void(0);" onclick="changeLanguage('it')">
+                                    ITALIANO (IT)
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages Notification -->
+    {% if messages %}
+    <div class="container" style="margin-top: 100px; margin-bottom: -60px; position: relative; z-index: 1050;">
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'success' %}success{% else %}info{% endif %} alert-dismissible fade show alert-xeax {% if message.tags == 'error' %}alert-xeax--error{% elif message.tags == 'success' %}alert-xeax--success{% else %}alert-xeax--info{% endif %}"
+            role="alert">
+            {{ message }}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content Block -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Pie de Página (Footer) -->
+    <footer class="footer-xeax">
+        <div class="container">
+            <!-- Newsletter -->
+            <div class="row border-bottom border-secondary pb-5 mb-5 align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h3 class="newsletter-title text-uppercase">{% trans "Únete al movimiento XEAX" %}</h3>
+                    <p class="text-muted mb-0">
+                        {% trans "Suscríbete para recibir lanzamientos exclusivos, eventos locales y ofertas especiales antes que nadie." %}</p>
+                </div>
+                <div class="col-lg-6">
+                    <form id="newsletter-form" class="d-flex flex-column gap-3" novalidate>
+                        {% csrf_token %}
+                        <div class="d-flex gap-2">
+                            <input type="email" id="newsletter-email" name="email" class="form-control newsletter-input"
+                                placeholder="{% trans 'Tu dirección de correo electrónico' %}" required
+                                autocomplete="email">
+                            <button type="submit" id="newsletter-btn" class="newsletter-btn"
+                                style="white-space:nowrap;">
+                                {% trans "Unirse" %}
+                            </button>
+                        </div>
+                        <!-- RGPD consent checkbox — OBLIGATORIO -->
+                        <div class="form-check" style="margin-top:2px;">
+                            <input class="form-check-input" type="checkbox" id="newsletter-consent" name="consent"
+                                value="1" required>
+                            <label class="form-check-label small text-muted" for="newsletter-consent"
+                                style="cursor:pointer;">
+                                {% trans "He leído y acepto la" %}
+                                <a href="{% url 'main_app:terms_current' %}" target="_blank"
+                                    class="text-decoration-underline" style="color:var(--brand-yellow,#c9aa71);">
+                                    {% trans "Política de Privacidad" %}</a>
+                                {% trans "y consiento recibir comunicaciones comerciales de XEAX Sports" %}
+                            </label>
+                        </div>
+                        <!-- Inline feedback -->
+                        <div id="newsletter-feedback"
+                            style="display:none;font-size:0.85rem;padding:10px 14px;border-radius:6px;"></div>
+                    </form>
+
+                    <script>
+                        (function () {
+                            const form = document.getElementById('newsletter-form');
+                            if (!form) return;
+
+                            form.addEventListener('submit', async function (e) {
+                                e.preventDefault();
+
+                                const emailEl = document.getElementById('newsletter-email');
+                                const consentEl = document.getElementById('newsletter-consent');
+                                const btn = document.getElementById('newsletter-btn');
+                                const feedback = document.getElementById('newsletter-feedback');
+
+                                // Client-side consent guard
+                                if (!consentEl.checked) {
+                                    showFeedback('error', '{% trans "Debes aceptar la Política de Privacidad para continuar." %}');
+                                    return;
+                                }
+
+                                btn.disabled = true;
+                                btn.textContent = '...';
+
+                                const formData = new FormData();
+                                formData.append('email', emailEl.value.trim());
+                                formData.append('consent', consentEl.checked ? '1' : '');
+                                formData.append('csrfmiddlewaretoken', form.querySelector('[name=csrfmiddlewaretoken]').value);
+
+                                try {
+                                    const res = await fetch('{% url "main_app:newsletter_subscribe" %}', {
+                                        method: 'POST',
+                                        body: formData,
+                                    });
+                                    const data = await res.json();
+
+                                    if (data.status === 'ok') {
+                                        showFeedback('success', data.message);
+                                        form.reset();
+                                    } else if (data.status === 'already') {
+                                        showFeedback('info', data.message);
+                                    } else if (data.status === 'has_account') {
+                                        const loginLink = data.login_url
+                                            ? ` <a href="${data.login_url}" style="color:#c9aa71;font-weight:700;">{% trans "Acceder a mi cuenta" %} →</a>`
+                                            : '';
+                                        showFeedback('info', data.message + loginLink);
+                                        form.reset();
+                                    } else {
+                                        showFeedback('error', data.message || '{% trans "Ha ocurrido un error. Inténtalo de nuevo." %}');
+                                    }
+                                } catch (err) {
+                                    showFeedback('error', '{% trans "Error de conexión. Inténtalo más tarde." %}');
+                                } finally {
+                                    btn.disabled = false;
+                                    btn.textContent = '{% trans "Unirse" %}';
+                                }
+                            });
+
+                            function showFeedback(type, html) {
+                                const feedback = document.getElementById('newsletter-feedback');
+                                const styles = {
+                                    success: 'background:rgba(201,170,113,0.12);border:1px solid rgba(201,170,113,0.4);color:#c9aa71;',
+                                    info: 'background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:#ccc;',
+                                    error: 'background:rgba(255,60,60,0.1);border:1px solid rgba(255,60,60,0.3);color:#ff7070;',
+                                };
+                                feedback.style.cssText = (styles[type] || styles.info) + 'display:block;font-size:0.85rem;padding:10px 14px;border-radius:6px;';
+                                feedback.innerHTML = html;
+                            }
+                        })();
+                    </script>
+                </div>
+            </div>
+
+            <!-- Links & Socials -->
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <h5 class="text-uppercase mb-3 fs-6 fw-bold">{% trans "Colección" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'main_app:catalog' %}?category=coleccion-urbana" class="footer-link">{% trans "Colección Urbana" %}</a></li>
+                        <li><a href="{% url 'main_app:catalog' %}?category=rendimiento-tecnico" class="footer-link">{% trans "Rendimiento Técnico" %}</a></li>
+                        <li><a href="{% url 'main_app:catalog' %}?category=crossfit-equipamiento" class="footer-link">{% trans "CrossFit & Equipamiento" %}</a></li>
+                        <li><a href="{% url 'main_app:catalog' %}?sort=newest" class="footer-link">{% trans "Novedades" %}</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h5 class="text-uppercase mb-3 fs-6 fw-bold">{% trans "Soporte" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'main_app:size_guide' %}" class="footer-link">{% trans "Guía de tallas" %}</a></li>
+                        <li><a href="{% url 'main_app:shipping_info' %}" class="footer-link">{% trans "Envíos y Entregas" %}</a></li>
+                        <li><a href="{% url 'main_app:returns_policy' %}" class="footer-link">{% trans "Devoluciones" %}</a></li>
+                        <li><a href="{% url 'main_app:contact' %}" class="footer-link">{% trans "Contacto" %}</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h5 class="text-uppercase mb-3 fs-6 fw-bold">{% trans "Compañía" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'main_app:about' %}" class="footer-link">{% trans "Sobre XEAX" %}</a></li>
+                        <li><a href="{% url 'main_app:sustainability' %}" class="footer-link">{% trans "Sostenibilidad" %}</a></li>
+                        <li><a href="{% url 'main_app:terms_current' %}" class="footer-link">{% trans "Políticas y Términos" %}</a></li>
+                        <li><a href="{% url 'main_app:careers' %}" class="footer-link">{% trans "Trabaja con nosotros" %}</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h5 class="text-uppercase mb-3 fs-6 fw-bold">{% trans "Síguenos" %}</h5>
+                    <div class="d-flex">
+                        <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://tiktok.com" target="_blank" class="social-link" title="TikTok"><i
+                                class="bi bi-tiktok"></i></a>
+                        <a href="https://youtube.com" target="_blank" class="social-link" title="YouTube"><i
+                                class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-5 border-top border-secondary mt-5">
+                <div class="col-12 text-center text-md-start d-md-flex justify-content-between text-muted small">
+                    <p class="mb-0" style="font-family:monospace">&copy; 2026 XeaX Sports. {% trans "Todos los derechos reservados." %}</p>
+                    <p class="mb-0" style="font-family:monospace">{% trans "XeaX, Where I Belong" %}</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dynamic Language Selector Switcher script -->
+    <script>
+        function changeLanguage(langCode) {
+            let path = window.location.pathname;
+            let pathParts = path.split('/');
+
+            // Check if the current URL has a valid language prefix.
+            if (['es', 'en', 'it'].includes(pathParts[1])) {
+                pathParts[1] = langCode;
+            } else {
+                pathParts.splice(1, 0, langCode);
+            }
+
+            window.location.pathname = pathParts.join('/');
+        }
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Envíos y Entregas" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 80px;">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="font-family: var(--font-body); font-size: 0.85rem;">
+            <li class="breadcrumb-item"><a href="{% url 'main_app:home' %}" class="text-muted text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item text-muted">{% trans "Soporte" %}</li>
+            <li class="breadcrumb-item active text-white" aria-current="page">{% trans "Envíos y Entregas" %}</li>
+        </ol>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="text-uppercase text-white mb-3" style="font-family: var(--font-heading); font-size: 2.5rem; letter-spacing: 1px;">
+            {% trans "Información de Envíos & Entregas" %}
+        </h1>
+        <p class="text-muted mx-auto" style="max-width: 650px; font-size: 1rem; line-height: 1.6;">
+            {% trans "Procesamos y gestionamos nuestras entregas a través de la infraestructura logística de Amazon para garantizar la máxima velocidad, fiabilidad y seguimiento en tiempo real de tu equipamiento deportivo." %}
+        </p>
+    </div>
+
+    <!-- Highlights Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <div class="mx-auto mb-3" style="width: 54px; height: 54px; border-radius: 50%; background: rgba(238, 255, 0, 0.1); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.5rem;">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+                <h5 class="text-white text-uppercase fw-bold" style="font-family: var(--font-heading);">{% trans "Envío Gratis > 50 €" %}</h5>
+                <p class="text-muted small mb-0">
+                    {% trans "Disfruta de envío gratuito a toda la Península Ibérica en todas tus compras superiores a 50 €." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <div class="mx-auto mb-3" style="width: 54px; height: 54px; border-radius: 50%; background: rgba(238, 255, 0, 0.1); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.5rem;">
+                    <i class="bi bi-lightning-charge"></i>
+                </div>
+                <h5 class="text-white text-uppercase fw-bold" style="font-family: var(--font-heading);">{% trans "Entrega Exprés 24/48h" %}</h5>
+                <p class="text-muted small mb-0">
+                    {% trans "Los pedidos recibidos de Lunes a Viernes antes de las 14:00 se preparan y despachan el mismo día." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+                <div class="mx-auto mb-3" style="width: 54px; height: 54px; border-radius: 50%; background: rgba(238, 255, 0, 0.1); display: flex; align-items: center; justify-content: center; color: var(--brand-yellow); font-size: 1.5rem;">
+                    <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <h5 class="text-white text-uppercase fw-bold" style="font-family: var(--font-heading);">{% trans "Seguimiento en Vivo" %}</h5>
+                <p class="text-muted small mb-0">
+                    {% trans "Recibe alertas por SMS y correo electrónico con el rastreo en tiempo real de tu paquete." %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rates & Destinations Table -->
+    <div class="card p-4 mb-5" style="background: var(--bg-card); border-radius: var(--border-radius-md); border: 1px solid var(--border-color);">
+        <h3 class="text-white text-uppercase fs-4 fw-bold mb-4 border-bottom border-secondary pb-3" style="font-family: var(--font-heading); letter-spacing: 1px;">
+            <i class="bi bi-truck me-2 text-warning"></i>{% trans "Tarifas y Plazos de Entrega" %}
+        </h3>
+        
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0" style="border-color: rgba(255,255,255,0.08);">
+                <thead class="text-uppercase text-white" style="font-family: var(--font-heading); font-size: 0.85rem; background: rgba(255,255,255,0.03);">
+                    <tr>
+                        <th>{% trans "Destino" %}</th>
+                        <th>{% trans "Plazo Estimado" %}</th>
+                        <th>{% trans "Coste de Envío" %}</th>
+                        <th>{% trans "Envío Gratuito" %}</th>
+                        <th>{% trans "Operador Logístico" %}</th>
+                    </tr>
+                </thead>
+                <tbody class="text-white-50" style="font-size: 0.9rem;">
+                    <tr>
+                        <td class="fw-bold text-white">{% trans "España Península" %}</td>
+                        <td>24 - 48 Horas Laborables</td>
+                        <td>3,90 €</td>
+                        <td><span class="badge bg-warning text-dark font-monospace">{% trans "A partir de 50 €" %}</span></td>
+                        <td>Amazon Logistics</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-white">{% trans "Islas Baleares" %}</td>
+                        <td>48 - 72 Horas Laborables</td>
+                        <td>5,90 €</td>
+                        <td><span class="badge bg-warning text-dark font-monospace">{% trans "A partir de 80 €" %}</span></td>
+                        <td>Amazon / Correos Express</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-white">{% trans "Canarias, Ceuta y Melilla" %}</td>
+                        <td>3 - 5 Días Laborables</td>
+                        <td>9,90 €</td>
+                        <td><span class="badge bg-warning text-dark font-monospace">{% trans "A partir de 120 €" %}</span></td>
+                        <td>Correos Certificado</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-white">{% trans "Unión Europea (Francia, Italia, Alemania, Portugal)" %}</td>
+                        <td>3 - 5 Días Laborables</td>
+                        <td>8,90 €</td>
+                        <td><span class="badge bg-warning text-dark font-monospace">{% trans "A partir de 100 €" %}</span></td>
+                        <td>DHL / Amazon Global</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="mt-5">
+        <h3 class="text-white text-uppercase text-center fs-4 fw-bold mb-4" style="font-family: var(--font-heading);">
+            {% trans "Preguntas Frecuentes sobre Envíos" %}
+        </h3>
+
+        <div class="accordion accordion-flush" id="shippingFaqAccordion" style="border-radius: var(--border-radius-md); overflow: hidden; border: 1px solid var(--border-color);">
+            <!-- Item 1 -->
+            <div class="accordion-item bg-dark text-white border-bottom border-secondary">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed bg-dark text-white fw-bold py-3 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="font-family: var(--font-heading); font-size: 0.95rem;">
+                        {% trans "¿Cómo puedo realizar el seguimiento de mi pedido?" %}
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#shippingFaqAccordion">
+                    <div class="accordion-body text-white-50 small">
+                        {% trans "Una vez que tu pedido sea despachado de nuestro centro logístico, recibirás un correo electrónico y SMS automático con el número de seguimiento único y el enlace directo de rastreo de Amazon Logistics." %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="accordion-item bg-dark text-white border-bottom border-secondary">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed bg-dark text-white fw-bold py-3 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-family: var(--font-heading); font-size: 0.95rem;">
+                        {% trans "¿Qué ocurre si no me encuentro en casa en el momento de la entrega?" %}
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#shippingFaqAccordion">
+                    <div class="accordion-body text-white-50 small">
+                        {% trans "Amazon Logistics realizará hasta 3 intentos de entrega en días consecutivos. Si tras el segundo intento no es posible la entrega, podrás gestionar la recogida en un Amazon Hub Locker o punto de recogida concertado." %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="accordion-item bg-dark text-white border-bottom border-secondary">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed bg-dark text-white fw-bold py-3 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="font-family: var(--font-heading); font-size: 0.95rem;">
+                        {% trans "¿Puedo cambiar la dirección de entrega una vez confirmado el pedido?" %}
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#shippingFaqAccordion">
+                    <div class="accordion-body text-white-50 small">
+                        {% trans "Si necesitas modificar la dirección, debes contactarnos dentro de los primeros 60 minutos tras realizar la compra a través de nuestro soporte técnico. Una vez expedido el paquete, la modificación deberá solicitarse directamente al transportista." %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="accordion-item bg-dark text-white">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed bg-dark text-white fw-bold py-3 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="font-family: var(--font-heading); font-size: 0.95rem;">
+                        {% trans "¿Qué debo hacer si mi paquete llega dañado o incompleto?" %}
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#shippingFaqAccordion">
+                    <div class="accordion-body text-white-50 small">
+                        {% trans "Indica cualquier anomalía visible en el albarán del repartidor y ponte en contacto inmediatamente con nosotros aportando fotografías del embalaje. Nos encargaremos de enviarte un reemplazo sin coste adicional." %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

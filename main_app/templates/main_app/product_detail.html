@@ -1,0 +1,473 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ product.name }} | XEAX Sports{% endblock %}
+
+{% block content %}
+<script>document.body.classList.add('page-light');</script>
+<div class="product-detail-light" data-bs-theme="light" style="padding-top: 120px; padding-bottom: 80px; min-height: 80vh;">
+<div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="font-family: var(--font-body); font-size: 0.85rem;">
+            <li class="breadcrumb-item"><a href="{% url 'main_app:home' %}" class="text-decoration-none">Home</a></li>
+            {% if product.category %}
+                <li class="breadcrumb-item"><a href="{% url 'main_app:catalog' %}?category={{ product.category.slug }}" class="text-decoration-none">{{ product.category.name }}</a></li>
+            {% endif %}
+            <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5">
+        <!-- Columna 1: Galería de Imágenes (Amazon Style) -->
+        <div class="col-12 col-lg-5">
+            <div class="row">
+                <!-- Miniaturas (Izquierda) -->
+                <div class="col-2 d-none d-md-flex flex-column gap-2">
+                    {% for img in product.images.all %}
+                    <div class="border p-1 thumbnail-box {% if forloop.first %}active{% endif %}" 
+                         onclick="setMainImage('{{ img.image_url }}', this, {{ forloop.counter0 }})" 
+                         style="cursor: pointer; overflow: hidden;">
+                        <img src="{{ img.image_url }}" class="img-fluid" alt="{{ img.alt_text|default:product.name }}">
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Imagen Principal -->
+                <div class="col">
+                    <div class="border p-3 text-center main-image-container" 
+                         onclick="openLightbox()"
+                         style="cursor: zoom-in; border-radius: var(--border-radius-md); min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                        <img id="main-product-img" src="{{ product.main_image_url }}" class="img-fluid" style="max-height: 500px; object-fit: contain; transition: transform 0.3s ease;" alt="{{ product.name }}">
+                        <div class="zoom-hint">
+                            <i class="bi bi-zoom-in"></i> {% trans "Click para ampliar" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna 2: Detalles e Información del Producto -->
+        <div class="col-12 col-lg-4">
+            <span class="detail-category-label text-uppercase" style="font-size: 0.75rem; letter-spacing: 2px; font-family: var(--font-heading);">
+                {% if product.category %}{{ product.category.name }}{% else %}{% trans "XEAX ELITE" %}{% endif %}
+            </span>
+            <h1 class="mt-2 mb-3" style="font-family: var(--font-heading); font-size: 2.2rem; letter-spacing: 1px;">
+                {{ product.name }}
+            </h1>
+            
+            <!-- Simulación de Valoración -->
+            {% comment %} <div class="d-flex align-items-center gap-2 mb-3" style="font-family: var(--font-body); font-size: 0.9rem;">
+                <div class="text-warning">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                </div>
+                <span class="text-info" style="cursor: pointer;">4.8 (42 {% trans "calificaciones" %})</span>
+            </div> {% endcomment %}
+
+            <hr>
+
+            <!-- Precio y Detalles Clave -->
+            <div class="my-3">
+                <span class="detail-price-muted" style="font-size: 0.9rem;">{% trans "Precio recomendado" %}:</span>
+                <span class="fs-3 fw-bold detail-price ms-2" style="font-family: var(--font-heading);">{{ product.price }} €</span>
+            </div>
+
+            <!-- Bullet Points -->
+            <div class="my-4">
+                <h5 class="detail-section-label text-uppercase mb-3" style="font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 1px;">
+                    {% trans "Sobre este artículo" %}:
+                </h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 detail-bullets" style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5;">
+                    {% for bullet in product.bullet_points %}
+                        <li class="d-flex align-items-start gap-2">
+                            <span class="bullet-dot">▪</span>
+                            <span>{{ bullet }}</span>
+                        </li>
+                    {% empty %}
+                        <li class="d-flex align-items-start gap-2">
+                            <span class="bullet-dot">▪</span>
+                            <span>{% trans "Rendimiento y confort de primer nivel para tus entrenamientos diarios." %}</span>
+                        </li>
+                        <li class="d-flex align-items-start gap-2">
+                            <span class="bullet-dot">▪</span>
+                            <span>{% trans "Tejido duradero y flexible optimizado para movimientos corporales complejos." %}</span>
+                        </li>
+                        <li class="d-flex align-items-start gap-2">
+                            <span class="bullet-dot">▪</span>
+                            <span>{% trans "Logotipo e identidad gráfica XEAX de alta calidad en transfer de silicona." %}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <hr>
+
+            <!-- Descripción Detallada -->
+            <div class="my-4">
+                <h5 class="detail-section-label text-uppercase mb-2" style="font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 1px;">
+                    {% trans "Descripción del producto" %}:
+                </h5>
+                <p class="detail-description" style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6;">
+                    {{ product.description }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Columna 3: Caja de Compra (Buy Box) -->
+        <div class="col-12 col-lg-3">
+            <div class="lt-buy-box p-4">
+                <div class="mb-3">
+                    <span class="fs-2 fw-bold buy-box-price" style="font-family: var(--font-heading);">{{ product.price }} €</span>
+                </div>
+
+                <!-- Envío -->
+                <p class="buy-box-shipping" style="font-family: var(--font-body); font-size: 0.7rem; margin-bottom: 20px;">
+                    <i class="bi bi-truck me-2" style="color: #1a8a3a;"></i>
+                    {% trans "Envío GRATIS gestionado por" %} <strong>Amazon</strong>.
+                </p>
+
+                <form id="add-to-cart-form" action="{% url 'main_app:add_to_cart' product_id=product.id %}" method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Hidden field for selected size -->
+                    <input type="hidden" name="size" id="selected-size-input" value="">
+
+                    <!-- Size Selector -->
+                    <div class="mb-4">
+                        <label class="size-label mb-2 d-block" style="font-family: var(--font-body); font-size: 0.9rem;">
+                            {% trans "Seleccionar Talla" %}: <span id="current-size-name" class="current-size fw-bold"></span>
+                        </label>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for variant in product.variants.all %}
+                                <button type="button" 
+                                        class="btn size-pill-btn {% if variant.stock == 0 %}out-of-stock{% endif %}"
+                                        data-size="{{ variant.size }}"
+                                        onclick="selectSize('{{ variant.size }}')"
+                                        {% if variant.stock == 0 %}disabled{% endif %}>
+                                    {{ variant.size }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Estado del Stock (Dinamizado por JS) -->
+                    <div class="my-3" id="stock-status-box">
+                        <span class="size-label" style="font-family: var(--font-body); font-size: 0.95rem;">
+                            {% trans "Por favor, selecciona una talla." %}
+                        </span>
+                    </div>
+
+                    <!-- Selector de Cantidad -->
+                    <div class="mb-4 d-flex align-items-center justify-content-between" id="quantity-container" style="display: none !important;">
+                        <label for="quantity" class="size-label" style="font-family: var(--font-body); font-size: 0.9rem;">{% trans "Cantidad" %}:</label>
+                        <select name="quantity" id="quantity" class="form-select" style="width: 80px;">
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    {% if request.user.is_authenticated %}
+                    <div class="d-flex flex-column gap-2 mt-4">
+                        <button type="submit" id="add-to-cart-btn" class="btn btn-lt-add-to-cart w-100 py-2 text-uppercase" disabled>
+                            <i class="bi bi-cart-plus me-2"></i> {% trans "Añadir al Carrito" %}
+                        </button>
+                        <button type="submit" id="buy-now-btn" name="buy_now" value="1" class="btn btn-lt-buy-now w-100 py-2 text-uppercase fw-bold" disabled onclick="this.form.action='{% url 'main_app:add_to_cart' product_id=product.id %}?buy_now=1';">
+                            <i class="bi bi-lightning-fill me-2"></i> {% trans "Comprar ya" %}
+                        </button>
+                    </div>
+                    {% else %}
+                    <div class="d-flex flex-column gap-2 mt-4">
+                        <a href="{% url 'main_app:login' %}?next={{ request.path }}" class="btn btn-lt-add-to-cart w-100 py-2 text-uppercase text-center text-decoration-none" style="font-family: var(--font-heading); letter-spacing: 0.5px;">
+                            <i class="bi bi-box-arrow-in-right me-2"></i> {% trans "Inicia sesión para comprar" %}
+                        </a>
+                    </div>
+                    {% endif %}
+                </form>
+
+                <hr>
+
+                <!-- Info adicional -->
+                <div class="small buy-box-meta" style="font-family: var(--font-body); font-size: 0.8rem; line-height: 1.4;">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>{% trans "Envía desde" %}</span>
+                        <span class="buy-box-meta-val">Amazon </span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>{% trans "Vendido por" %}</span>
+                        <span class="buy-box-meta-val">XEAX Sports</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Custom Lightbox Modal -->
+<div id="xeax-lightbox" class="xeax-lightbox-modal" style="display: none;">
+    <span class="xeax-lightbox-close" onclick="closeLightbox()">&times;</span>
+    <div class="xeax-lightbox-content">
+        <img id="xeax-lightbox-img" src="" alt="Zoomed view">
+    </div>
+    {% if product.images.count > 1 %}
+    <a class="xeax-lightbox-prev" onclick="changeLightboxImage(-1)">&#10094;</a>
+    <a class="xeax-lightbox-next" onclick="changeLightboxImage(1)">&#10095;</a>
+    {% endif %}
+</div>
+
+<!-- JS Logic for Gallery Zoom & Size Selection -->
+<script>
+    // 1. Gallery State
+    let currentImageIndex = 0;
+    const images = [
+        {% for img in product.images.all %}
+        "{{ img.image_url }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+
+    function setMainImage(imgUrl, element, index) {
+        document.getElementById('main-product-img').src = imgUrl;
+        currentImageIndex = index;
+        
+        // Update active class on thumbnails
+        document.querySelectorAll('.thumbnail-box').forEach(function(box) {
+            box.classList.remove('active');
+        });
+        element.classList.add('active');
+    }
+
+    // Lightbox Logic
+    function openLightbox() {
+        const lightbox = document.getElementById('xeax-lightbox');
+        const lightboxImg = document.getElementById('xeax-lightbox-img');
+        lightboxImg.src = images[currentImageIndex];
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Disable background scroll
+    }
+
+    function closeLightbox() {
+        document.getElementById('xeax-lightbox').style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable background scroll
+    }
+
+    function changeLightboxImage(direction) {
+        currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+        document.getElementById('xeax-lightbox-img').src = images[currentImageIndex];
+        
+        // Keep main page gallery thumbnail in sync
+        const thumbs = document.querySelectorAll('.thumbnail-box');
+        if (thumbs[currentImageIndex]) {
+            thumbs[currentImageIndex].click();
+        }
+    }
+
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+
+    // 2. Size Variant Selector Logic
+    const variants = {
+        {% for variant in product.variants.all %}
+        "{{ variant.size }}": {
+            "stock": {{ variant.stock }},
+            "sku": "{{ variant.amazon_sku|default:'' }}",
+            "id": {{ variant.id }}
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    };
+
+    function selectSize(sizeName) {
+        // Update selected size state
+        document.getElementById('selected-size-input').value = sizeName;
+        document.getElementById('current-size-name').textContent = sizeName;
+
+        // Highlight selected pill
+        document.querySelectorAll('.size-pill-btn').forEach(btn => {
+            if (btn.getAttribute('data-size') === sizeName) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Get Stock and Dynamic Status
+        const variant = variants[sizeName];
+        const stockStatusBox = document.getElementById('stock-status-box');
+        const qtyContainer = document.getElementById('quantity-container');
+        const qtySelect = document.getElementById('quantity');
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+        const buyNowBtn = document.getElementById('buy-now-btn');
+
+        if (variant) {
+            if (variant.stock > 3) {
+                stockStatusBox.innerHTML = `
+                    <span class="stock-status-in fw-bold" style="font-family: var(--font-body); font-size: 1rem;">
+                        ✓ {% trans "En Stock" %}
+                    </span>
+                `;
+                qtyContainer.style.setProperty('display', 'flex', 'important');
+                if (addToCartBtn) addToCartBtn.disabled = false;
+                if (buyNowBtn) buyNowBtn.disabled = false;
+                populateQtyOptions(variant.stock);
+            } else if (variant.stock > 0) {
+                stockStatusBox.innerHTML = `
+                    <span class="stock-status-low fw-bold" style="font-family: var(--font-body); font-size: 0.95rem;">
+                        ⚠️ {% trans "Solo quedan" %} ${variant.stock} {% trans "en stock - pídelo pronto." %}
+                    </span>
+                `;
+                qtyContainer.style.setProperty('display', 'flex', 'important');
+                if (addToCartBtn) addToCartBtn.disabled = false;
+                if (buyNowBtn) buyNowBtn.disabled = false;
+                populateQtyOptions(variant.stock);
+            } else {
+                stockStatusBox.innerHTML = `
+                    <span class="stock-status-out fw-bold" style="font-family: var(--font-body); font-size: 1rem;">
+                        ✗ {% trans "Temporalmente sin stock" %}
+                    </span>
+                `;
+                qtyContainer.style.setProperty('display', 'none', 'important');
+                if (addToCartBtn) addToCartBtn.disabled = true;
+                if (buyNowBtn) buyNowBtn.disabled = true;
+            }
+        }
+    }
+
+    function populateQtyOptions(stock) {
+        const qtySelect = document.getElementById('quantity');
+        qtySelect.innerHTML = '';
+        const maxQty = Math.min(10, stock);
+        for (let i = 1; i <= maxQty; i++) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = i;
+            qtySelect.appendChild(opt);
+        }
+    }
+
+    // Auto-select default size with stock if present
+    window.addEventListener('DOMContentLoaded', () => {
+        {% if default_variant %}
+            selectSize('{{ default_variant.size }}');
+        {% else %}
+            if (variants['Talla Única']) {
+                selectSize('Talla Única');
+            }
+        {% endif %}
+    });
+</script>
+
+<style>
+    /* Thumbnail and gallery transitions */
+    .product-detail-light .thumbnail-box.active {
+        border-color: var(--lt-text-primary) !important;
+        box-shadow: 0 0 0 2px rgba(0,0,0,0.12);
+    }
+    .product-detail-light .thumbnail-box {
+        transition: border-color 0.2s ease;
+        border-color: rgba(0,0,0,0.1) !important;
+        border-radius: var(--border-radius-sm);
+    }
+    .product-detail-light .thumbnail-box:hover {
+        border-color: rgba(0,0,0,0.3) !important;
+    }
+
+    /* Zoom Hint overlays */
+    .product-detail-light .main-image-container:hover img {
+        transform: scale(1.02);
+    }
+    .zoom-hint {
+        position: absolute;
+        bottom: 12px;
+        right: 15px;
+        padding: 5px 12px;
+        border-radius: var(--border-radius-pill);
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .product-detail-light .main-image-container:hover .zoom-hint {
+        opacity: 1;
+    }
+
+    /* Custom Lightbox Styles */
+    .xeax-lightbox-modal {
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(10, 10, 12, 0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease;
+    }
+    .xeax-lightbox-close {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        color: #ffffff;
+        font-size: 50px;
+        font-weight: 300;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        user-select: none;
+    }
+    .xeax-lightbox-close:hover {
+        color: var(--lt-text-muted);
+    }
+    .xeax-lightbox-content {
+        max-width: 85%;
+        max-height: 85%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .xeax-lightbox-content img {
+        max-width: 100%;
+        max-height: 85vh;
+        border-radius: var(--border-radius-md);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+        object-fit: contain;
+    }
+    .xeax-lightbox-prev, .xeax-lightbox-next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 20px;
+        margin-top: -30px;
+        color: white;
+        font-weight: 300;
+        font-size: 40px;
+        transition: 0.25s ease;
+        user-select: none;
+        text-decoration: none;
+    }
+    .xeax-lightbox-next {
+        right: 40px;
+    }
+    .xeax-lightbox-prev {
+        left: 40px;
+    }
+    .xeax-lightbox-prev:hover, .xeax-lightbox-next:hover {
+        color: #cccccc;
+    }
+</style>
+{% endblock %}

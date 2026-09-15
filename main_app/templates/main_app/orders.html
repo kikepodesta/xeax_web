@@ -1,0 +1,114 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Mis Pedidos" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 80px;">
+    <h1 class="mb-5 text-uppercase" style="font-family: var(--font-heading); color: #ffffff; letter-spacing: 1px;">
+        {% trans "Mis Pedidos" %}
+    </h1>
+
+    {% if orders %}
+        <div class="d-flex flex-column gap-4">
+            {% for order in orders %}
+                <div class="card bg-dark text-white border-secondary" style="border-radius: var(--border-radius-md); overflow: hidden;">
+                    <!-- Cabecera de la Orden -->
+                    <div class="card-header border-secondary p-3" style="background: var(--bg-secondary);">
+                        <div class="row align-items-center g-3">
+                            <div class="col-6 col-md-3">
+                                <span class="text-muted text-uppercase small d-block">{% trans "Pedido Realizado" %}</span>
+                                <span class="fw-bold" style="font-family: var(--font-body);">{{ order.created_at|date:"d/m/Y H:i" }}</span>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <span class="text-muted text-uppercase small d-block">{% trans "Total" %}</span>
+                                <span class="fw-bold" style="font-family: var(--font-heading); color: var(--brand-yellow);">{{ order.total_amount }} €</span>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <span class="text-muted text-uppercase small d-block">{% trans "Enviar a" %}</span>
+                                <span class="fw-bold" style="font-family: var(--font-body);" title="{{ order.address }}, {{ order.city }}">{{ order.full_name }}</span>
+                            </div>
+                            <div class="col-6 col-md-2 text-md-center">
+                                <span class="text-muted text-uppercase small d-block mb-1">{% trans "Estado" %}</span>
+                                <span class="badge {% if order.status == 'Paid' or order.status == 'Shipped' %}bg-success{% elif order.status == 'Pending' %}bg-warning{% else %}bg-danger{% endif %} text-uppercase py-1.5 px-3" style="font-family: var(--font-heading); font-size: 0.75rem;">
+                                    {{ order.get_status_display }}
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-2 text-md-end">
+                                <span class="text-muted text-uppercase small d-block">{% trans "Pedido" %}</span>
+                                <strong class="text-white" style="font-family: var(--font-heading);">#{{ order.id }}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuerpo de la Orden (Items) -->
+                    <div class="card-body p-4">
+                        <div class="d-flex flex-column gap-3">
+                            {% for item in order.items.all %}
+                                <div class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-3 last-no-border">
+                                    <div class="d-flex align-items-center gap-3">
+                                        {% if item.variant %}
+                                            <img src="{{ item.variant.product.main_image_url }}" style="height: 50px; width: 40px; object-fit: contain; border-radius: var(--border-radius-sm);" alt="{{ item.product_name }}">
+                                        {% endif %}
+                                        <div>
+                                            <h5 class="text-uppercase mb-0" style="font-family: var(--font-heading); font-size: 1rem; letter-spacing: 0.5px;">
+                                                {% if item.variant %}
+                                                    <a href="{% url 'main_app:product_detail' slug=item.variant.product.slug %}" class="text-white text-decoration-none">
+                                                        {{ item.product_name }}
+                                                    </a>
+                                                {% else %}
+                                                    {{ item.product_name }}
+                                                {% endif %}
+                                            </h5>
+                                            <div class="d-flex align-items-center gap-2 mt-1">
+                                                <span class="text-muted small">{% trans "Cantidad" %}: {{ item.quantity }}</span>
+                                                {% if item.size %}
+                                                    <span class="badge bg-secondary" style="font-size: 0.7rem; font-family: var(--font-body); padding: 2px 6px;">{{ item.size }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="fw-bold text-white" style="font-family: var(--font-heading);">
+                                            {{ item.total_price }} €
+                                        </span>
+                                        <div class="small text-muted">{{ item.price }} € / ud</div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Nota de Logística -->
+                        <div class="mt-3 pt-3 border-top border-secondary small text-muted d-flex align-items-center gap-2">
+                            <i class="bi bi-box-seam text-warning"></i>
+                            <span>{% trans "Envío gestionado y procesado a través de la logística de Amazon." %}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- Sin pedidos -->
+        <div class="text-center py-5 border border-secondary" style="background: var(--bg-card); border-radius: var(--border-radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <i class="bi bi-box-seam fs-1 text-muted mb-3 d-block"></i>
+            <h3 class="text-uppercase text-white" style="font-family: var(--font-heading); letter-spacing: 1px;">
+                {% trans "Aún no tienes pedidos" %}
+            </h3>
+            <p class="text-muted col-md-6 mx-auto mb-4" style="font-family: var(--font-body);">
+                {% trans "Cuando realices compras figurarán en esta sección para que puedas realizar el seguimiento logístico a través de Amazon." %}
+            </p>
+            <a href="{% url 'main_app:home' %}" class="btn btn-xeax-primary px-4 py-2.5 text-uppercase text-decoration-none">
+                {% trans "Ir a la tienda" %}
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .last-no-border:last-child {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+    }
+</style>
+{% endblock %}

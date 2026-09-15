@@ -1,0 +1,117 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ selected_terms.title }} ({{ selected_terms.version }}) | XEAX Sports{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 130px; margin-bottom: 100px;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+            <!-- Header Card -->
+            <div class="p-4 p-md-5 border border-secondary mb-4" style="background: var(--bg-card); border-radius: var(--border-radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 pb-4 border-bottom border-secondary">
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="badge bg-warning text-dark text-uppercase fw-bold px-3 py-1" style="letter-spacing: 1px;">
+                                {% trans "Documento Legal Dinámico" %}
+                            </span>
+                            {% if selected_terms.is_active %}
+                                <span class="badge bg-success text-white text-uppercase px-3 py-1">
+                                    <i class="bi bi-check-circle-fill me-1"></i> {% trans "Versión Vigente" %}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary text-white text-uppercase px-3 py-1">
+                                    <i class="bi bi-clock-history me-1"></i> {% trans "Versión Histórica Archiva" %}
+                                </span>
+                            {% endif %}
+                        </div>
+                        <h1 class="text-white text-uppercase fw-bold mb-1" style="font-family: var(--font-heading); font-size: 2rem;">
+                            {{ selected_terms.title }}
+                        </h1>
+                        <p class="text-muted small mb-0">
+                            {% trans "Versión:" %} <strong class="text-warning">{{ selected_terms.version }}</strong> &bull; 
+                            {% trans "Fecha de Entrada en Vigor:" %} {{ selected_terms.effective_date|date:"d/m/Y" }}
+                        </p>
+                    </div>
+
+                    <!-- Version Selector Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle text-uppercase fw-bold px-3 py-2" type="button" id="versionSelectorBtn" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 0.85rem; letter-spacing: 1px;">
+                            <i class="bi bi-list-nested me-1"></i> {% trans "Historial de Versiones" %} ({{ selected_terms.version }})
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark p-2" aria-labelledby="versionSelectorBtn" style="min-width: 280px; border-color: rgba(255,255,255,0.15);">
+                            <li class="dropdown-header text-uppercase text-muted" style="font-size: 0.7rem; letter-spacing: 1px;">
+                                {% trans "Selecciona una versión de T&C:" %}
+                            </li>
+                            {% for t in all_terms %}
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center py-2 {% if t.version == selected_terms.version %}active fw-bold{% endif %}" href="{% url 'main_app:terms_version' version_code=t.version %}">
+                                        <span>
+                                            <i class="bi bi-file-earmark-text me-2"></i> {{ t.version }}
+                                        </span>
+                                        {% if t.is_active %}
+                                            <span class="badge bg-success text-uppercase" style="font-size: 0.65rem;">{% trans "Vigente" %}</span>
+                                        {% else %}
+                                            <span class="badge bg-dark text-muted border border-secondary" style="font-size: 0.65rem;">{{ t.effective_date|date:"Y" }}</span>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- User Acceptance status notice if logged in -->
+                {% if request.user.is_authenticated %}
+                    <div class="mt-4 p-3 border rounded d-flex align-items-center justify-content-between" style="background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1) !important;">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-shield-check text-warning fs-3"></i>
+                            <div>
+                                <span class="text-white fw-bold d-block small">{% trans "Estado Legal de tu Cuenta" %}</span>
+                                <span class="text-muted small">
+                                    {% if request.user.terms_acceptances.first %}
+                                        {% trans "Has aceptado la versión" %} <strong>{{ request.user.terms_acceptances.first.terms.version }}</strong> {% trans "el" %} {{ request.user.terms_acceptances.first.accepted_at|date:"d/m/Y H:i" }}.
+                                    {% else %}
+                                        {% trans "Aún no registras aceptación formal de esta versión." %}
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        <a href="{% url 'main_app:profile' %}" class="btn btn-sm btn-outline-warning text-uppercase" style="font-size: 0.75rem;">
+                            {% trans "Ver Mi Registro Legal" %}
+                        </a>
+                    </div>
+                {% endif %}
+
+                <!-- Summary of Changes callout -->
+                {% if selected_terms.summary %}
+                    <div class="mt-4 p-4 border border-warning border-opacity-25 rounded" style="background: rgba(255, 193, 7, 0.05);">
+                        <h5 class="text-warning text-uppercase fs-6 fw-bold mb-2">
+                            <i class="bi bi-info-circle me-2"></i> {% trans "Resumen de Cambios en la Versión" %} {{ selected_terms.version }}
+                        </h5>
+                        <p class="text-secondary mb-0 small lh-lg">
+                            {{ selected_terms.summary }}
+                        </p>
+                    </div>
+                {% endif %}
+
+                <!-- Main Legal Content -->
+                <div class="mt-5 text-secondary legal-content fs-6 lh-lg" style="color: #d0d0d0 !important;">
+                    {{ selected_terms.content|safe }}
+                </div>
+
+                <!-- Footer Action -->
+                <div class="mt-5 pt-4 border-top border-secondary d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-outline-light text-uppercase btn-sm" onclick="window.print();">
+                        <i class="bi bi-printer me-1"></i> {% trans "Imprimir / Guardar PDF" %}
+                    </button>
+                    <a href="{% url 'main_app:contact' %}" class="text-info small text-decoration-none">
+                        {% trans "¿Tienes dudas sobre nuestros términos legales? Contacta con nosotros" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

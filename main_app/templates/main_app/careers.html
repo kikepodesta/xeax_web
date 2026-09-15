@@ -1,0 +1,166 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Trabaja con nosotros" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<!-- Hero Banner -->
+<div class="position-relative overflow-hidden p-3 p-md-5 text-center bg-dark text-white" style="margin-top: 80px; background: linear-gradient(135deg, #101018 0%, #1a1a2e 50%, #08080c 100%); border-bottom: 1px solid rgba(0,123,255,0.2);">
+    <div class="col-md-8 p-lg-5 mx-auto my-5">
+        <span class="badge bg-primary text-white text-uppercase px-3 py-2 fw-bold mb-3" style="letter-spacing: 2px;">
+            {% trans "Carreras y Talento" %}
+        </span>
+        <h1 class="display-3 fw-bold text-uppercase" style="font-family: var(--font-heading, sans-serif); letter-spacing: 2px;">
+            {% trans "Construye el Futuro de la Moda Técnica" %}
+        </h1>
+        <p class="lead fw-normal text-muted mt-3 fs-4 col-lg-10 mx-auto">
+            {% trans "Buscamos diseñadores, ingenieros textiles, creadores y estrategas inconformistas apasionados por el deporte." %}
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <!-- Perks Section -->
+    <div class="row text-center g-4 mb-5">
+        <div class="col-md-3">
+            <div class="p-4 border border-secondary" style="background: #111; border-radius: 12px;">
+                <i class="bi bi-laptop text-primary display-4 mb-3 d-block"></i>
+                <h4 class="text-white text-uppercase fs-6 fw-bold">{% trans "Trabajo Híbrido & Remoto" %}</h4>
+                <p class="text-muted small mb-0">{% trans "Flexibilidad geográfica para dar lo mejor de ti desde donde rindas más." %}</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-4 border border-secondary" style="background: #111; border-radius: 12px;">
+                <i class="bi bi-heart-pulse text-primary display-4 mb-3 d-block"></i>
+                <h4 class="text-white text-uppercase fs-6 fw-bold">{% trans "Salud & Entrenamiento" %}</h4>
+                <p class="text-muted small mb-0">{% trans "Suscripciones a gimnasios, boxes de CrossFit y seguro médico integral." %}</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-4 border border-secondary" style="background: #111; border-radius: 12px;">
+                <i class="bi bi-bag-heart text-primary display-4 mb-3 d-block"></i>
+                <h4 class="text-white text-uppercase fs-6 fw-bold">{% trans "Descuentos de Marca" %}</h4>
+                <p class="text-muted small mb-0">{% trans "Acceso prioritario a lanzamientos y descuentos exclusivos para empleados." %}</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-4 border border-secondary" style="background: #111; border-radius: 12px;">
+                <i class="bi bi-graph-up-arrow text-primary display-4 mb-3 d-block"></i>
+                <h4 class="text-white text-uppercase fs-6 fw-bold">{% trans "Desarrollo Profesional" %}</h4>
+                <p class="text-muted small mb-0">{% trans "Presupuesto anual para formación continua, eventos e investigación." %}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vacancies List -->
+    <div class="py-4">
+        <h2 class="text-uppercase fw-bold text-white mb-4" style="letter-spacing: 1px;">
+            {% trans "Posiciones Abiertas Activas" %}
+        </h2>
+
+        <div class="d-flex flex-column gap-3">
+            <!-- Job Card 1 -->
+            <div class="p-4 border border-secondary d-md-flex align-items-center justify-content-between" style="background: rgba(20,20,25,0.8); border-radius: 12px;">
+                <div class="mb-3 mb-md-0">
+                    <span class="badge bg-dark text-info border border-info px-2 py-1 mb-2">{% trans "Diseño & Producto" %}</span>
+                    <h3 class="text-white fs-4 fw-bold mb-1">Senior Technical Apparel Designer</h3>
+                    <p class="text-muted mb-0 small"><i class="bi bi-geo-alt me-1"></i> Madrid, España (Híbrido) &bull; Full-Time</p>
+                </div>
+                <button type="button" class="btn btn-outline-light text-uppercase fw-bold px-4" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Senior Technical Apparel Designer">
+                    {% trans "Postularme" %}
+                </button>
+            </div>
+
+            <!-- Job Card 2 -->
+            <div class="p-4 border border-secondary d-md-flex align-items-center justify-content-between" style="background: rgba(20,20,25,0.8); border-radius: 12px;">
+                <div class="mb-3 mb-md-0">
+                    <span class="badge bg-dark text-warning border border-warning px-2 py-1 mb-2">{% trans "Ingeniería & I+D" %}</span>
+                    <h3 class="text-white fs-4 fw-bold mb-1">Textile Performance Specialist</h3>
+                    <p class="text-muted mb-0 small"><i class="bi bi-geo-alt me-1"></i> Remoto (Europa) &bull; Full-Time</p>
+                </div>
+                <button type="button" class="btn btn-outline-light text-uppercase fw-bold px-4" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Textile Performance Specialist">
+                    {% trans "Postularme" %}
+                </button>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div class="p-4 border border-secondary d-md-flex align-items-center justify-content-between" style="background: rgba(20,20,25,0.8); border-radius: 12px;">
+                <div class="mb-3 mb-md-0">
+                    <span class="badge bg-dark text-success border border-success px-2 py-1 mb-2">{% trans "Marketing & Growth" %}</span>
+                    <h3 class="text-white fs-4 fw-bold mb-1">E-Commerce Growth & Performance Lead</h3>
+                    <p class="text-muted mb-0 small"><i class="bi bi-geo-alt me-1"></i> Madrid, España / Remoto &bull; Full-Time</p>
+                </div>
+                <button type="button" class="btn btn-outline-light text-uppercase fw-bold px-4" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="E-Commerce Growth & Performance Lead">
+                    {% trans "Postularme" %}
+                </button>
+            </div>
+
+            <!-- Job Card 4 -->
+            <div class="p-4 border border-secondary d-md-flex align-items-center justify-content-between" style="background: rgba(20,20,25,0.8); border-radius: 12px;">
+                <div class="mb-3 mb-md-0">
+                    <span class="badge bg-dark text-danger border border-danger px-2 py-1 mb-2">{% trans "Comunidad & Atletas" %}</span>
+                    <h3 class="text-white fs-4 fw-bold mb-1">Athlete Relations & Community Manager</h3>
+                    <p class="text-muted mb-0 small"><i class="bi bi-geo-alt me-1"></i> Remoto &bull; Full-Time</p>
+                </div>
+                <button type="button" class="btn btn-outline-light text-uppercase fw-bold px-4" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="Athlete Relations & Community Manager">
+                    {% trans "Postularme" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Application Modal -->
+<div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title text-uppercase fw-bold" id="applyModalLabel">{% trans "Postulación de Empleo" %}</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small text-uppercase">{% trans "Puesto Seleccionado" %}</label>
+                        <input type="text" id="modalRoleInput" name="role" class="form-control bg-dark text-white border-secondary" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted small text-uppercase">{% trans "Nombre Completo" %}</label>
+                        <input type="text" name="full_name" class="form-control bg-dark text-white border-secondary" required placeholder="Ej: Alex Rivera">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted small text-uppercase">{% trans "Correo Electrónico" %}</label>
+                        <input type="email" name="email" class="form-control bg-dark text-white border-secondary" required placeholder="tu@email.com">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted small text-uppercase">{% trans "LinkedIn / Enlace a Portafolio" %}</label>
+                        <input type="url" name="linkedin_portfolio" class="form-control bg-dark text-white border-secondary" placeholder="https://linkedin.com/in/usuario">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted small text-uppercase">{% trans "¿Por qué quieres unirte a XEAX Sports?" %}</label>
+                        <textarea name="motivation" class="form-control bg-dark text-white border-secondary" rows="3" required placeholder="Cuéntanos brevemente tu motivación..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-outline-secondary text-uppercase" data-bs-dismiss="modal">{% trans "Cancelar" %}</button>
+                    <button type="submit" class="btn btn-xeax-primary text-uppercase fw-bold px-4">{% trans "Enviar Solicitud" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var applyModal = document.getElementById('applyModal');
+        applyModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var jobName = button.getAttribute('data-job');
+            var modalRoleInput = applyModal.querySelector('#modalRoleInput');
+            modalRoleInput.value = jobName;
+        });
+    });
+</script>
+{% endblock %}

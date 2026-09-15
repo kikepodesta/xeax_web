@@ -1,0 +1,115 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Finalizar Compra" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 80px;">
+    <h1 class="mb-5 text-uppercase" style="font-family: var(--font-heading); color: #ffffff; letter-spacing: 1px; font-size: 2rem;">
+        {% trans "Finalizar Compra" %}
+    </h1>
+
+    <div class="row g-5">
+        <!-- Columna Izquierda: Datos de Envío -->
+        <div class="col-12 col-lg-7">
+            <div class="p-4 border border-secondary" style="background: var(--bg-card); border-radius: var(--border-radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <h3 class="text-uppercase text-white mb-4 border-bottom border-secondary pb-2" style="font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 1px;">
+                    {% trans "Datos de Envío" %}
+                </h3>
+
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="full_name" class="form-label text-muted small text-uppercase">{% trans "Nombre Completo" %}</label>
+                            <input type="text" name="full_name" id="full_name" class="form-control bg-dark text-white border-secondary" style="padding: 0.7rem 1rem;" value="{{ request.user.get_full_name|default:'' }}" required>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="email" class="form-label text-muted small text-uppercase">{% trans "Correo Electrónico" %}</label>
+                            <input type="email" name="email" id="email" class="form-control bg-dark text-white border-secondary" style="padding: 0.7rem 1rem;" value="{{ request.user.email }}" required>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="phone" class="form-label text-muted small text-uppercase">{% trans "Teléfono" %}</label>
+                            <input type="text" name="phone" id="phone" class="form-control bg-dark text-white border-secondary" style="padding: 0.7rem 1rem;" value="{{ request.user.profile.phone|default:'' }}" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label text-muted small text-uppercase">{% trans "Dirección" %}</label>
+                            <input type="text" name="address" id="address" class="form-control bg-dark text-white border-secondary" style="padding: 0.7rem 1rem;" placeholder="Calle, número, piso, puerta" value="{{ request.user.profile.shipping_address|default:'' }}" required>
+                        </div>
+
+                        <div class="col-12 col-md-8">
+                            <label for="city" class="form-label text-muted small text-uppercase">{% trans "Ciudad" %}</label>
+                            <input type="text" name="city" id="city" class="form-control bg-dark text-white border-secondary" style="padding: 0.7rem 1rem;" value="{{ request.user.profile.shipping_city|default:'' }}" required>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <label for="postal_code" class="form-label text-muted small text-uppercase">{% trans "Código Postal" %}</label>
+                            <input type="text" name="postal_code" id="postal_code" class="form-control bg-dark text-white border-secondary" style="padding: 0.7rem 1rem;" value="{{ request.user.profile.shipping_postal_code|default:'' }}" required>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 border-top border-secondary pt-4">
+                        <p class="small text-muted" style="font-family: var(--font-body); line-height: 1.4;">
+                            * {% trans "Simulación de pago instantáneo. Al hacer clic en 'Confirmar Pedido', se tramitará la orden y el stock correspondiente se actualizará en base de datos." %}
+                        </p>
+                        <button type="submit" class="btn btn-xeax-primary w-100 py-3 text-uppercase fw-bold mt-2">
+                            {% trans "Confirmar Pedido" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Columna Derecha: Resumen del Pedido -->
+        <div class="col-12 col-lg-5">
+            <div class="p-4 border border-secondary" style="background: var(--bg-card); border-radius: var(--border-radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <h3 class="text-uppercase text-white mb-4 border-bottom border-secondary pb-2" style="font-family: var(--font-heading); font-size: 1.25rem; letter-spacing: 1px;">
+                    {% trans "Resumen de compra" %}
+                </h3>
+
+                <div class="d-flex flex-column gap-3 mb-4" style="max-height: 350px; overflow-y: auto;">
+                    {% for item in cart.items.all %}
+                        <div class="d-flex align-items-center justify-content-between border-bottom border-secondary pb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="{{ item.variant.product.main_image_url }}" style="height: 50px; width: 40px; object-fit: contain; border-radius: var(--border-radius-sm);" alt="{{ item.variant.product.name }}">
+                                <div>
+                                    <h5 class="text-uppercase mb-0 text-white" style="font-family: var(--font-heading); font-size: 0.95rem; letter-spacing: 0.5px;">
+                                        {{ item.variant.product.name }}
+                                    </h5>
+                                    <div class="d-flex align-items-center gap-2 mt-1">
+                                        <span class="text-muted small">x {{ item.quantity }}</span>
+                                        <span class="badge bg-secondary" style="font-size: 0.7rem; font-family: var(--font-body); padding: 2px 6px;">{{ item.variant.size }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="fw-bold text-white" style="font-family: var(--font-heading);">
+                                {{ item.total_price }} €
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="d-flex justify-content-between mb-2 text-muted" style="font-family: var(--font-body);">
+                    <span>{% trans "Subtotal" %}</span>
+                    <span class="text-white">{{ cart.total_price }} €</span>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2 text-muted" style="font-family: var(--font-body);">
+                    <span>{% trans "Envío" %} (Amazon)</span>
+                    <span class="text-success fw-bold">{% trans "GRATIS" %}</span>
+                </div>
+
+                <div class="d-flex justify-content-between border-top border-secondary pt-3 mt-3">
+                    <span class="fs-5 text-white" style="font-family: var(--font-heading);">{% trans "Total a pagar" %}</span>
+                    <span class="fs-4 fw-bold text-white" style="font-family: var(--font-heading);">{{ cart.total_price }} €</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

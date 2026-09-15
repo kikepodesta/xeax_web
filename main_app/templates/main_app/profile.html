@@ -1,0 +1,422 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Mi Perfil de Atleta" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 80px;">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="font-family: var(--font-body); font-size: 0.85rem;">
+            <li class="breadcrumb-item"><a href="{% url 'main_app:home' %}" class="text-muted gris text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item active text-white" aria-current="page">{% trans "Mi Cuenta" %}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <!-- Columna 1: Tarjeta Resumen de Cliente -->
+        <div class="col-12 col-lg-4">
+            <div class="card p-4 text-center" style="background: var(--bg-card); border-radius: var(--border-radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.55); border: 1px solid var(--border-color);">
+                <div class="d-flex justify-content-center mb-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-dark" style="background: var(--brand-yellow); width: 80px; height: 80px; box-shadow: 0 0 15px rgba(238, 255, 0, 0.4);">
+                        <i class="bi bi-person-fill" style="font-size: 2.5rem;"></i>
+                    </div>
+                </div>
+                
+                <h4 class="text-white mb-1" style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.5px;">
+                    {{ request.user.get_full_name|default:request.user.username }}
+                </h4>
+                <p class="text-muted small mb-3">{{ request.user.email }}</p>
+                
+                <hr style="border-color: rgba(255,255,255,0.08);">
+                
+                <div class="row g-2 text-start my-3" style="font-family: var(--font-sans); font-size: 0.9rem;">
+                    <div class="col-6 text-muted">{% trans "Talla Preferida" %}:</div>
+                    <div class="col-6 text-white text-end fw-bold">
+                        {% if request.user.profile.preferred_size %}
+                            <span class="badge bg-warning text-dark">{{ request.user.profile.preferred_size }}</span>
+                        {% else %}
+                            <span class="text-muted italic">{% trans "Sin definir" %}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="col-6 text-muted">{% trans "Miembro desde" %}:</div>
+                    <div class="col-6 text-white text-end">{{ request.user.date_joined|date:"d M Y" }}</div>
+                </div>
+                
+                <hr style="border-color: rgba(255,255,255,0.08);">
+                
+                <div class="d-flex flex-column gap-2 mt-3">
+                    <a href="{% url 'main_app:my_orders' %}" class="btn btn-outline-light w-100 btn-sm text-uppercase" style="letter-spacing: 1px;">
+                        <i class="bi bi-box-seam me-2"></i> {% trans "Historial de Pedidos" %}
+                    </a>
+                    <a href="{% url 'main_app:logout' %}" class="btn btn-danger w-100 btn-sm text-uppercase" style="letter-spacing: 1px; background-color: rgba(220, 53, 69, 0.15); border-color: rgba(220, 53, 69, 0.4);">
+                        <i class="bi bi-box-arrow-right me-2"></i> {% trans "Cerrar Sesión" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna 2: Pestañas de Edición de Ficha de Cliente -->
+        <div class="col-12 col-lg-8">
+            <div class="card p-4" style="background: var(--bg-card); border-radius: var(--border-radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.55); border: 1px solid var(--border-color);">
+                
+                <!-- Pestañas (Tabs) Navigation -->
+                <ul class="nav nav-pills mb-4 border-bottom border-secondary pb-3 gap-2" id="profileTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active text-uppercase profile-tab-btn" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab" aria-controls="personal" aria-selected="true" style="font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 1px;">
+                            <i class="bi bi-person-gear me-2"></i>{% trans "Datos Personales" %}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-uppercase profile-tab-btn" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="false" style="font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 1px;">
+                            <i class="bi bi-truck me-2"></i>{% trans "Envíos" %}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-uppercase profile-tab-btn" id="billing-tab" data-bs-toggle="tab" data-bs-target="#billing" type="button" role="tab" aria-controls="billing" aria-selected="false" style="font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 1px;">
+                            <i class="bi bi-file-earmark-ruled me-2"></i>{% trans "Facturación" %}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-uppercase profile-tab-btn" id="legal-tab" data-bs-toggle="tab" data-bs-target="#legal" type="button" role="tab" aria-controls="legal" aria-selected="false" style="font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 1px;">
+                            <i class="bi bi-shield-check me-2"></i>{% trans "Estado Legal & T&C" %}
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Formulario -->
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="tab-content" id="profileTabContent">
+                        
+                        <!-- Pestaña 1: Datos Personales -->
+                        <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                            <h3 class="text-white mb-4 fs-5 fw-bold text-uppercase" style="letter-spacing: 1px;">
+                                {% trans "Información Personal y Preferencias" %}
+                            </h3>
+                            
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ user_form.first_name.id_for_label }}">
+                                        {% trans "Nombre" %}
+                                    </label>
+                                    {{ user_form.first_name }}
+                                    {% if user_form.first_name.errors %}
+                                        <div class="text-danger small mt-1">{{ user_form.first_name.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ user_form.last_name.id_for_label }}">
+                                        {% trans "Apellidos" %}
+                                    </label>
+                                    {{ user_form.last_name }}
+                                    {% if user_form.last_name.errors %}
+                                        <div class="text-danger small mt-1">{{ user_form.last_name.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ user_form.email.id_for_label }}">
+                                        {% trans "Correo Electrónico" %}
+                                    </label>
+                                    {{ user_form.email }}
+                                    <div class="form-text text-muted" style="font-size: 0.75rem;">
+                                        {% trans "El email no se puede cambiar por seguridad." %}
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.birth_date.id_for_label }}">
+                                        {% trans "Fecha de Nacimiento" %}
+                                    </label>
+                                    {{ profile_form.birth_date }}
+                                    {% if profile_form.birth_date.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.birth_date.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.preferred_size.id_for_label }}">
+                                        {% trans "Talla Preferida de Ropa" %}
+                                    </label>
+                                    {{ profile_form.preferred_size }}
+                                    {% if profile_form.preferred_size.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.preferred_size.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pestaña 2: Dirección de Envío -->
+                        <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
+                            <h3 class="text-white mb-4 fs-5 fw-bold text-uppercase" style="letter-spacing: 1px;">
+                                {% trans "Dirección de Envío Predeterminada" %}
+                            </h3>
+                            
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.phone.id_for_label }}">
+                                        {% trans "Teléfono de Contacto" %}
+                                    </label>
+                                    {{ profile_form.phone }}
+                                    {% if profile_form.phone.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.phone.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.shipping_address.id_for_label }}">
+                                        {% trans "Dirección" %}
+                                    </label>
+                                    {{ profile_form.shipping_address }}
+                                    {% if profile_form.shipping_address.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.shipping_address.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.shipping_city.id_for_label }}">
+                                        {% trans "Ciudad" %}
+                                    </label>
+                                    {{ profile_form.shipping_city }}
+                                    {% if profile_form.shipping_city.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.shipping_city.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.shipping_postal_code.id_for_label }}">
+                                        {% trans "Código Postal" %}
+                                    </label>
+                                    {{ profile_form.shipping_postal_code }}
+                                    {% if profile_form.shipping_postal_code.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.shipping_postal_code.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.shipping_country.id_for_label }}">
+                                        {% trans "País" %}
+                                    </label>
+                                    {{ profile_form.shipping_country }}
+                                    {% if profile_form.shipping_country.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.shipping_country.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pestaña 3: Dirección de Facturación -->
+                        <div class="tab-pane fade" id="billing" role="tabpanel" aria-labelledby="billing-tab">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="text-white fs-5 fw-bold text-uppercase mb-0" style="letter-spacing: 1px;">
+                                    {% trans "Datos de Facturación" %}
+                                </h3>
+                                <button type="button" class="btn btn-outline-light btn-xs py-1 px-2" style="font-size: 0.75rem;" onclick="copyShippingToBilling()">
+                                    <i class="bi bi-copy me-1"></i> {% trans "Copiar Envío" %}
+                                </button>
+                            </div>
+                            
+                            <div class="row g-3">
+                                <div class="col-12 col-md-8">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.billing_name.id_for_label }}">
+                                        {% trans "Nombre de Facturación / Empresa" %}
+                                    </label>
+                                    {{ profile_form.billing_name }}
+                                    {% if profile_form.billing_name.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.billing_name.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.billing_tax_id.id_for_label }}">
+                                        {% trans "NIF / CIF / DNI" %}
+                                    </label>
+                                    {{ profile_form.billing_tax_id }}
+                                    {% if profile_form.billing_tax_id.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.billing_tax_id.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.billing_address.id_for_label }}">
+                                        {% trans "Dirección de Facturación" %}
+                                    </label>
+                                    {{ profile_form.billing_address }}
+                                    {% if profile_form.billing_address.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.billing_address.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.billing_city.id_for_label }}">
+                                        {% trans "Ciudad de Facturación" %}
+                                    </label>
+                                    {{ profile_form.billing_city }}
+                                    {% if profile_form.billing_city.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.billing_city.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.billing_postal_code.id_for_label }}">
+                                        {% trans "Código Postal de Facturación" %}
+                                    </label>
+                                    {{ profile_form.billing_postal_code }}
+                                    {% if profile_form.billing_postal_code.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.billing_postal_code.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label class="form-label text-muted small text-uppercase" for="{{ profile_form.billing_country.id_for_label }}">
+                                        {% trans "País de Facturación" %}
+                                    </label>
+                                    {{ profile_form.billing_country }}
+                                    {% if profile_form.billing_country.errors %}
+                                        <div class="text-danger small mt-1">{{ profile_form.billing_country.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pestaña 4: Estado Legal y Términos & Condiciones -->
+                        <div class="tab-pane fade" id="legal" role="tabpanel" aria-labelledby="legal-tab">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="text-white fs-5 fw-bold text-uppercase mb-0" style="letter-spacing: 1px;">
+                                    {% trans "Registro de Aceptación de Términos y Condiciones" %}
+                                </h3>
+                                <a href="{% url 'main_app:terms_current' %}" class="btn btn-outline-warning btn-xs py-1 px-2" style="font-size: 0.75rem;" target="_blank">
+                                    <i class="bi bi-box-arrow-up-right me-1"></i> {% trans "Ver T&C Vigentes" %}
+                                </a>
+                            </div>
+
+                            <!-- Banner de estado activo -->
+                            <div class="p-3 mb-4 rounded border {% if has_accepted_active %}border-success bg-success bg-opacity-10{% else %}border-warning bg-warning bg-opacity-10{% endif %}">
+                                <div class="d-flex align-items-center gap-3">
+                                    {% if has_accepted_active %}
+                                        <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                                        <div>
+                                            <h5 class="text-white fw-bold mb-1 fs-6">{% trans "Cuenta Legalmente Al Día" %}</h5>
+                                            <p class="text-muted small mb-0">{% trans "Has aceptado la versión activa vigente (" %}{{ active_terms.version }}{% trans ")." %}</p>
+                                        </div>
+                                    {% else %}
+                                        <i class="bi bi-exclamation-triangle-fill text-warning fs-2"></i>
+                                        <div>
+                                            <h5 class="text-white fw-bold mb-1 fs-6">{% trans "Actualización de Términos Disponible" %}</h5>
+                                            <p class="text-muted small mb-0">{% trans "Existe una nueva versión de T&C (" %}{{ active_terms.version }}{% trans "). Por favor, revísala." %}</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <h5 class="text-white text-uppercase fs-6 fw-bold mb-3">{% trans "Historial de Aceptaciones Guardadas" %}</h5>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover border border-secondary text-secondary small align-middle" style="background: rgba(0,0,0,0.2);">
+                                    <thead>
+                                        <tr class="text-white text-uppercase" style="font-size: 0.75rem; background: rgba(255,255,255,0.05);">
+                                            <th>{% trans "Versión T&C" %}</th>
+                                            <th>{% trans "Fecha de Aceptación" %}</th>
+                                            <th>{% trans "Dirección IP" %}</th>
+                                            <th>{% trans "Estado de la Versión" %}</th>
+                                            <th>{% trans "Acción" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for acceptance in accepted_terms %}
+                                            <tr>
+                                                <td class="fw-bold text-white">{{ acceptance.terms.version }}</td>
+                                                <td>{{ acceptance.accepted_at|date:"d/m/Y H:i" }}</td>
+                                                <td><code>{{ acceptance.ip_address|default:"127.0.0.1" }}</code></td>
+                                                <td>
+                                                    {% if acceptance.terms.is_active %}
+                                                        <span class="badge bg-success">{% trans "Vigente" %}</span>
+                                                    {% else %}
+                                                        <span class="badge bg-secondary">{% trans "Histórica" %}</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <a href="{% url 'main_app:terms_version' version_code=acceptance.terms.version %}" class="btn btn-xs btn-outline-light" target="_blank">
+                                                        <i class="bi bi-eye"></i> {% trans "Ver Texto" %}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="5" class="text-center text-muted py-3">{% trans "No hay registros de aceptación guardados." %}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Botón de guardar cambios -->
+                    <div class="mt-4 pt-3 border-top border-secondary text-end">
+                        <button type="submit" class="btn btn-xeax-primary px-4 py-2.5 text-uppercase">
+                            <i class="bi bi-check2-circle me-2"></i>{% trans "Guardar Cambios" %}
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyShippingToBilling() {
+        // Copy phone & address values over to billing fields
+        const phone = document.getElementById("id_phone") ? document.getElementById("id_phone").value : "";
+        const addr = document.getElementById("id_shipping_address") ? document.getElementById("id_shipping_address").value : "";
+        const city = document.getElementById("id_shipping_city") ? document.getElementById("id_shipping_city").value : "";
+        const pc = document.getElementById("id_shipping_postal_code") ? document.getElementById("id_shipping_postal_code").value : "";
+        const country = document.getElementById("id_shipping_country") ? document.getElementById("id_shipping_country").value : "España";
+        
+        const firstName = document.getElementById("id_first_name") ? document.getElementById("id_first_name").value : "";
+        const lastName = document.getElementById("id_last_name") ? document.getElementById("id_last_name").value : "";
+        const fullName = (firstName + " " + lastName).trim();
+
+        if (document.getElementById("id_billing_name")) {
+            document.getElementById("id_billing_name").value = fullName;
+        }
+        if (document.getElementById("id_billing_address")) {
+            document.getElementById("id_billing_address").value = addr;
+        }
+        if (document.getElementById("id_billing_city")) {
+            document.getElementById("id_billing_city").value = city;
+        }
+        if (document.getElementById("id_billing_postal_code")) {
+            document.getElementById("id_billing_postal_code").value = pc;
+        }
+        if (document.getElementById("id_billing_country")) {
+            document.getElementById("id_billing_country").value = country;
+        }
+    }
+</script>
+
+<style>
+    /* Premium custom styles for the profile tabs */
+    .profile-tab-btn {
+        background-color: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid var(--border-color) !important;
+        color: var(--text-muted) !important;
+        transition: var(--transition-smooth);
+        border-radius: var(--border-radius-sm) !important;
+        padding: 0.6rem 1.2rem !important;
+    }
+    
+    .profile-tab-btn:hover {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    .profile-tab-btn.active {
+        background-color: var(--brand-yellow) !important;
+        color: #000000 !important;
+        font-weight: 600;
+        border-color: var(--brand-yellow) !important;
+        box-shadow: 0 0 10px rgba(238, 255, 0, 0.25) !important;
+    }
+    
+    .btn-xs {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        border-radius: 4px;
+    }
+</style>
+{% endblock %}

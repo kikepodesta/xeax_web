@@ -1,0 +1,522 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Catálogo de Productos" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<script>document.body.classList.add('page-light');</script>
+
+<!-- =====================================================
+     EDITORIAL HEADER
+     ===================================================== -->
+<div class="xeax-editorial-header" data-bs-theme="light">
+    <div class="container">
+        <h1 class="xeax-editorial-title">{% trans "Catálogo" %}</h1>
+        <span class="xeax-editorial-accent"></span>
+    </div>
+</div>
+
+<!-- =====================================================
+     HORIZONTAL FILTER BAR (sticky)
+     ===================================================== -->
+<div class="xeax-filter-bar" data-bs-theme="light" id="filter-bar">
+    <div class="container">
+        <div class="xeax-filter-bar-inner">
+
+            <!-- Hidden radio inputs (drive the JS logic) -->
+            <input type="radio" name="category" id="cat-all" class="filter-category d-none" value="" checked>
+            {% for cat in categories %}
+            <input type="radio" name="category" id="cat-{{ cat.slug }}" class="filter-category d-none" value="{{ cat.slug }}">
+            {% endfor %}
+
+            <!-- Category pill labels -->
+            <label for="cat-all" class="xeax-cat-pill active" id="pill-all" onclick="activatePill(this)">
+                {% trans "Todo" %}
+            </label>
+            {% for cat in categories %}
+            <label for="cat-{{ cat.slug }}" class="xeax-cat-pill" id="pill-{{ cat.slug }}" onclick="activatePill(this)">
+                {{ cat.name }}
+            </label>
+            {% endfor %}
+
+            <!-- Divider -->
+            <div class="xeax-filter-divider"></div>
+
+            {% comment %} <!-- Price Dropdown -->
+            <div class="position-relative">
+                <button class="xeax-filter-dropdown-btn" type="button" id="price-filter-btn"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    {% trans "Precio" %} <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu xeax-filter-panel p-3" aria-labelledby="price-filter-btn" style="min-width: 260px;">
+                    <label class="form-label">{% trans "Precio Máximo" %}</label>
+                    <input type="range" class="form-range" id="price-range" name="max_price"
+                           min="0" max="250" step="5" value="250">
+                    <div class="d-flex justify-content-between mt-2">
+                        <span class="price-badge">0 €</span>
+                        <span class="price-badge" id="price-display">250 €</span>
+                    </div>
+                    <button type="button" class="btn-apply" onclick="fetchFilteredProducts()">
+                        {% trans "Aplicar" %}
+                    </button>
+                </div>
+            </div> {% endcomment %}
+
+            <!-- Size Dropdown -->
+            {% comment %} <div class="position-relative">
+                <button class="xeax-filter-dropdown-btn" type="button" id="size-filter-btn"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    {% trans "Talla" %} <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu xeax-filter-panel" aria-labelledby="size-filter-btn">
+                    <label class="form-label">{% trans "Tallas Disponibles" %}</label>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        {% for size in available_sizes %}
+                        <div>
+                            <input type="checkbox" class="btn-check filter-size" id="size-{{ size }}" value="{{ size }}" autocomplete="off">
+                            <label class="btn size-btn" for="size-{{ size }}">{{ size }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="in-stock-switch">
+                        <label class="form-check-label small" for="in-stock-switch">{% trans "Solo en Stock" %}</label>
+                    </div>
+                    <button type="button" class="btn-apply" onclick="fetchFilteredProducts()">
+                        {% trans "Aplicar" %}
+                    </button>
+                </div>
+            </div> {% endcomment %}
+
+            <!-- Right side: count + sort -->
+            <div class="xeax-filter-right ms-auto">
+                <span class="xeax-product-count" id="products-count-label">
+                    {% trans "Mostrando" %} {{ total_count }} {% trans "productos" %}
+                </span>
+                <select class="xeax-sort-select" id="sort-select">
+                    <option value="featured">{% trans "Destacados" %}</option>
+                    <option value="price_asc">{% trans "Precio ↑" %}</option>
+                    <option value="price_desc">{% trans "Precio ↓" %}</option>
+                    <option value="name_asc">{% trans "Nombre A-Z" %}</option>
+                    <option value="newest">{% trans "Más nuevos" %}</option>
+                </select>
+                <!-- Mobile: open full offcanvas filters -->
+                <button class="xeax-filter-dropdown-btn d-lg-none" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#mobileFiltersOffcanvas">
+                    <i class="bi bi-funnel"></i> {% trans "Filtros" %}
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Active filter tags row -->
+        <div class="d-flex flex-wrap gap-2 mt-2" id="active-filters-container"></div>
+    </div>
+</div>
+
+<!-- =====================================================
+     PRODUCT GRID — Full Width
+     ===================================================== -->
+<div class="xeax-editorial-catalog" data-bs-theme="light">
+    <div class="container pt-4">
+
+        <!-- Loading spinner -->
+        <div id="loading-spinner" style="display: none; justify-content: center; align-items: center; padding: 2rem 0;">
+            <div class="xeax-spinner"></div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="row g-4" id="product-grid">
+            {% include 'main_app/catalog_grid.html' %}
+        </div>
+
+        <!-- Load More -->
+        <div id="load-more-container" class="text-center mt-5 pt-3" style="display: none;">
+            <button class="btn-editorial-more" onclick="loadNextPage()">
+                {% trans "Cargar más" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- =====================================================
+     MOBILE OFFCANVAS FILTERS
+     ===================================================== -->
+<div class="offcanvas offcanvas-start xeax-editorial-offcanvas" data-bs-theme="light" tabindex="-1"
+     id="mobileFiltersOffcanvas" aria-labelledby="mobileFiltersOffcanvasLabel" style="width: 310px;">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileFiltersOffcanvasLabel">{% trans "Filtros" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Hidden radio inputs for mobile -->
+        <input type="radio" name="category-m" id="m-cat-all" class="filter-category-m d-none" value="" checked>
+        {% for cat in categories %}
+        <input type="radio" name="category-m" id="m-cat-{{ cat.slug }}" class="filter-category-m d-none" value="{{ cat.slug }}">
+        {% endfor %}
+
+        <!-- Category -->
+        <div class="mb-4">
+            <label class="form-label">{% trans "Categorías" %}</label>
+            <div class="d-flex flex-column gap-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category-m" id="m-cat-all-vis" value="">
+                    <label class="form-check-label" for="m-cat-all-vis">{% trans "Ver Todo" %}</label>
+                </div>
+                {% for cat in categories %}
+                <div class="form-check">
+                    <input class="form-check-input filter-category-m" type="radio" name="category-m" id="m-cat-vis-{{ cat.slug }}" value="{{ cat.slug }}">
+                    <label class="form-check-label" for="m-cat-vis-{{ cat.slug }}">{{ cat.name }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-4">
+            <label class="form-label">{% trans "Precio Máximo" %}</label>
+            <input type="range" class="form-range" id="price-range-m" min="0" max="250" step="5" value="250">
+            <div class="d-flex justify-content-between mt-2">
+                <span class="price-badge">0 €</span>
+                <span class="price-badge" id="price-display-m">250 €</span>
+            </div>
+        </div>
+
+        <!-- Sizes -->
+        <div class="mb-4">
+            <label class="form-label">{% trans "Tallas" %}</label>
+            <div class="d-flex flex-wrap gap-2">
+                {% for size in available_sizes %}
+                <div>
+                    <input type="checkbox" class="btn-check filter-size-m" id="size-m-{{ size }}" value="{{ size }}" autocomplete="off">
+                    <label class="btn size-btn" for="size-m-{{ size }}">{{ size }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Stock -->
+        <div class="mb-4 form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="m-in-stock-switch">
+            <label class="form-check-label" for="m-in-stock-switch">{% trans "Solo en Stock" %}</label>
+        </div>
+
+        <!-- Actions -->
+        <button class="btn-apply-mobile" type="button" data-bs-dismiss="offcanvas" onclick="fetchFilteredProducts()">
+            {% trans "Aplicar Filtros" %}
+        </button>
+        <button class="btn-clear-mobile" type="button" onclick="resetAllFilters()">
+            {% trans "Limpiar Todo" %}
+        </button>
+    </div>
+</div>
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+<script>
+    let isFetching = false;
+    let autoLoadCount = 0;
+
+    // ---- Category Pill activation ----
+    function activatePill(pillEl) {
+        document.querySelectorAll('.xeax-cat-pill').forEach(p => p.classList.remove('active'));
+        pillEl.classList.add('active');
+        // Small delay so radio fires first
+        setTimeout(fetchFilteredProducts, 50);
+    }
+
+    // ---- Sync desktop ↔ mobile ----
+    function syncDesktopToMobile(type, value, checked = false) {
+        if (type === "category") {
+            const input = document.querySelector(`.filter-category-m[value="${value}"]`);
+            if (input) input.checked = true;
+        } else if (type === "price") {
+            document.getElementById("price-range-m").value = value;
+            document.getElementById("price-display-m").innerText = value + " €";
+        } else if (type === "size") {
+            const input = document.querySelector(`.filter-size-m[value="${value}"]`);
+            if (input) input.checked = checked;
+        } else if (type === "stock") {
+            document.getElementById("m-in-stock-switch").checked = value;
+        }
+    }
+
+    function syncMobileToDesktop(type, value, checked = false) {
+        if (type === "category") {
+            const input = document.querySelector(`.filter-category[value="${value}"]`);
+            if (input) input.checked = true;
+            // Activate matching pill
+            const pill = document.getElementById(value ? `pill-${value}` : 'pill-all');
+            if (pill) { document.querySelectorAll('.xeax-cat-pill').forEach(p => p.classList.remove('active')); pill.classList.add('active'); }
+        } else if (type === "price") {
+            const prEl = document.getElementById("price-range");
+            const pdEl = document.getElementById("price-display");
+            if (prEl) prEl.value = value;
+            if (pdEl) pdEl.innerText = value + " €";
+        } else if (type === "size") {
+            const input = document.querySelector(`.filter-size[value="${value}"]`);
+            if (input) input.checked = checked;
+        } else if (type === "stock") {
+            const swEl = document.getElementById("in-stock-switch");
+            if (swEl) swEl.checked = value;
+        }
+    }
+
+    // ---- Sync from URL on load ----
+    function syncFiltersFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+
+        const cat = params.get("category") || "";
+        syncDesktopToMobile("category", cat);
+        syncMobileToDesktop("category", cat);
+
+        const maxPrice = params.get("max_price") || "250";
+        syncDesktopToMobile("price", maxPrice);
+        syncMobileToDesktop("price", maxPrice);
+
+        const sizesStr = params.get("sizes") || "";
+        if (sizesStr) {
+            sizesStr.split(",").forEach(sz => {
+                syncDesktopToMobile("size", sz, true);
+                syncMobileToDesktop("size", sz, true);
+            });
+        }
+
+        const inStock = params.get("in_stock") === "1";
+        syncDesktopToMobile("stock", inStock);
+        syncMobileToDesktop("stock", inStock);
+
+        const sort = params.get("sort") || "featured";
+        document.getElementById("sort-select").value = sort;
+    }
+
+    // ---- Collect filter state ----
+    function getFiltersState() {
+        const catRadio = document.querySelector('input[name="category"]:checked');
+        const category = catRadio ? catRadio.value : "";
+        const prEl = document.getElementById("price-range");
+        const maxPrice = prEl ? prEl.value : "250";
+        const sizes = [];
+        document.querySelectorAll(".filter-size:checked").forEach(i => sizes.push(i.value));
+        const swEl = document.getElementById("in-stock-switch");
+        const inStock = swEl && swEl.checked ? "1" : "";
+        const sort = document.getElementById("sort-select").value;
+        return { category, max_price: maxPrice, sizes: sizes.join(","), in_stock: inStock, sort };
+    }
+
+    // ---- Main AJAX fetch ----
+    function fetchFilteredProducts() {
+        if (isFetching) return;
+        isFetching = true;
+        autoLoadCount = 0;
+
+        const filters = getFiltersState();
+        const urlParams = new URLSearchParams();
+        for (const [k, v] of Object.entries(filters)) { if (v) urlParams.append(k, v); }
+
+        document.getElementById("loading-spinner").style.display = "flex";
+        document.getElementById("product-grid").style.opacity = "0.4";
+
+        const newUrl = window.location.pathname + "?" + urlParams.toString();
+        window.history.pushState({ path: newUrl }, "", newUrl);
+        updateActiveFilterBadges();
+
+        fetch(newUrl, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById("product-grid").innerHTML = html;
+                document.getElementById("product-grid").style.opacity = "1";
+                document.getElementById("loading-spinner").style.display = "none";
+                isFetching = false;
+                const stateEl = document.getElementById("ajax-pagination-state");
+                const total = stateEl ? stateEl.getAttribute("data-total-count") : "0";
+                document.getElementById("products-count-label").innerText = `${total} productos`;
+                checkLoadMoreVisibility();
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById("product-grid").style.opacity = "1";
+                document.getElementById("loading-spinner").style.display = "none";
+                isFetching = false;
+            });
+    }
+
+    // ---- Load next page ----
+    function loadNextPage() {
+        const stateEl = document.getElementById("ajax-pagination-state");
+        if (!stateEl || stateEl.getAttribute("data-has-next") !== "true" || isFetching) return;
+        isFetching = true;
+        document.getElementById("loading-spinner").style.display = "flex";
+        const nextPage = parseInt(stateEl.getAttribute("data-page") || "1") + 1;
+        const filters = getFiltersState();
+        const urlParams = new URLSearchParams();
+        for (const [k, v] of Object.entries(filters)) { if (v) urlParams.append(k, v); }
+        urlParams.append("page", nextPage);
+        fetch(window.location.pathname + "?" + urlParams.toString(), { headers: { "X-Requested-With": "XMLHttpRequest" } })
+            .then(r => r.text())
+            .then(html => {
+                stateEl.remove();
+                document.getElementById("product-grid").insertAdjacentHTML("beforeend", html);
+                document.getElementById("loading-spinner").style.display = "none";
+                isFetching = false;
+                autoLoadCount++;
+                checkLoadMoreVisibility();
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById("loading-spinner").style.display = "none";
+                isFetching = false;
+            });
+    }
+
+    // ---- Scroll & Load More ----
+    function handleScroll() {
+        const stateEl = document.getElementById("ajax-pagination-state");
+        if (!stateEl || stateEl.getAttribute("data-has-next") !== "true" || autoLoadCount >= 2) return;
+        if (document.documentElement.scrollHeight - window.innerHeight - window.scrollY < 300) {
+            loadNextPage();
+        }
+    }
+
+    function checkLoadMoreVisibility() {
+        const stateEl = document.getElementById("ajax-pagination-state");
+        const btn = document.getElementById("load-more-container");
+        btn.style.display = (stateEl && stateEl.getAttribute("data-has-next") === "true" && autoLoadCount >= 2) ? "block" : "none";
+    }
+
+    // ---- Active filter badges ----
+    function updateActiveFilterBadges() {
+        const container = document.getElementById("active-filters-container");
+        container.innerHTML = "";
+        const state = getFiltersState();
+
+        if (state.category) {
+            const labelEl = document.querySelector(`label[for="cat-${state.category}"]`);
+            const label = labelEl ? labelEl.innerText.trim() : state.category;
+            createBadge("Categoría", label, () => {
+                const allPill = document.getElementById('pill-all');
+                if(allPill) { document.querySelectorAll('.xeax-cat-pill').forEach(p => p.classList.remove('active')); allPill.classList.add('active'); }
+                document.getElementById('cat-all').checked = true;
+                syncDesktopToMobile("category", "");
+                fetchFilteredProducts();
+            });
+        }
+        if (state.max_price && state.max_price !== "250") {
+            createBadge("Precio", `≤ ${state.max_price} €`, () => {
+                syncDesktopToMobile("price", "250"); syncMobileToDesktop("price", "250"); fetchFilteredProducts();
+            });
+        }
+        if (state.sizes) {
+            state.sizes.split(",").forEach(sz => {
+                createBadge("Talla", sz, () => {
+                    syncDesktopToMobile("size", sz, false); syncMobileToDesktop("size", sz, false); fetchFilteredProducts();
+                });
+            });
+        }
+        if (state.in_stock === "1") {
+            createBadge("Stock", "En Stock", () => {
+                syncDesktopToMobile("stock", false); syncMobileToDesktop("stock", false); fetchFilteredProducts();
+            });
+        }
+    }
+
+    function createBadge(label, val, onRemove) {
+        const tag = document.createElement("div");
+        tag.className = "xeax-active-tag";
+        tag.innerHTML = `<span style="color: #ffffff !important"><strong>${label}:</strong> ${val}</span><button type="button"><i class="bi bi-x-lg"></i></button>`;
+        tag.querySelector("button").addEventListener("click", onRemove);
+        document.getElementById("active-filters-container").appendChild(tag);
+    }
+
+    // ---- Reset all filters ----
+    function resetAllFilters() {
+        document.getElementById("cat-all").checked = true;
+        document.querySelectorAll('.xeax-cat-pill').forEach(p => p.classList.remove('active'));
+        const allPill = document.getElementById('pill-all'); if(allPill) allPill.classList.add('active');
+        const prEl = document.getElementById("price-range");
+        const pdEl = document.getElementById("price-display");
+        if (prEl) prEl.value = "250";
+        if (pdEl) pdEl.innerText = "250 €";
+        document.querySelectorAll(".filter-size").forEach(i => i.checked = false);
+        const swEl = document.getElementById("in-stock-switch");
+        if (swEl) swEl.checked = false;
+        syncDesktopToMobile("category", "");
+        syncDesktopToMobile("price", "250");
+        syncDesktopToMobile("stock", false);
+        fetchFilteredProducts();
+    }
+
+    // ---- Init ----
+    document.addEventListener("DOMContentLoaded", () => {
+        syncFiltersFromUrl();
+
+        // Price range display (desktop — may be commented out)
+        const prEl = document.getElementById("price-range");
+        const pdEl = document.getElementById("price-display");
+        if (prEl) {
+            prEl.addEventListener("input", e => {
+                if (pdEl) pdEl.innerText = e.target.value + " €";
+                syncDesktopToMobile("price", e.target.value);
+            });
+        }
+        const prMEl = document.getElementById("price-range-m");
+        if (prMEl) {
+            prMEl.addEventListener("input", e => {
+                document.getElementById("price-display-m").innerText = e.target.value + " €";
+                syncMobileToDesktop("price", e.target.value);
+            });
+        }
+
+        // Category radio changes (from hidden inputs)
+        document.querySelectorAll('.filter-category').forEach(input => {
+            input.addEventListener('change', () => {
+                syncDesktopToMobile("category", input.value);
+                // Activate pill
+                const pill = document.getElementById(input.value ? `pill-${input.value}` : 'pill-all');
+                if (pill) { document.querySelectorAll('.xeax-cat-pill').forEach(p => p.classList.remove('active')); pill.classList.add('active'); }
+                fetchFilteredProducts();
+            });
+        });
+
+        // Mobile category changes
+        document.querySelectorAll('.filter-category-m, input[name="category-m"]').forEach(input => {
+            input.addEventListener('change', () => syncMobileToDesktop("category", input.value));
+        });
+
+        // Size changes (desktop)
+        document.querySelectorAll('.filter-size').forEach(input => {
+            input.addEventListener('change', () => syncDesktopToMobile("size", input.value, input.checked));
+        });
+
+        // Size changes (mobile)
+        document.querySelectorAll('.filter-size-m').forEach(input => {
+            input.addEventListener('change', () => syncMobileToDesktop("size", input.value, input.checked));
+        });
+
+        // Stock toggle (desktop — may be commented out)
+        const swEl = document.getElementById("in-stock-switch");
+        if (swEl) {
+            swEl.addEventListener("change", e => {
+                syncDesktopToMobile("stock", e.target.checked);
+                fetchFilteredProducts();
+            });
+        }
+        const mSwEl = document.getElementById("m-in-stock-switch");
+        if (mSwEl) {
+            mSwEl.addEventListener("change", e => {
+                syncMobileToDesktop("stock", e.target.checked);
+            });
+        }
+
+        // Sort
+        document.getElementById("sort-select").addEventListener("change", fetchFilteredProducts);
+
+        // Scroll
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        checkLoadMoreVisibility();
+    });
+</script>
+{% endblock %}

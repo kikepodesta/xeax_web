@@ -1,0 +1,62 @@
+{% load static %}
+{% load i18n %}
+
+{% for product in products %}
+    {% with images=product.images.all %}
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="xeax-split-card {% if not images.1 %}single-img{% endif %}">
+
+            <!-- Dark image area -->
+            <a href="{% url 'main_app:product_detail' slug=product.slug %}" class="text-decoration-none d-block">
+                <div class="xeax-card-img-area">
+                    <img src="{{ product.main_image_url }}"
+                         class="xeax-card-img-front"
+                         alt="{{ product.name }} Front">
+                    {% if images.1 %}
+                    <img src="{{ images.1.image_url }}"
+                         class="xeax-card-img-back"
+                         alt="{{ product.name }} Back">
+                    {% endif %}
+                </div>
+            </a>
+
+            <!-- White info area -->
+            <div class="xeax-card-info">
+                <span class="xeax-card-category">
+                    {% if product.category %}{{ product.category.name }}{% else %}XEAX{% endif %}
+                </span>
+                <a href="{% url 'main_app:product_detail' slug=product.slug %}" class="xeax-card-name">
+                    {{ product.name }}
+                </a>
+                <div class="xeax-card-bottom">
+                    <span class="xeax-card-price">{{ product.price }} €</span>
+                    {% if product.has_stock %}
+                        <a href="{% url 'main_app:product_detail' slug=product.slug %}" class="xeax-card-cta">
+                            {% trans "Ver" %}
+                        </a>
+                    {% else %}
+                        <span class="xeax-card-sold-out">{% trans "Agotado" %}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endwith %}
+{% empty %}
+    <div class="col-12">
+        <div class="xeax-empty-state">
+            <i class="bi bi-search"></i>
+            <h4>{% trans "No se encontraron productos" %}</h4>
+            <p>{% trans "Prueba a cambiar tus filtros de búsqueda." %}</p>
+        </div>
+    </div>
+{% endfor %}
+
+<!-- Pagination state (for JS) -->
+<div id="ajax-pagination-state"
+     data-page="{{ page }}"
+     data-has-next="{% if has_next %}true{% else %}false{% endif %}"
+     data-total-count="{{ total_count }}"
+     style="display: none;">
+</div>

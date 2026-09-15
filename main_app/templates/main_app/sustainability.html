@@ -1,0 +1,108 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Sostenibilidad" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<!-- Hero Banner -->
+<div class="position-relative overflow-hidden p-3 p-md-5 text-center bg-dark text-white" style="margin-top: 80px; background: linear-gradient(135deg, #07170e 0%, #0d2215 50%, #050b07 100%); border-bottom: 1px solid rgba(40,167,69,0.3);">
+    <div class="col-md-8 p-lg-5 mx-auto my-5">
+        <span class="badge bg-success text-white text-uppercase px-3 py-2 fw-bold mb-3" style="letter-spacing: 2px;">
+            <i class="bi bi-tree me-1"></i> {% trans "Compromiso Verde XEAX" %}
+        </span>
+        <h1 class="display-3 fw-bold text-uppercase text-white" style="font-family: var(--font-heading, sans-serif); letter-spacing: 2px;">
+            {% trans "Rendimiento Técnico Sostenible" %}
+        </h1>
+        <p class="lead fw-normal text-muted mt-3 fs-4 col-lg-10 mx-auto">
+            {% trans "Demostramos que la máxima exigencia deportiva no está peleada con la protección de nuestro planeta." %}
+        </p>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <!-- Intro grid -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="p-4 border border-secondary text-center h-100" style="background: #0f1410; border-radius: 12px; border-color: rgba(40,167,69,0.2) !important;">
+                <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex p-3 mb-3">
+                    <i class="bi bi-recycle text-success display-5"></i>
+                </div>
+                <h3 class="text-white text-uppercase fs-5 fw-bold mb-3">{% trans "Fibras Recicladas" %}</h3>
+                <p class="text-muted small mb-0">{% trans "Más del 75% de nuestras prendas técnicas utilizan poliéster reciclado proveniente de plásticos rescatados del océano y botellas PET post-consumo." %}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 border border-secondary text-center h-100" style="background: #0f1410; border-radius: 12px; border-color: rgba(40,167,69,0.2) !important;">
+                <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex p-3 mb-3">
+                    <i class="bi bi-box-seam text-success display-5"></i>
+                </div>
+                <h3 class="text-white text-uppercase fs-5 fw-bold mb-3">{% trans "Packaging Cero Plástico" %}</h3>
+                <p class="text-muted small mb-0">{% trans "Todos nuestros envíos se entregan en cajas de cartón 100% reciclado e impresas con tintas vegetales compostables." %}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 border border-secondary text-center h-100" style="background: #0f1410; border-radius: 12px; border-color: rgba(40,167,69,0.2) !important;">
+                <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex p-3 mb-3">
+                    <i class="bi bi-people text-success display-5"></i>
+                </div>
+                <h3 class="text-white text-uppercase fs-5 fw-bold mb-3">{% trans "Fabricación Ética" %}</h3>
+                <p class="text-muted small mb-0">{% trans "Colaboramos únicamente con talleres textiles auditados que garantizan condiciones de trabajo justas y salarios dignos." %}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Section -->
+    <div class="row align-items-center g-5 py-4 border-top border-secondary">
+        <div class="col-lg-6">
+            <h2 class="text-uppercase fw-bold text-white mb-4" style="letter-spacing: 1px;">
+                {% trans "Moda Deportiva Circular vs. Fast Fashion" %}
+            </h2>
+            <p class="text-secondary fs-5 lh-lg">
+                {% trans "Frente al consumo desmedido y la rápida obsolescencia de las prendas de entrenamiento convencionales, XEAX desarrolla ropa urbana y técnica diseñada para durar años." %}
+            </p>
+            <ul class="list-unstyled text-secondary fs-6 lh-lg">
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> {% trans "Costuras reforzadas anti-desgarre para soportar el uso diario más agresivo." %}</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> {% trans "Tratamiento de retención de color que evita la decoloración tras lavados repetidos." %}</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> {% trans "Certificación OEKO-TEX® Standard 100 libre de químicos dañinos." %}</li>
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <div class="p-4 p-md-5 border border-success border-opacity-25" style="background: rgba(13,34,21,0.6); border-radius: 16px;">
+                <h4 class="text-white text-uppercase fw-bold mb-4">{% trans "Hoja de Ruta 2030" %}</h4>
+                
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between text-muted small mb-1">
+                        <span>{% trans "Polímeros Reciclados en Colecciones" %}</span>
+                        <span class="text-success fw-bold">85% / 100%</span>
+                    </div>
+                    <div class="progress bg-dark" style="height: 8px;">
+                        <div class="progress-bar bg-success" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between text-muted small mb-1">
+                        <span>{% trans "Neutralidad de Carbono en Logística" %}</span>
+                        <span class="text-success fw-bold">70% / 100%</span>
+                    </div>
+                    <div class="progress bg-dark" style="height: 8px;">
+                        <div class="progress-bar bg-success" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="d-flex justify-content-between text-muted small mb-1">
+                        <span>{% trans "Programa de Reciclaje de Prendas Viejas" %}</span>
+                        <span class="text-success fw-bold">60% / 100%</span>
+                    </div>
+                    <div class="progress bg-dark" style="height: 8px;">
+                        <div class="progress-bar bg-success" style="width: 60%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

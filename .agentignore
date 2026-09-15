@@ -1,0 +1,19 @@
+# Ignorar carpetas de dependencias y configuraciones locales
+node_modules/
+.env
+.venv/
+dist/
+
+# Ignorar archivos temporales y del sistema
+*.log
+.DS_Store
+*.tmp
+*.pyc
+
+# Ignorar documentación pesada que no se necesita para programar
+docs/
+*.pdf
+
+# Ignorar archivos multimedia grandes
+assets/videos/
+*.mp4

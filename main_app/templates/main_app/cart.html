@@ -1,0 +1,128 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Carrito de Compra" %} | XEAX Sports{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 80px;">
+    <h1 class="mb-4" style="font-family: var(--font-heading); color: #ffffff; letter-spacing: 1px;">
+        {% trans "Tu Carrito" %}
+    </h1>
+
+    {% if cart.items.all %}
+        <div class="row g-5">
+            <!-- Columna Izquierda: Listado de Productos -->
+            <div class="col-12 col-lg-8">
+                <div class="d-flex flex-column gap-3">
+                    {% for item in cart.items.all %}
+                        <div class="card bg-dark text-white border-secondary p-3" style="border-radius: var(--border-radius-md); background: var(--bg-card) !important;">
+                            <div class="row align-items-center g-3">
+                                <!-- Imagen del producto -->
+                                <div class="col-3 col-md-2 text-center">
+                                    <a href="{% url 'main_app:product_detail' slug=item.variant.product.slug %}">
+                                        <img src="{{ item.variant.product.main_image_url }}" class="img-fluid" style="max-height: 80px; object-fit: contain; border-radius: var(--border-radius-sm);" alt="{{ item.variant.product.name }}">
+                                    </a>
+                                </div>
+                                
+                                <!-- Detalles -->
+                                <div class="col-9 col-md-5">
+                                    <a href="{% url 'main_app:product_detail' slug=item.variant.product.slug %}" class="text-white text-decoration-none">
+                                        <h4 class="mb-1 text-uppercase" style="font-family: var(--font-heading); font-size: 1.1rem; letter-spacing: 1px;">
+                                            {{ item.variant.product.name }}
+                                        </h4>
+                                    </a>
+                                    <div class="d-flex flex-column gap-1">
+                                        <span class="text-muted small">
+                                            {% if item.variant.product.category %}{{ item.variant.product.category.name }}{% else %}{% trans "Deportes" %}{% endif %}
+                                        </span>
+                                        <span class="badge bg-secondary align-self-start" style="font-size: 0.8rem; font-family: var(--font-body); padding: 5px 10px;">
+                                            {% trans "Talla" %}: {{ item.variant.size }}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Cantidad y Acciones -->
+                                <div class="col-6 col-md-3">
+                                    <form action="{% url 'main_app:update_cart' item_id=item.id %}" method="post" class="d-flex align-items-center gap-2">
+                                        {% csrf_token %}
+                                        <select name="quantity" class="form-select bg-dark text-white border-secondary form-select-sm" style="width: 70px;" onchange="this.form.submit()">
+                                            {% for i in "123456789"|make_list %}
+                                                {% if forloop.counter <= item.variant.stock %}
+                                                    <option value="{{ forloop.counter }}" {% if item.quantity == forloop.counter %}selected{% endif %}>{{ forloop.counter }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm" title="{% trans 'Actualizar' %}">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                    </form>
+                                    <a href="{% url 'main_app:remove_from_cart' item_id=item.id %}" class="text-danger small mt-2 d-inline-block text-decoration-none">
+                                        <i class="bi bi-trash3 me-1"></i> {% trans "Eliminar" %}
+                                    </a>
+                                </div>
+                                
+                                <!-- Precio subtotal -->
+                                <div class="col-6 col-md-2 text-end">
+                                    <span class="fs-5 fw-bold text-white" style="font-family: var(--font-heading);">
+                                        {{ item.total_price }} €
+                                    </span>
+                                    <div class="small text-muted">
+                                        ({{ item.variant.product.price }} € x {{ item.quantity }})
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Resumen de Compra -->
+            <div class="col-12 col-lg-4">
+                <div class="p-4 border border-secondary" style="background: var(--bg-card); border-radius: var(--border-radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                    <h3 class="text-uppercase text-white mb-4 border-bottom border-secondary pb-2" style="font-family: var(--font-heading); font-size: 1.3rem; letter-spacing: 1px;">
+                        {% trans "Resumen de compra" %}
+                    </h3>
+                    
+                    <div class="d-flex justify-content-between mb-3 text-muted" style="font-family: var(--font-body);">
+                        <span>{% trans "Productos" %} ({{ cart.total_items }})</span>
+                        <span class="text-white">{{ cart.total_price }} €</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3 text-muted" style="font-family: var(--font-body);">
+                        <span>{% trans "Envío" %}</span>
+                        <span class="text-success fw-bold">{% trans "GRATIS" %}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4 border-top border-secondary pt-3">
+                        <span class="fs-5 text-white" style="font-family: var(--font-heading);">{% trans "Total" %}</span>
+                        <span class="fs-4 fw-bold text-white" style="font-family: var(--font-heading);">{{ cart.total_price }} €</span>
+                    </div>
+
+                    <p class="small text-muted mb-4" style="font-family: var(--font-body); line-height: 1.4;">
+                        {% trans "Para proceder al pago y confirmar la logística con Amazon es necesario estar registrado." %}
+                    </p>
+
+                    <a href="{% url 'main_app:checkout' %}" class="btn btn-xeax-primary w-100 py-3 text-uppercase text-decoration-none">
+                        {% trans "Proceder al Pago" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <!-- Vacío -->
+        <div class="text-center py-5 border border-secondary" style="background: var(--bg-card); border-radius: var(--border-radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <i class="bi bi-bag-x fs-1 text-muted mb-3 d-block"></i>
+            <h3 class="text-uppercase text-white" style="font-family: var(--font-heading); letter-spacing: 1px;">
+                {% trans "Tu carrito está vacío" %}
+            </h3>
+            <p class="text-muted col-md-6 mx-auto mb-4" style="font-family: var(--font-body);">
+                {% trans "Explora nuestra colección urbana y equipamiento técnico para encontrar lo mejor para tu entrenamiento de alto rendimiento." %}
+            </p>
+            <a href="{% url 'main_app:home' %}" class="btn btn-xeax-primary px-4 py-2.5 text-uppercase text-decoration-none">
+                {% trans "Volver a la tienda" %}
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

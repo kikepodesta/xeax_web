@@ -1,0 +1,100 @@
+{% load i18n %}<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% trans "Bienvenido al movimiento XEAX" %}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#0d0d0f;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0d0d0f;">
+    <tr>
+      <td align="center" style="padding:40px 20px;">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#111114;border:1px solid #222228;border-radius:12px;overflow:hidden;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#0d0d0f 0%,#1a1a20 100%);padding:40px 40px 30px;text-align:center;border-bottom:1px solid #222228;">
+              <div style="font-family:Georgia,serif;font-size:36px;font-weight:900;letter-spacing:8px;color:#c9aa71;text-transform:uppercase;margin-bottom:4px;">XEAX</div>
+              <div style="font-size:10px;letter-spacing:4px;color:#888;text-transform:uppercase;">SPORTS</div>
+            </td>
+          </tr>
+
+          <!-- Hero -->
+          <tr>
+            <td style="padding:50px 40px 30px;text-align:center;">
+              <h1 style="margin:0 0 16px;font-size:28px;font-weight:900;color:#ffffff;letter-spacing:2px;text-transform:uppercase;line-height:1.2;">
+                {% trans "Bienvenido al movimiento" %}
+              </h1>
+              <p style="margin:0 0 8px;font-size:13px;letter-spacing:3px;color:#c9aa71;text-transform:uppercase;font-weight:600;">
+                WHERE I BELONG
+              </p>
+              <div style="width:50px;height:2px;background:#c9aa71;margin:24px auto;"></div>
+              <p style="margin:0 auto;font-size:15px;color:#aaa;line-height:1.7;max-width:420px;">
+                {% trans "Ya eres parte de algo más grande. Recibirás lanzamientos exclusivos, acceso anticipado a nuevos productos y ofertas especiales antes que nadie." %}
+              </p>
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 40px;">
+              <div style="height:1px;background:linear-gradient(90deg,transparent,#333,transparent);"></div>
+            </td>
+          </tr>
+
+          <!-- Benefits -->
+          <tr>
+            <td style="padding:30px 40px;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="33%" style="padding:16px;text-align:center;vertical-align:top;">
+                    <div style="font-size:24px;margin-bottom:10px;">⚡</div>
+                    <div style="font-size:12px;font-weight:700;color:#ffffff;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">{% trans "Lanzamientos" %}</div>
+                    <div style="font-size:11px;color:#777;line-height:1.5;">{% trans "Acceso anticipado a nuevas colecciones" %}</div>
+                  </td>
+                  <td width="33%" style="padding:16px;text-align:center;vertical-align:top;border-left:1px solid #222;border-right:1px solid #222;">
+                    <div style="font-size:24px;margin-bottom:10px;">🏆</div>
+                    <div style="font-size:12px;font-weight:700;color:#ffffff;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">{% trans "Exclusivas" %}</div>
+                    <div style="font-size:11px;color:#777;line-height:1.5;">{% trans "Ofertas y descuentos solo para suscriptores" %}</div>
+                  </td>
+                  <td width="33%" style="padding:16px;text-align:center;vertical-align:top;">
+                    <div style="font-size:24px;margin-bottom:10px;">🌍</div>
+                    <div style="font-size:12px;font-weight:700;color:#ffffff;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">{% trans "Comunidad" %}</div>
+                    <div style="font-size:11px;color:#777;line-height:1.5;">{% trans "Eventos locales y contenido exclusivo" %}</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CTA -->
+          <tr>
+            <td style="padding:10px 40px 40px;text-align:center;">
+              <a href="{{ site_url }}/catalog/"
+                 style="display:inline-block;background:#c9aa71;color:#0d0d0f;text-decoration:none;
+                        font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+                        padding:16px 40px;border-radius:2px;">
+                {% trans "Explorar Colección" %}
+              </a>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#0d0d0f;padding:24px 40px;text-align:center;border-top:1px solid #1a1a20;">
+              <p style="margin:0 0 8px;font-size:11px;color:#555;line-height:1.6;">
+                {% trans "Has recibido este correo porque te suscribiste al newsletter de XEAX Sports." %}
+              </p>
+              <p style="margin:0;font-size:10px;color:#444;">
+                &copy; 2026 XEAX Sports &mdash;
+                <a href="{{ site_url }}/terms/" style="color:#666;text-decoration:none;">{% trans "Política de Privacidad" %}</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

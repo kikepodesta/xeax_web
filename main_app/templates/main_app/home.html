@@ -1,0 +1,147 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Loop Video Background -->
+        <video class="hero-video-bg" autoplay muted loop playsinline>
+            <source src="{% static 'video/intro2.mp4' %}" type="video/mp4">
+        </video>
+        
+        <!-- Dark Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Content -->
+        <div class="container hero-content">
+            <h1 class="hero-title">
+                {% trans "LEVEL UP YOUR TRAINING" %}
+            </h1>
+            <p class="hero-subtitle">
+                {% trans "Equipamiento técnico sin puntos débiles. Agarre, velocidad y resistencia para atletas que van en serio" %}
+            </p>
+            {% comment %} <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="#" class="btn btn-xeax-primary btn-lg">
+                    {% trans "Explorar Colección" %}
+                </a>
+                <a href="#" class="btn btn-xeax-secondary btn-lg">
+                    {% trans "Ver Equipamiento" %}
+                </a>
+            </div> {% endcomment %}
+        </div>
+    </section>
+
+    <!-- Carrusel / Grid de Productos Destacados -->
+    {% if featured_products %}
+    <section class="xeax-editorial-catalog py-5" data-bs-theme="light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <p style="color: #86868b; font-size: 1rem; max-width: 640px; margin: 0 auto;">
+                    {% trans "Equipamiento de alto rendimiento con ingeniería de vanguardia diseñado para dominar cualquier entorno." %}
+                </p>
+            </div>
+
+            <div class="row g-4">
+                {% for product in featured_products %}
+                    {% with images=product.images.all %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="xeax-split-card {% if not images.1 %}single-img{% endif %}">
+
+                            <!-- Dark image area -->
+                            <a href="{% url 'main_app:product_detail' slug=product.slug %}" class="text-decoration-none d-block">
+                                <div class="xeax-card-img-area">
+                                    <img src="{{ product.main_image_url }}"
+                                         class="xeax-card-img-front"
+                                         alt="{{ product.name }} Front">
+                                    {% if images.1 %}
+                                    <img src="{{ images.1.image_url }}"
+                                         class="xeax-card-img-back"
+                                         alt="{{ product.name }} Back">
+                                    {% endif %}
+                                </div>
+                            </a>
+
+                            <!-- White info area -->
+                            <div class="xeax-card-info">
+                                <span class="xeax-card-category">
+                                    {% if product.category %}{{ product.category.name }}{% else %}XEAX{% endif %}
+                                </span>
+                                <a href="{% url 'main_app:product_detail' slug=product.slug %}" class="xeax-card-name">
+                                    {{ product.name }}
+                                </a>
+                                <div class="xeax-card-bottom">
+                                    <span class="xeax-card-price">{{ product.price }} €</span>
+                                    {% if product.has_stock %}
+                                        <a href="{% url 'main_app:product_detail' slug=product.slug %}" class="xeax-card-cta">
+                                            {% trans "Ver" %}
+                                        </a>
+                                    {% else %}
+                                        <span class="xeax-card-sold-out">{% trans "Agotado" %}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endwith %}
+                {% empty %}
+                    <div class="col-12 text-center py-5">
+                        <p style="color: #86868b;">{% trans "No hay productos destacados en este momento." %}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+
+    <!-- Sección de Filosofía & Marca -->
+    <section class="philosophy-section">
+        <div class="philosophy-bg-texture"></div>
+        <div class="container philosophy-container">
+            <div class="row align-items-center g-5">
+                <!-- Columna Izquierda: Rayo XEAX -->
+                <div class="col-lg-5 brand-ray-container">
+                    <!-- SVG Rayo Amarillo XEAX -->
+                    <svg class="brand-ray-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="55,5 15,55 45,55 35,95 85,45 50,45" />
+                    </svg>
+                </div>
+                
+                <!-- Columna Derecha: Filosofía -->
+                <div class="col-lg-7">
+                    <span class="product-category d-block mb-2">{% trans "Filosofía XEAX" %}</span>
+                    <h2 class="brand-quote">
+                        {% trans "Fuerza. Resistencia. Rendimiento." %}
+                    </h2>
+                    <p class="text-muted leading-relaxed" style="font-size: 1.1rem;">
+                        {% trans "En XEAX no creamos ropa simple. Desarrollamos armaduras urbanas y deportivas capaces de soportar tus entrenamientos más extremos y el desgaste diario del asfalto. Cada costura, tejido y corte técnico está diseñado para superar los límites establecidos, fusionando el estilo callejero con las exigencias del atleta de élite." %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Navbar inteligente: se oscurece al entrar en la sección blanca -->
+<script>
+(function() {
+    const navbar = document.querySelector('.navbar-xeax');
+    const lightSection = document.querySelector('.products-light-section');
+    if (!navbar || !lightSection) return;
+
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.isIntersecting) {
+                navbar.classList.add('navbar-solid');
+            } else {
+                navbar.classList.remove('navbar-solid');
+            }
+        },
+        { threshold: 0.05, rootMargin: '-70px 0px 0px 0px' }
+    );
+    observer.observe(lightSection);
+})();
+</script>
+{% endblock %}
+

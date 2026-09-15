@@ -1,0 +1,14 @@
+{
+  "printWidth": 120,
+  "overrides": [
+    {
+      "files": ["*.html"],
+      "options": {
+        "parser": "html",
+        "printWidth": 9999,
+        "htmlWhitespaceSensitivity": "ignore",
+        "singleAttributePerLine": false
+      }
+    }
+  ]
+}
