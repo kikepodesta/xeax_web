@@ -43,9 +43,21 @@ def product_detail(request, slug):
     # Fallback to any variant if all are out of stock
     if not default_variant:
         default_variant = product.variants.filter(is_active=True).first()
+    images = list(product.images.all())
+    highlights = []
+    for bullet in product.bullet_points[:3]:
+        title, separator, description = bullet.partition(':')
+        highlights.append({
+            'title': title.lstrip('0123456789. ').capitalize(),
+            'description': description.strip() if separator else '',
+        })
     return render(request, 'main_app/product_detail.html', {
         'product': product,
-        'default_variant': default_variant
+        'default_variant': default_variant,
+        'product_images': images,
+        'story_images': [{'image': image, 'index': index} for index, image in enumerate(images) if index],
+        'highlights': highlights,
+        'active_variants': product.variants.filter(is_active=True),
     })
 
 

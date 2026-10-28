@@ -32,6 +32,30 @@
         </div>
     </section>
 
+    {% if featured_products %}
+    <section class="featured-showcase" id="featured-slider" aria-label="{% trans 'Productos destacados' %}" aria-roledescription="{% trans 'carrusel' %}">
+        <div class="showcase-track" id="featured-track" tabindex="0" aria-label="{% trans 'Productos destacados. Usa las flechas para explorar.' %}">
+            {% for product in featured_products %}
+            <article class="showcase-slide" data-featured-slide aria-labelledby="featured-name-{{ product.pk }}">
+                <img class="showcase-background" src="{{ product.main_image_url }}" alt="" loading="lazy" decoding="async" width="1600" height="1000">
+                <div class="container showcase-copy">
+                    <h2 id="featured-name-{{ product.pk }}">{{ product.name }}</h2>
+                    {% if product.bullet_points %}<p class="showcase-benefit">{{ product.bullet_points.0|truncatewords:18 }}</p>{% endif %}
+                    <a href="{% url 'main_app:product_detail' slug=product.slug %}" class="experience-button">{% trans "Ver más" %} <span aria-hidden="true">↗</span><span class="visually-hidden"> {{ product.name }}</span></a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        <div class="container showcase-footer" id="featured-controls" hidden>
+            <span class="showcase-position" aria-live="polite" aria-atomic="true"><span id="featured-current">1</span> / {{ featured_products|length }}</span>
+            <div class="showcase-navigation">
+                <button type="button" class="experience-arrow" id="featured-prev" aria-controls="featured-track" aria-label="{% trans 'Producto anterior' %}" disabled><span aria-hidden="true">←</span></button>
+                <button type="button" class="experience-arrow" id="featured-next" aria-controls="featured-track" aria-label="{% trans 'Producto siguiente' %}"><span aria-hidden="true">→</span></button>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
     <!-- Carrusel / Grid de Productos Destacados -->
     {% if featured_products %}
     <section class="xeax-editorial-catalog py-5" data-bs-theme="light">
@@ -125,6 +149,67 @@
 
 <!-- Navbar inteligente: se oscurece al entrar en la sección blanca -->
 <script>
+(function() {
+    const track = document.getElementById('featured-track');
+    if (!track) return;
+    const slides = Array.from(track.children);
+    const controls = document.getElementById('featured-controls');
+    const previous = document.getElementById('featured-prev');
+    const next = document.getElementById('featured-next');
+    const current = document.getElementById('featured-current');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const navbar = document.querySelector('.navbar-xeax');
+    if (navbar && 'ResizeObserver' in window) {
+        new ResizeObserver(() => {
+            document.getElementById('featured-slider').style.setProperty('--showcase-nav-height', `${navbar.getBoundingClientRect().height}px`);
+        }).observe(navbar);
+    }
+    let index = 0;
+    let frame = 0;
+    controls.hidden = slides.length < 2;
+
+    function update() {
+        const center = track.getBoundingClientRect().left + track.clientWidth / 2;
+        let distance = Infinity;
+        slides.forEach((slide, position) => {
+            const bounds = slide.getBoundingClientRect();
+            const delta = Math.abs(bounds.left + bounds.width / 2 - center);
+            if (delta < distance) {
+                distance = delta;
+                index = position;
+            }
+        });
+        current.textContent = index + 1;
+        previous.disabled = index === 0;
+        next.disabled = index === slides.length - 1;
+        frame = 0;
+    }
+
+    function goTo(position) {
+        position = Math.max(0, Math.min(slides.length - 1, position));
+        const bounds = slides[position].getBoundingClientRect();
+        const trackBounds = track.getBoundingClientRect();
+        track.scrollBy({
+            left: bounds.left + bounds.width / 2 - trackBounds.left - track.clientWidth / 2,
+            behavior: reducedMotion.matches ? 'instant' : 'smooth'
+        });
+    }
+
+    previous.addEventListener('click', () => goTo(index - 1));
+    next.addEventListener('click', () => goTo(index + 1));
+    track.addEventListener('keydown', event => {
+        if (event.target !== track) return;
+        const positions = {ArrowLeft: index - 1, ArrowRight: index + 1, Home: 0, End: slides.length - 1};
+        if (!(event.key in positions)) return;
+        event.preventDefault();
+        goTo(positions[event.key]);
+    });
+    track.addEventListener('scroll', () => {
+        if (!frame) frame = requestAnimationFrame(update);
+    }, {passive: true});
+    window.addEventListener('resize', update);
+    update();
+})();
 (function() {
     const navbar = document.querySelector('.navbar-xeax');
     const lightSection = document.querySelector('.products-light-section');

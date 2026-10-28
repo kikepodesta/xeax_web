@@ -4,9 +4,87 @@
 
 {% block title %}{{ product.name }} | XEAX Sports{% endblock %}
 
+{% block seo_description %}{{ product.description|striptags|truncatewords:28 }}{% endblock %}
+{% block og_title %}{{ product.name }} | XEAX Sports{% endblock %}
+{% block og_description %}{{ product.description|striptags|truncatewords:28 }}{% endblock %}
+{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{{ product.main_image_url }}{% endblock %}
+{% block twitter_title %}{{ product.name }} | XEAX Sports{% endblock %}
+{% block twitter_description %}{{ product.description|striptags|truncatewords:28 }}{% endblock %}
+{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{{ product.main_image_url }}{% endblock %}
+
 {% block content %}
 <script>document.body.classList.add('page-light');</script>
-<div class="product-detail-light" data-bs-theme="light" style="padding-top: 120px; padding-bottom: 80px; min-height: 80vh;">
+<main class="product-experience" id="product-experience">
+    <nav class="product-local-nav" aria-label="{% trans 'Navegación del producto' %}">
+        <div class="container">
+            <a class="product-local-name" href="#product-overview">{{ product.name }}</a>
+            <div class="product-local-links">
+                {% if story_images %}<a href="#product-story">{% trans "Explorar" %}</a>{% endif %}
+                <span>{{ product.price }} €</span>
+                <a href="#product-purchase" class="experience-button">{% trans "Elegir opciones" %}</a>
+            </div>
+        </div>
+    </nav>
+    <section class="product-stage container" id="product-overview" aria-labelledby="product-title">
+        <div class="product-stage-copy">
+            <p class="experience-eyebrow">{% if product.category %}{{ product.category.name }}{% else %}XEAX SPORTS{% endif %}</p>
+            <h1 id="product-title">{{ product.name }}</h1>
+            {% if highlights %}<p class="product-stage-lead">{{ highlights.0.title }}</p>{% endif %}
+            <div class="product-stage-actions">
+                <a class="experience-button" href="#product-purchase">{% trans "Hazlo tuyo" %} <span aria-hidden="true">↗</span></a>
+                <span>{{ product.price }} €</span>
+            </div>
+            {% if story_images %}<a class="product-explore-link" href="#product-story">{% trans "Descubre cada detalle" %} <span aria-hidden="true">↓</span></a>{% endif %}
+        </div>
+        <button class="product-stage-visual" type="button" data-image-index="0" aria-label="{% trans 'Ampliar imagen' %}: {{ product.name }}">
+            <span class="product-stage-wordmark" aria-hidden="true">XEAX</span>
+            <img src="{{ product.main_image_url }}" alt="{{ product.name }}" width="1000" height="1000" fetchpriority="high">
+            <span class="product-image-hint" aria-hidden="true">{% trans "Ver de cerca" %} +</span>
+        </button>
+    </section>
+    {% if highlights %}
+    <section class="product-highlights" aria-labelledby="highlights-title">
+        <div class="container">
+            <p class="experience-eyebrow">{% trans "LA DIFERENCIA ESTÁ EN LOS DETALLES" %}</p>
+            <h2 id="highlights-title">{% trans "Más que equipamiento." %}<br><span>{% trans "Tu ventaja." %}</span></h2>
+            <div class="product-highlight-grid">
+                {% for highlight in highlights %}
+                <article class="product-highlight" data-reveal>
+                    <span class="product-highlight-number" aria-hidden="true">{{ forloop.counter|stringformat:"02d" }}</span>
+                    <h3>{{ highlight.title }}</h3>
+                    {% if highlight.description %}<p>{{ highlight.description }}</p>{% endif %}
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% if story_images %}
+    <section class="product-story container" id="product-story" aria-labelledby="story-title">
+        <div class="product-story-heading" data-reveal>
+            <p class="experience-eyebrow">{{ product.name }}</p>
+            <h2 id="story-title">{% trans "Míralo de cerca." %}</h2>
+            <p>{% trans "Cada ángulo. Cada detalle. Todo lo que necesitas conocer antes de hacerlo tuyo." %}</p>
+        </div>
+        <div class="product-story-grid">
+            {% for item in story_images %}
+            <figure class="product-story-frame" data-reveal>
+                <button type="button" data-story-image data-image-index="{{ item.index }}" aria-label="{% trans 'Ampliar imagen' %}: {{ item.image.alt_text|default:product.name }} ({{ forloop.counter }})">
+                    <img src="{{ item.image.image_url }}" alt="{{ item.image.alt_text|default:product.name }}" loading="lazy" decoding="async">
+                    <span class="product-image-hint" aria-hidden="true">+</span>
+                </button>
+                {% if item.image.alt_text %}<figcaption>{{ item.image.alt_text }}</figcaption>{% endif %}
+            </figure>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+<div class="product-detail-light product-purchase" id="product-purchase" data-bs-theme="light">
+<div class="container product-purchase-heading">
+    <p class="experience-eyebrow">{% trans "TU SIGUIENTE MOVIMIENTO" %}</p>
+    <h2>{% trans "Todo empieza contigo." %}</h2>
+    <p>{% trans "Elige tu opción. Prepara tu próximo entrenamiento." %}</p>
+</div>
 <div class="container">
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb" class="mb-4">
@@ -21,23 +99,23 @@
 
     <div class="row g-5">
         <!-- Columna 1: Galería de Imágenes (Amazon Style) -->
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-7 purchase-gallery">
             <div class="row">
                 <!-- Miniaturas (Izquierda) -->
-                <div class="col-2 d-none d-md-flex flex-column gap-2">
-                    {% for img in product.images.all %}
-                    <div class="border p-1 thumbnail-box {% if forloop.first %}active{% endif %}" 
-                         onclick="setMainImage('{{ img.image_url }}', this, {{ forloop.counter0 }})" 
-                         style="cursor: pointer; overflow: hidden;">
-                        <img src="{{ img.image_url }}" class="img-fluid" alt="{{ img.alt_text|default:product.name }}">
-                    </div>
+                <div class="col-12 purchase-thumbnails">
+                    {% for img in product_images %}
+                    <button type="button" class="border p-1 thumbnail-box {% if forloop.first %}active{% endif %}"
+                         data-thumbnail-index="{{ forloop.counter0 }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                         aria-label="{% trans 'Ver imagen' %} {{ forloop.counter }}: {{ img.alt_text|default:product.name }}">
+                        <img src="{{ img.image_url }}" class="img-fluid" alt="{{ img.alt_text|default:product.name }}" loading="lazy" decoding="async">
+                    </button>
                     {% endfor %}
                 </div>
                 
                 <!-- Imagen Principal -->
                 <div class="col">
-                    <div class="border p-3 text-center main-image-container" 
-                         onclick="openLightbox()"
+                    <div class="border p-3 text-center main-image-container" role="button" tabindex="0" aria-label="{% trans 'Ampliar imagen' %}"
+                         onclick="openLightbox()" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLightbox(); }"
                          style="cursor: zoom-in; border-radius: var(--border-radius-md); min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
                         <img id="main-product-img" src="{{ product.main_image_url }}" class="img-fluid" style="max-height: 500px; object-fit: contain; transition: transform 0.3s ease;" alt="{{ product.name }}">
                         <div class="zoom-hint">
@@ -49,13 +127,11 @@
         </div>
 
         <!-- Columna 2: Detalles e Información del Producto -->
-        <div class="col-12 col-lg-4">
+        <div class="col-12 order-lg-3 purchase-details">
             <span class="detail-category-label text-uppercase" style="font-size: 0.75rem; letter-spacing: 2px; font-family: var(--font-heading);">
                 {% if product.category %}{{ product.category.name }}{% else %}{% trans "XEAX ELITE" %}{% endif %}
             </span>
-            <h1 class="mt-2 mb-3" style="font-family: var(--font-heading); font-size: 2.2rem; letter-spacing: 1px;">
-                {{ product.name }}
-            </h1>
+            <h2 class="mt-2 mb-3 purchase-product-name">{{ product.name }}</h2>
             
             <!-- Simulación de Valoración -->
             {% comment %} <div class="d-flex align-items-center gap-2 mb-3" style="font-family: var(--font-body); font-size: 0.9rem;">
@@ -88,19 +164,6 @@
                             <span class="bullet-dot">▪</span>
                             <span>{{ bullet }}</span>
                         </li>
-                    {% empty %}
-                        <li class="d-flex align-items-start gap-2">
-                            <span class="bullet-dot">▪</span>
-                            <span>{% trans "Rendimiento y confort de primer nivel para tus entrenamientos diarios." %}</span>
-                        </li>
-                        <li class="d-flex align-items-start gap-2">
-                            <span class="bullet-dot">▪</span>
-                            <span>{% trans "Tejido duradero y flexible optimizado para movimientos corporales complejos." %}</span>
-                        </li>
-                        <li class="d-flex align-items-start gap-2">
-                            <span class="bullet-dot">▪</span>
-                            <span>{% trans "Logotipo e identidad gráfica XEAX de alta calidad en transfer de silicona." %}</span>
-                        </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -119,8 +182,9 @@
         </div>
 
         <!-- Columna 3: Caja de Compra (Buy Box) -->
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-5 order-lg-2 purchase-options">
             <div class="lt-buy-box p-4">
+                <h3 class="purchase-option-title">{{ product.name }}</h3>
                 <div class="mb-3">
                     <span class="fs-2 fw-bold buy-box-price" style="font-family: var(--font-heading);">{{ product.price }} €</span>
                 </div>
@@ -143,12 +207,12 @@
                             {% trans "Seleccionar Talla" %}: <span id="current-size-name" class="current-size fw-bold"></span>
                         </label>
                         <div class="d-flex flex-wrap gap-2">
-                            {% for variant in product.variants.all %}
+                            {% for variant in active_variants %}
                                 <button type="button" 
-                                        class="btn size-pill-btn {% if variant.stock == 0 %}out-of-stock{% endif %}"
+                                        class="btn size-pill-btn {% if variant.stock <= 0 %}out-of-stock{% endif %}"
                                         data-size="{{ variant.size }}"
-                                        onclick="selectSize('{{ variant.size }}')"
-                                        {% if variant.stock == 0 %}disabled{% endif %}>
+                                        onclick="selectSize(this.dataset.size)" aria-pressed="false"
+                                        {% if variant.stock <= 0 %}disabled{% endif %}>
                                     {{ variant.size }}
                                 </button>
                             {% endfor %}
@@ -156,7 +220,7 @@
                     </div>
 
                     <!-- Estado del Stock (Dinamizado por JS) -->
-                    <div class="my-3" id="stock-status-box">
+                    <div class="my-3" id="stock-status-box" role="status" aria-live="polite">
                         <span class="size-label" style="font-family: var(--font-body); font-size: 0.95rem;">
                             {% trans "Por favor, selecciona una talla." %}
                         </span>
@@ -176,7 +240,7 @@
                         <button type="submit" id="add-to-cart-btn" class="btn btn-lt-add-to-cart w-100 py-2 text-uppercase" disabled>
                             <i class="bi bi-cart-plus me-2"></i> {% trans "Añadir al Carrito" %}
                         </button>
-                        <button type="submit" id="buy-now-btn" name="buy_now" value="1" class="btn btn-lt-buy-now w-100 py-2 text-uppercase fw-bold" disabled onclick="this.form.action='{% url 'main_app:add_to_cart' product_id=product.id %}?buy_now=1';">
+                        <button type="submit" id="buy-now-btn" name="buy_now" value="1" class="btn btn-lt-buy-now w-100 py-2 text-uppercase fw-bold" disabled>
                             <i class="bi bi-lightning-fill me-2"></i> {% trans "Comprar ya" %}
                         </button>
                     </div>
@@ -208,37 +272,70 @@
 </div>
 </div>
 
+</main>
+
 <!-- Custom Lightbox Modal -->
-<div id="xeax-lightbox" class="xeax-lightbox-modal" style="display: none;">
-    <span class="xeax-lightbox-close" onclick="closeLightbox()">&times;</span>
+<dialog id="xeax-lightbox" class="xeax-lightbox-modal" aria-label="{% trans 'Galería de producto' %}">
+    <button type="button" class="xeax-lightbox-close" onclick="closeLightbox()" aria-label="{% trans 'Cerrar galería' %}" autofocus>&times;</button>
     <div class="xeax-lightbox-content">
-        <img id="xeax-lightbox-img" src="" alt="Zoomed view">
+        <img id="xeax-lightbox-img" src="{{ product.main_image_url }}" alt="{{ product.name }}">
     </div>
-    {% if product.images.count > 1 %}
-    <a class="xeax-lightbox-prev" onclick="changeLightboxImage(-1)">&#10094;</a>
-    <a class="xeax-lightbox-next" onclick="changeLightboxImage(1)">&#10095;</a>
+    {% if product_images|length > 1 %}
+    <button type="button" class="xeax-lightbox-prev" onclick="changeLightboxImage(-1)" aria-label="{% trans 'Imagen anterior' %}">&#10094;</button>
+    <button type="button" class="xeax-lightbox-next" onclick="changeLightboxImage(1)" aria-label="{% trans 'Imagen siguiente' %}">&#10095;</button>
     {% endif %}
-</div>
+</dialog>
 
 <!-- JS Logic for Gallery Zoom & Size Selection -->
 <script>
     // 1. Gallery State
     let currentImageIndex = 0;
     const images = [
-        {% for img in product.images.all %}
-        "{{ img.image_url }}"{% if not forloop.last %},{% endif %}
-        {% endfor %}
+        {% for img in product_images %}
+        "{{ img.image_url|escapejs }}"{% if not forloop.last %},{% endif %}
+        {% empty %}"{{ product.main_image_url|escapejs }}"{% endfor %}
     ];
+    const imageAlts = [
+        {% for img in product_images %}
+        "{{ img.alt_text|default:product.name|escapejs }}"{% if not forloop.last %},{% endif %}
+        {% empty %}"{{ product.name|escapejs }}"{% endfor %}
+    ];
+    const lightboxDialog = document.getElementById('xeax-lightbox');
+    let previousOverflow = '';
+    lightboxDialog.addEventListener('close', () => { document.body.style.overflow = previousOverflow; });
+    lightboxDialog.addEventListener('click', event => {
+        if (event.target === lightboxDialog) closeLightbox();
+    });
+    lightboxDialog.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+            event.preventDefault();
+            changeLightboxImage(event.key === 'ArrowLeft' ? -1 : 1);
+        }
+    });
+    document.querySelectorAll('[data-thumbnail-index]').forEach(button => {
+        button.addEventListener('click', () => {
+            const index = Number(button.dataset.thumbnailIndex);
+            setMainImage(images[index], button, index);
+        });
+    });
+    document.querySelectorAll('[data-image-index]').forEach(button => {
+        button.addEventListener('click', () => {
+            const index = Number(button.dataset.imageIndex);
+            setMainImage(images[index], document.querySelectorAll('.thumbnail-box')[index], index);
+            openLightbox();
+        });
+    });
 
     function setMainImage(imgUrl, element, index) {
         document.getElementById('main-product-img').src = imgUrl;
+        document.getElementById('main-product-img').alt = imageAlts[index];
         currentImageIndex = index;
         
         // Update active class on thumbnails
         document.querySelectorAll('.thumbnail-box').forEach(function(box) {
-            box.classList.remove('active');
+            box.classList.toggle('active', box === element);
+            box.setAttribute('aria-pressed', box === element ? 'true' : 'false');
         });
-        element.classList.add('active');
     }
 
     // Lightbox Logic
@@ -246,18 +343,21 @@
         const lightbox = document.getElementById('xeax-lightbox');
         const lightboxImg = document.getElementById('xeax-lightbox-img');
         lightboxImg.src = images[currentImageIndex];
-        lightbox.style.display = 'flex';
+        lightboxImg.alt = imageAlts[currentImageIndex];
+        previousOverflow = document.body.style.overflow;
+        lightbox.showModal();
         document.body.style.overflow = 'hidden'; // Disable background scroll
     }
 
     function closeLightbox() {
-        document.getElementById('xeax-lightbox').style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable background scroll
+        document.getElementById('xeax-lightbox').close();
+        document.body.style.overflow = previousOverflow; // Re-enable background scroll
     }
 
     function changeLightboxImage(direction) {
         currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
         document.getElementById('xeax-lightbox-img').src = images[currentImageIndex];
+        document.getElementById('xeax-lightbox-img').alt = imageAlts[currentImageIndex];
         
         // Keep main page gallery thumbnail in sync
         const thumbs = document.querySelectorAll('.thumbnail-box');
@@ -274,15 +374,11 @@
     });
 
     // 2. Size Variant Selector Logic
-    const variants = {
-        {% for variant in product.variants.all %}
-        "{{ variant.size }}": {
-            "stock": {{ variant.stock }},
-            "sku": "{{ variant.amazon_sku|default:'' }}",
-            "id": {{ variant.id }}
-        }{% if not forloop.last %},{% endif %}
+    const variants = new Map([
+        {% for variant in active_variants %}
+        ["{{ variant.size|escapejs }}", {"stock": {{ variant.stock }}}]{% if not forloop.last %},{% endif %}
         {% endfor %}
-    };
+    ]);
 
     function selectSize(sizeName) {
         // Update selected size state
@@ -291,6 +387,7 @@
 
         // Highlight selected pill
         document.querySelectorAll('.size-pill-btn').forEach(btn => {
+            btn.setAttribute('aria-pressed', btn.dataset.size === sizeName ? 'true' : 'false');
             if (btn.getAttribute('data-size') === sizeName) {
                 btn.classList.add('active');
             } else {
@@ -299,7 +396,7 @@
         });
 
         // Get Stock and Dynamic Status
-        const variant = variants[sizeName];
+        const variant = variants.get(sizeName);
         const stockStatusBox = document.getElementById('stock-status-box');
         const qtyContainer = document.getElementById('quantity-container');
         const qtySelect = document.getElementById('quantity');
@@ -355,12 +452,46 @@
     // Auto-select default size with stock if present
     window.addEventListener('DOMContentLoaded', () => {
         {% if default_variant %}
-            selectSize('{{ default_variant.size }}');
+            selectSize('{{ default_variant.size|escapejs }}');
         {% else %}
-            if (variants['Talla Única']) {
-                selectSize('Talla Única');
-            }
+            document.getElementById('stock-status-box').textContent = '{% trans "Temporalmente sin stock" %}';
         {% endif %}
+    });
+
+    const experience = document.getElementById('product-experience');
+    const navbar = document.querySelector('.navbar-xeax');
+    if (navbar && 'ResizeObserver' in window) {
+        new ResizeObserver(() => {
+            experience.style.setProperty('--product-nav-offset', `${navbar.getBoundingClientRect().height}px`);
+        }).observe(navbar);
+    }
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.remove('reveal-pending');
+                revealObserver.unobserve(entry.target);
+            });
+        }, {threshold: 0.08});
+        document.querySelectorAll('[data-reveal]').forEach(element => {
+            element.classList.add('reveal-pending');
+            revealObserver.observe(element);
+        });
+        reducedMotion.addEventListener('change', () => {
+            if (!reducedMotion.matches) return;
+            document.querySelectorAll('.reveal-pending').forEach(element => element.classList.remove('reveal-pending'));
+            revealObserver.disconnect();
+        });
+    }
+    document.querySelectorAll('.product-story-frame img').forEach(image => {
+        const setLayout = () => {
+            if (image.naturalWidth > image.naturalHeight * 1.35) {
+                image.closest('figure').classList.add('product-story-frame-wide');
+            }
+        };
+        if (image.complete) setLayout();
+        else image.addEventListener('load', setLayout, {once: true});
     });
 </script>
 
